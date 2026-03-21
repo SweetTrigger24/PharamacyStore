@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý tồn kho</title>
+  <link rel="stylesheet" href="{% static 'css/tonkho.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <div>
+          <h2>NHÀ THUỐC</h2>    
+        </div>
+      </div>
+      <ul class="menu">
+        <li><a href="{% url 'dashboard' %}"><i class="bi bi-house-door"></i> Bảng điều khiển</a></li>
+        <li><a href="{% url 'admin_categories' %}"><i class="bi bi-bookmark"></i> Danh mục thuốc</a></li>
+        <li><a href="{% url 'admin_products' %}"><i class="bi bi-capsule"></i> Sản phẩm thuốc</a></li>
+        <li class="active"><a href="{% url 'admin_inventory' %}"><i class="bi bi-box-seam"></i> Quản lý tồn kho</a></li>
+        <li><a href="{% url 'admin_statistics' %}"><i class="bi bi-bar-chart"></i> Thống kê doanh thu</a></li>
+        <li><a href="{% url 'admin_customers' %}"><i class="bi bi-people"></i> Thông tin khách hàng</a></li>
+        <li><a href="{% url 'admin_orders' %}"><i class="bi bi-cart3"></i>Quản lý đơn hàng</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-right">
+          <div class="user-info user-info-vertical">
+            <i class="bi bi-person-circle"></i>
+            <div>
+              <span>Xin chào</span>
+              <strong>{{ user.get_full_name|default:user.username }}</strong>
+              <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="titleql">
+        <h2>Quản lý tồn kho</h2>
+        <p class="subtitle">
+          Quản lý số lượng hàng tồn kho
+        </p>
+        <div class="action-bar">
+          <div class="small-search-box">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for inventory in inventories %}
+              <tr>
+                <td>{{ inventory.product.proid }}</td>
+                <td>{{ inventory.product.name }}</td>
+                <td>{{ inventory.quantity }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn open-edit-popup"
+                    data-id="{{ inventory.id }}"
+                    data-proid="{{ inventory.product.proid }}"
+                    data-name="{{ inventory.product.name }}"
+                    data-quantity="{{ inventory.quantity }}"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu.</p>
+        <div class="footer-links">
+          <a href="#">Trợ giúp</a>
+          <a href="#">Chính sách quyền riêng tư</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <div class="popup-overlay" id="editPopupOverlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h2>Sửa hàng tồn kho</h2>
+      <button class="close-btn" id="closeEditPopup" type="button">&times;</button>
+    </div>
+
+    <form id="editInventoryForm" method="post">
+      {% csrf_token %}
+      <div class="popup-body">
+        <div class="form-group">
+          <label>ID sản phẩm</label>
+          <input type="text" id="editInventoryProid" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Tên sản phẩm</label>
+          <input type="text" id="editInventoryName" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Số lượng</label>
+          <input type="number" id="editInventoryQuantity" name="quantity" required />
+        </div>
+      </div>
+
+      <div class="popup-footer">
+        <button class="cancel-btn" id="cancelEditPopup" type="button">Hủy</button>
+        <button class="save-btn" type="submit">Cập nhật</button>
+      </div>
+    </form>
+  </div>
+</div>
+  <script>
+  const editButtons = document.querySelectorAll(".open-edit-popup");
+  const closeEditPopup = document.getElementById("closeEditPopup");
+  const cancelEditPopup = document.getElementById("cancelEditPopup");
+  const editPopupOverlay = document.getElementById("editPopupOverlay");
+  const editInventoryForm = document.getElementById("editInventoryForm");
+
+  const editInventoryProid = document.getElementById("editInventoryProid");
+  const editInventoryName = document.getElementById("editInventoryName");
+  const editInventoryQuantity = document.getElementById("editInventoryQuantity");
+
+  editButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const id = this.dataset.id;
+      const proid = this.dataset.proid;
+      const name = this.dataset.name;
+      const quantity = this.dataset.quantity;
+
+      editInventoryProid.value = proid;
+      editInventoryName.value = name;
+      editInventoryQuantity.value = quantity;
+      editInventoryForm.action = `/dashboard/ton-kho/sua/${id}/`;
+
+      editPopupOverlay.style.display = "flex";
+    });
+  });
+
+  closeEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  cancelEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  editPopupOverlay.addEventListener("click", function (event) {
+    if (event.target === editPopupOverlay) {
+      editPopupOverlay.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('gioi-thieu/', views.intro, name='intro'),
+    path('khai-truong/', views.opening, name='opening'),
+    path('san-pham/', views.product_list, name='product_list'),
+    path('san-pham/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('gio-hang/', views.cart, name='cart'),
+    path('gio-hang/xoa/<int:item_id>/', views.delete_cart_item, name='delete_cart_item'),
+    path('dat-hang/', views.checkout, name='checkout'),
+    path('thanh-toan-chuyen-khoan/<int:order_id>/', views.payment_info, name='payment_info'),
+    path('thong-tin-ca-nhan/', views.profile, name='profile'),
+    path('doi-mat-khau/', views.change_password_view, name='change_password'),
+    path('dang-ky/', views.register_view, name='register'),
+    path('dang-nhap/', views.login_view, name='login'),
+    path('dang-xuat/', views.logout_view, name='logout'),
+    path('them-vao-gio/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('dashboard/danh-muc/', views.admin_categories, name='admin_categories'),
+    path('dashboard/danh-muc/sua/<int:category_id>/', views.admin_category_update, name='admin_category_update'),
+    path('dashboard/danh-muc/xoa/<int:category_id>/', views.admin_category_delete, name='admin_category_delete'),
+    path('dashboard/san-pham/', views.admin_products, name='admin_products'),
+    path('dashboard/san-pham/sua/<int:product_id>/', views.admin_product_update, name='admin_product_update'),
+    path('dashboard/san-pham/xoa/<int:product_id>/', views.admin_product_delete, name='admin_product_delete'),
+    path('dashboard/ton-kho/', views.admin_inventory, name='admin_inventory'),
+    path('dashboard/ton-kho/sua/<int:inventory_id>/', views.admin_inventory_update, name='admin_inventory_update'),
+    path('dashboard/khach-hang/', views.admin_customers, name='admin_customers'),
+    path('dashboard/khach-hang/sua/<int:customer_id>/', views.admin_customer_update, name='admin_customer_update'),
+    path('dashboard/khach-hang/xoa/<int:customer_id>/', views.admin_customer_delete, name='admin_customer_delete'),
+    path('dashboard/don-hang/', views.admin_orders, name='admin_orders'),
+    path('dashboard/don-hang/sua/<int:order_id>/', views.admin_order_update, name='admin_order_update'),
+    path('dashboard/don-hang/xoa/<int:order_id>/', views.admin_order_delete, name='admin_order_delete'),
+    path('dashboard/thong-ke/', views.admin_statistics, name='admin_statistics'),
+]

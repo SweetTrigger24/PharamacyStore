@@ -1,0 +1,310 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý sản phẩm</title>
+  <link rel="stylesheet" href="{% static 'css/sanpham.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <div>
+          <h2>NHÀ THUỐC</h2>
+        </div>
+      </div>
+      <ul class="menu">
+        <li><a href="{% url 'dashboard' %}"><i class="bi bi-house-door"></i> Bảng điều khiển</a></li>
+        <li><a href="{% url 'admin_categories' %}"><i class="bi bi-bookmark"></i> Danh mục thuốc</a></li>
+        <li class="active"><a href="{% url 'admin_products' %}"><i class="bi bi-capsule"></i> Sản phẩm thuốc</a></li>
+        <li><a href="{% url 'admin_inventory' %}"><i class="bi bi-box-seam"></i> Quản lý tồn kho</a></li>
+        <li><a href="{% url 'admin_statistics' %}"><i class="bi bi-bar-chart"></i> Thống kê doanh thu</a></li>
+        <li><a href="{% url 'admin_customers' %}"><i class="bi bi-people"></i> Thông tin khách hàng</a></li>
+        <li><a href="{% url 'admin_orders' %}"><i class="bi bi-cart3"></i>Quản lý đơn hàng</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-right">
+          <div class="user-info user-info-vertical">
+            <i class="bi bi-person-circle"></i>
+            <div>
+              <span>Xin chào</span>
+              <strong>{{ user.get_full_name|default:user.username }}</strong>
+              <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="titleql">
+        <h2>Quản lý sản phẩm thuốc</h2>
+        <p class="subtitle">
+          Quản lý các sản phẩm thuốc, thêm mới, chỉnh sửa hoặc xoá các danh mục hiện có
+        </p>
+
+        <div class="action-bar">
+          <button class="add-btn" id="openPopup">
+            <i class="bi bi-plus-lg"></i>
+            Thêm sản phẩm
+          </button>
+
+          <div class="small-search-box">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+              <tr>
+                <td>{{ product.proid }}</td>
+                <td class="product-name-cell">{{ product.name }}</td>
+                <td class="product-desc-cell">{{ product.description }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn open-edit-popup"
+                    data-id="{{ product.id }}"
+                    data-proid="{{ product.proid }}"
+                    data-name="{{ product.name }}"
+                    data-price="{{ product.price }}"
+                    data-unit="{{ product.unit }}"
+                    data-description="{{ product.description }}"
+                    data-category-id="{{ product.category.id }}"
+                  >
+                  <i class="bi bi-pencil"></i>
+                  </button>
+                  <form method="post"
+                    action="{% url 'admin_product_delete' product.id %}"
+                    style="display:inline"
+                    onsubmit="return confirm('Bạn có chắc muốn xóa sản phẩm này không?');">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu.</p>
+        <div class="footer-links">
+          <a href="#">Trợ giúp</a>
+          <a href="#">Chính sách quyền riêng tư</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+  <div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h2>Thêm sản phẩm</h2>
+      <button class="close-btn" id="closePopup" type="button">&times;</button>
+    </div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="popup-body">
+          <div class="form-group">
+            <label>ID sản phẩm</label>
+            <input type="text" name="proid" placeholder="Nhập ID sản phẩm" required />
+          </div>
+          <div class="form-group full-width">
+            <label>Tên sản phẩm</label>
+            <textarea name="name" rows="3" placeholder="Nhập tên sản phẩm" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Giá (VND)</label>
+            <input type="number" name="price" placeholder="Nhập giá tiền" required />
+          </div>
+          <div class="form-group">
+            <label>Đơn vị tính</label>
+            <input type="text" name="unit" placeholder="Nhập đơn vị tính" required />
+          </div>
+          <div class="form-group">
+            <label>Số lượng tồn ban đầu</label>
+            <input type="number" name="quantity" placeholder="Nhập số lượng tồn" required />
+          </div>
+          <div class="form-group">
+            <label>Danh mục</label>
+            <select name="category_id" required>
+              <option value="">-- Chọn danh mục --</option>
+              {% for category in categories %}
+              <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label>Mô tả</label>
+            <textarea name="description" rows="5" placeholder="Nhập mô tả"></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label>Ảnh sản phẩm</label>
+            <input type="file" name="image" accept=".png,.jpg,.jpeg" />
+          </div>
+        </div>
+        <div class="popup-footer">
+          <button class="cancel-btn" id="cancelPopup" type="button">Hủy</button>
+          <button class="save-btn" type="submit">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<!-- POPUP SỬA SẢN PHẨM -->
+<div class="popup-overlay" id="editPopupOverlay">
+  <div class="popup popup-product">
+    <div class="popup-header">
+      <h2>Sửa sản phẩm</h2>
+      <button type="button" class="close-btn" id="closeEditPopup">&times;</button>
+    </div>
+
+    <form id="editProductForm" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="popup-body">
+        <div class="form-group">
+          <label for="editProductID">ID sản phẩm</label>
+          <input type="text" id="editProductID" name="proid" />
+        </div>
+
+        <div class="form-group">
+          <label for="editProductName">Tên sản phẩm</label>
+          <input type="text" id="editProductName" name="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="editProductPrice">Giá (VND)</label>
+          <input type="number" id="editProductPrice" name="price" />
+        </div>
+
+        <div class="form-group">
+          <label for="editProductUnit">Đơn vị tính</label>
+          <input type="text" id="editProductUnit" name="unit" />
+        </div>
+
+        <div class="form-group">
+          <label for="editCategory">Danh mục</label>
+          <select id="editCategory" name="category_id">
+            <option value="">-- Chọn danh mục --</option>
+            {% for category in categories %}
+              <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="editProductDesc">Mô tả</label>
+          <textarea id="editProductDesc" name="description" rows="4" placeholder="Nhập mô tả"></textarea>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="editFileUpload">Ảnh sản phẩm</label>
+          <input type="file" id="editFileUpload" name="image" accept=".png,.jpg,.jpeg" />
+        </div>
+      </div>
+
+      <div class="popup-footer">
+        <button type="button" class="cancel-btn" id="cancelEditPopup">Hủy</button>
+        <button type="submit" class="save-btn">Cập nhật</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  const openPopup = document.getElementById("openPopup");
+  const closePopup = document.getElementById("closePopup");
+  const cancelPopup = document.getElementById("cancelPopup");
+  const popupOverlay = document.getElementById("popupOverlay");
+
+  // Popup thêm sản phẩm
+  openPopup.addEventListener("click", function () {
+    popupOverlay.style.display = "flex";
+  });
+
+  closePopup.addEventListener("click", function () {
+    popupOverlay.style.display = "none";
+  });
+
+  cancelPopup.addEventListener("click", function () {
+    popupOverlay.style.display = "none";
+  });
+
+  popupOverlay.addEventListener("click", function (event) {
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = "none";
+    }
+  });
+
+  // Popup sửa sản phẩm
+  const editPopupOverlay = document.getElementById("editPopupOverlay");
+  const closeEditPopup = document.getElementById("closeEditPopup");
+  const cancelEditPopup = document.getElementById("cancelEditPopup");
+  const editButtons = document.querySelectorAll(".open-edit-popup");
+  const editForm = document.getElementById("editProductForm");
+
+  const editProductID = document.getElementById("editProductID");
+  const editProductName = document.getElementById("editProductName");
+  const editProductPrice = document.getElementById("editProductPrice");
+  const editProductUnit = document.getElementById("editProductUnit");
+  const editProductDesc = document.getElementById("editProductDesc");
+  const editCategory = document.getElementById("editCategory");
+
+  editButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      const productId = this.dataset.id;
+      const proid = this.dataset.proid;
+      const name = this.dataset.name;
+      const price = this.dataset.price;
+      const unit = this.dataset.unit;
+      const description = this.dataset.description;
+      const categoryId = this.dataset.categoryId;
+
+      editProductID.value = proid;
+      editProductName.value = name;
+      editProductPrice.value = price;
+      editProductUnit.value = unit;
+      editProductDesc.value = description;
+      editCategory.value = categoryId;
+
+      editForm.action = `/dashboard/san-pham/sua/${productId}/`;
+
+      editPopupOverlay.style.display = "flex";
+    });
+  });
+
+  closeEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  cancelEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  editPopupOverlay.addEventListener("click", function (event) {
+    if (event.target === editPopupOverlay) {
+      editPopupOverlay.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>

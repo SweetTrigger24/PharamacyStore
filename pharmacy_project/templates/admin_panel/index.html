@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <div>
+          <h2>NHÀ THUỐC</h2>
+        </div>
+      </div>
+
+      <ul class="menu">
+        <li class="active"><a href="{% url 'dashboard' %}"><i class="bi bi-house-door"></i> Bảng điều khiển</a></li>
+        <li><a href="{% url 'admin_categories' %}"><i class="bi bi-bookmark"></i> Danh mục thuốc</a></li>
+        <li><a href="{% url 'admin_products' %}"><i class="bi bi-capsule"></i> Sản phẩm thuốc</a></li>
+        <li><a href="{% url 'admin_inventory' %}"><i class="bi bi-box-seam"></i> Quản lý tồn kho</a></li>
+        <li><a href="{% url 'admin_statistics' %}"><i class="bi bi-bar-chart"></i> Thống kê doanh thu</a></li>
+        <li><a href="{% url 'admin_customers' %}"><i class="bi bi-people"></i> Thông tin khách hàng</a></li>
+        <li><a href="{% url 'admin_orders' %}"><i class="bi bi-cart3"></i>Quản lý đơn hàng</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-right">
+          <div class="user-info user-info-vertical">
+            <i class="bi bi-person-circle"></i>
+            <div>
+              <span>Xin chào</span>
+              <strong>{{ user.get_full_name|default:user.username }}</strong>
+              <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="dashboard">
+        <h1>Bảng điều khiển</h1>
+
+        <div class="stats">
+          <div class="card card-highlight">
+            <p>Tổng doanh thu</p>
+            <h2>{{ total_revenue }} VND</h2>
+            <span>Toàn bộ hệ thống</span>    
+          </div>
+
+          <div class="card">
+            <p>Tổng đơn hàng</p>
+            <h2>{{ total_orders }}</h2>
+            <span>Toàn bộ hệ thống</span>
+          </div>
+
+          <div class="card">
+            <p>Sản phẩm tồn kho</p>
+            <h2>{{ total_stock }}</h2>
+            <span>Đang theo dõi</span>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <h2>Lịch sử đơn hàng khách hàng</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Mã đơn hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in recent_orders %}
+              <tr>
+                <td>{{ order.code }}</td>
+                <td>{{ order.customer.full_name }}</td>
+                <td>{{ order.created_at|date:"d/m/Y" }}</td>
+                <td>{{ order.subtotal }} VNĐ</td>
+                <td>{{ order.get_status_display }}</td>
+                <td><a href="{% url 'admin_order_update' order.id %}">Xem</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <footer class="footer">
+        <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu.</p>
+        <div class="footer-links">
+          <a href="#">Trợ giúp</a>
+          <a href="#">Chính sách quyền riêng tư</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

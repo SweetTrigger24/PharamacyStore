@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới thiệu nhà thuốc</title>
+
+  <link rel="stylesheet" href="{% static 'css/gioithieu.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <a href="{% url 'home' %}" class="brand-icon">
+            <i class="bi bi-capsule"></i>
+        </a>
+      <div class="brand-text">
+         <h3>NHÀ THUỐC</h3>
+      </div>
+    </div>
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Tìm tên thuốc" />
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <a href="{% url 'cart' %}" class="icon-btn">
+        <i class="bi bi-cart-fill"></i>
+      </a> 
+      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
+
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong>
+          <a href="#" class="login-trigger">Đăng nhập</a>
+        </strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU PHỤ -->
+  <nav class="sub-navbar">
+    <div class="sub-navbar-inner">
+      <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
+      <a href="#" class="sub-nav-link">Hệ thống nhà thuốc</a>
+      <a href="{% url 'intro' %}" class="sub-nav-link active">Về chúng tôi</a>
+      <a href="#" class="sub-nav-link">Liên hệ</a>
+      <a href="#" class="sub-nav-link">Góp ý, khiếu nại</a>
+    </div>
+  </nav>
+
+  <!-- NỘI DUNG -->
+  <main class="page-wrapper intro-page">
+    <section class="intro-content-block">
+      <h1>Tại sao nên chọn Nhà thuốc ?</h1>
+
+      <h2>Sản phẩm chính hãng 100%</h2>
+      <p>
+        Chúng tôi cam kết chỉ cung cấp các sản phẩm thuốc tây, thực phẩm chức năng, mỹ phẩm và thiết bị y tế có nguồn gốc rõ ràng từ các thương hiệu uy tín trong và ngoài nước. Nhà thuốc tuyệt đối nói không với hàng giả, hàng nhái, và hàng kém chất lượng.
+      </p>
+
+      <h2>Đội ngũ dược sĩ tư vấn chuyên nghiệp</h2>
+      <p>
+        Dưới sự dẫn dắt của Dược sĩ Nguyễn Phúc Hoàng, đội ngũ dược sĩ tại nhà thuốc đều được đào tạo chuyên sâu, luôn sẵn sàng tư vấn, giải đáp mọi thắc mắc của khách hàng về cách sử dụng thuốc, thực phẩm chức năng và các sản phẩm chăm sóc sức khỏe. Khách hàng có thể yên tâm khi được hướng dẫn chi tiết để đạt hiệu quả tối ưu.
+      </p>
+
+      <h2>Giá cả cạnh tranh – Chất lượng đảm bảo</h2>
+      <p>
+        Nhà thuốc Phương Thảo luôn mang đến mức giá cả hợp lý, phù hợp với mọi đối tượng khách hàng, cùng với nhiều chương trình khuyến mãi hấp dẫn dành cho khách hàng thân thiết.
+      </p>
+
+      <h2>Giao hàng toàn quốc – Nhanh chóng và an toàn</h2>
+      <p>
+        Dù bạn ở bất kỳ đâu, Nhà thuốc Phương Thảo sẵn sàng giao hàng tận nơi với dịch vụ vận chuyển nhanh chóng, đảm bảo an toàn và nguyên vẹn sản phẩm.
+      </p>
+
+      <h2>Danh mục sản phẩm tại Nhà thuốc</h2>
+      <ul>
+        <li>Thuốc kê đơn &amp; không kê đơn</li>
+        <li>Thực phẩm chức năng (tăng cường sức khỏe, hỗ trợ tiêu hóa, bổ sung vitamin, hỗ trợ tim mạch, xương khớp,...)</li>
+        <li>Mỹ phẩm &amp; dược mỹ phẩm (chăm sóc da, chống lão hóa, trị mụn, dưỡng trắng,...)</li>
+        <li>Sản phẩm cho mẹ và bé (sữa bột, thực phẩm dinh dưỡng, tã bỉm,...)</li>
+      </ul>
+
+      <h2>Hệ thống xác thực sản phẩm chính hãng</h2>
+      <p>
+        Tất cả các sản phẩm tại Nhà thuốc đều có hóa đơn chứng từ đầy đủ và tem chống giả. Khách hàng có thể kiểm tra sản phẩm ngay khi nhận hàng và chúng tôi cam kết hoàn tiền 100% nếu phát hiện hàng không đúng chất lượng.
+      </p>
+
+      <h2>Chăm sóc khách hàng tận tâm – Hậu mãi chu đáo</h2>
+      <p>
+        Nhà thuốc không chỉ cung cấp sản phẩm mà còn luôn đồng hành cùng khách hàng trong suốt quá trình sử dụng. Đội ngũ chăm sóc khách hàng sẵn sàng giải đáp thắc mắc và theo dõi tình trạng sức khỏe của khách hàng sau khi sử dụng sản phẩm. Đặc biệt, các khách hàng thân thiết sẽ nhận được nhiều ưu đãi hấp dẫn như giảm giá sản phẩm, combo khuyến mãi và chương trình tích điểm đổi quà.
+      </p>
+
+      <h2>Hợp tác phân phối sản phẩm – Cơ hội kinh doanh hấp dẫn</h2>
+      <p>
+        Nhà thuốc luôn chào đón các đối tác có nhu cầu phân phối thực phẩm chức năng, mỹ phẩm, thông qua hệ thống bán hàng đa kênh của chúng tôi. Với chính sách chiết khấu hấp dẫn và hỗ trợ truyền thông mạnh mẽ, chúng tôi giúp các đối tác đưa sản phẩm đến tay người tiêu dùng một cách nhanh nhất và hiệu quả nhất.
+      </p>
+
+      <h2>Thông tin liên hệ Nhà thuốc :</h2>
+      <p>Địa chỉ: 363 Nguyễn Trãi, Hà Đông, Hà Nội</p>
+      <p>Hotline: 0917 857 147</p>
+      <p>Email: nhathuoc.contact@gmail.com</p>
+      <p>Website: https://nhathuoc.com.vn/</p>
+      <p>
+        Nhà thuốc luôn đồng hành và chăm sóc sức khỏe của bạn và gia đình. Cảm ơn quý khách hàng đã tin tưởng lựa chọn sản phẩm và dịch vụ của chúng tôi!
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand footer-brand-inner">
+          <div class="brand-icon">
+            <i class="bi bi-capsule"></i>
+            <!-- Nếu muốn dùng ảnh logo thật:
+            <img src="images/logo-footer.png" alt="Logo nhà thuốc" class="brand-logo-img" />
+            -->
+          </div>
+
+          <div class="brand-text">
+            <h3>NHÀ THUỐC</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <a href="#">Giới thiệu</a>
+        <a href="#">Giấy phép kinh doanh</a>
+        <a href="#">Quy chế hoạt động</a>
+        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="#">Chính sách nội dung</a>
+        <a href="#">Chính sách thanh toán</a>
+        <a href="#">Câu hỏi thường gặp</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Tổng đài</h3>
+        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Chứng nhận bởi</h3>
+        <div class="certificates">
+            <div class="certificate">
+                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+            </div>
+
+            <div class="certificate">
+              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+            </div>
+
+            <div class="certificate">
+                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
+      <div class="footer-bottom-links">
+        <a href="#">Trợ giúp</a>
+        <a href="#">Chính sách quyền riêng tư</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

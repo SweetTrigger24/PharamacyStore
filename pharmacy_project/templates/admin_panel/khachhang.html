@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý khách hàng</title>
+  <link rel="stylesheet" href="{% static 'css/khachhang.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <div>
+          <h2>NHÀ THUỐC</h2>
+        </div>
+      </div>
+      <ul class="menu">
+        <li><a href="{% url 'dashboard' %}"><i class="bi bi-house-door"></i> Bảng điều khiển</a></li>
+        <li><a href="{% url 'admin_categories' %}"><i class="bi bi-bookmark"></i> Danh mục thuốc</a></li>
+        <li><a href="{% url 'admin_products' %}"><i class="bi bi-capsule"></i> Sản phẩm thuốc</a></li>
+        <li><a href="{% url 'admin_inventory' %}"><i class="bi bi-box-seam"></i> Quản lý tồn kho</a></li>
+        <li><a href="{% url 'admin_statistics' %}"><i class="bi bi-bar-chart"></i> Thống kê doanh thu</a></li>
+        <li class="active"><a href="{% url 'admin_customers' %}"><i class="bi bi-people"></i> Thông tin khách hàng</a></li>
+        <li><a href="{% url 'admin_orders' %}"><i class="bi bi-cart3"></i>Quản lý đơn hàng</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-right">
+          <div class="user-info user-info-vertical">
+            <i class="bi bi-person-circle"></i>
+            <div>
+              <span>Xin chào</span>
+              <strong>{{ user.get_full_name|default:user.username }}</strong>
+              <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <section class="titleql">
+        <h2>Quản lý thông tin khách hàng</h2>
+        <p class="subtitle">
+          Quản lý thông tin khách hàng, thêm mới, chỉnh sửa hoặc xóa thông tin khách hàng
+        </p>
+
+        <div class="action-bar">
+          <div class="small-search-box">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Tìm kiếm thông tin khách hàng..." />
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th>Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for customer in customers %}
+              <tr>
+                <td>{{ customer.user.username }}</td>
+                <td>{{ customer.full_name }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.address }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="edit-btn open-edit-popup"
+                    data-id="{{ customer.id }}"
+                    data-username="{{ customer.user.username }}"
+                    data-full-name="{{ customer.full_name }}"
+                    data-phone="{{ customer.phone }}"
+                    data-address="{{ customer.address }}"
+                  >
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <form method="post"
+                    action="{% url 'admin_customer_delete' customer.id %}"
+                    style="display:inline"
+                    onsubmit="return confirm('Bạn có chắc muốn xóa thông tin khách hàng này không?');">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu.</p>
+        <div class="footer-links">
+          <a href="#">Trợ giúp</a>
+          <a href="#">Chính sách quyền riêng tư</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+<div class="popup-overlay" id="editPopupOverlay">
+  <div class="popup">
+    <div class="popup-header">
+      <h2>Sửa thông tin khách hàng</h2>
+      <button class="close-btn" id="closeEditPopup" type="button">&times;</button>
+    </div>
+
+    <form id="editCustomerForm" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="popup-body">
+        <div class="form-group">
+          <label>Tên đăng nhập</label>
+          <input type="text" id="editCustomerUsername" readonly />
+        </div>
+
+        <div class="form-group">
+          <label>Tên khách hàng</label>
+          <input type="text" id="editCustomerFullName" name="full_name" />
+        </div>
+
+        <div class="form-group">
+          <label>Số điện thoại</label>
+          <input type="text" id="editCustomerPhone" name="phone" />
+        </div>
+
+        <div class="form-group">
+          <label>Địa chỉ</label>
+          <textarea id="editCustomerAddress" name="address" rows="4"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Ảnh đại diện</label>
+          <input type="file" id="editCustomerAvatar" name="avatar" accept=".png,.jpg,.jpeg" />
+        </div>
+      </div>
+
+      <div class="popup-footer">
+        <button class="cancel-btn" id="cancelEditPopup" type="button">Hủy</button>
+        <button class="save-btn" type="submit">Cập nhật</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  const editButtons = document.querySelectorAll(".open-edit-popup");
+  const closeEditPopup = document.getElementById("closeEditPopup");
+  const cancelEditPopup = document.getElementById("cancelEditPopup");
+  const editPopupOverlay = document.getElementById("editPopupOverlay");
+  const editCustomerForm = document.getElementById("editCustomerForm");
+
+  const editCustomerUsername = document.getElementById("editCustomerUsername");
+  const editCustomerFullName = document.getElementById("editCustomerFullName");
+  const editCustomerPhone = document.getElementById("editCustomerPhone");
+  const editCustomerAddress = document.getElementById("editCustomerAddress");
+
+  editButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const id = this.dataset.id;
+      const username = this.dataset.username;
+      const fullName = this.dataset.fullName;
+      const phone = this.dataset.phone;
+      const address = this.dataset.address;
+
+      editCustomerUsername.value = username;
+      editCustomerFullName.value = fullName;
+      editCustomerPhone.value = phone;
+      editCustomerAddress.value = address;
+
+      editCustomerForm.action = `/dashboard/khach-hang/sua/${id}/`;
+
+      editPopupOverlay.style.display = "flex";
+    });
+  });
+
+  closeEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  cancelEditPopup.addEventListener("click", function () {
+    editPopupOverlay.style.display = "none";
+  });
+
+  editPopupOverlay.addEventListener("click", function (event) {
+    if (event.target === editPopupOverlay) {
+      editPopupOverlay.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>

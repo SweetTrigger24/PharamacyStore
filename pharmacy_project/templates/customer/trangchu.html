@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang chủ</title>
+
+  <link rel="stylesheet" href="{% static 'css/trangchu.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="bi bi-capsule"></i>
+        </div>
+        <div class="brand-text">
+          <h3>NHÀ THUỐC</h3>
+        </div>
+      </div>
+
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Tìm tên thuốc" />
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <a href="{% url 'cart' %}" class="icon-btn">
+        <i class="bi bi-cart-fill"></i>
+      </a>
+      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
+
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong href="#" class="login-trigger" onclick="openLoginPopup(event)">Đăng nhập</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU PHỤ -->
+  <nav class="sub-navbar">
+    <div class="sub-navbar-inner">
+      <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
+      <a href="#" class="sub-nav-link">Hệ thống nhà thuốc</a>
+      <a href="{% url 'intro' %}" class="sub-nav-link">Về chúng tôi</a>
+      <a href="#" class="sub-nav-link">Liên hệ</a>
+      <a href="#" class="sub-nav-link">Góp ý, khiếu nại</a>
+    </div>
+  </nav>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="page-wrapper about-page">
+
+    <!-- GIỚI THIỆU -->
+    <section class="about-intro">
+      <p>
+        Nhà thuốc dưới sự điều hành và giám sát của Dược sĩ Nguyễn Phúc Hoàng, tự hào là địa chỉ uy tín
+        chuyên cung cấp đa dạng các loại thuốc tây, thực phẩm chức năng, mỹ phẩm chính hãng. Với cam kết
+        chỉ mang đến những sản phẩm chất lượng cao, có nguồn gốc xuất xứ rõ ràng, chúng tôi luôn đặt sức
+        khỏe và sự an toàn của khách hàng lên hàng đầu.
+      </p>
+
+      <p>
+        Dược sĩ Nguyễn Phúc Hoàng với hơn 10 năm kinh nghiệm trong lĩnh vực dược phẩm đã không ngừng nỗ lực
+        xây dựng Nhà thuốc trở thành địa chỉ tin cậy, mang đến các sản phẩm chăm sóc sức khỏe chất lượng tốt
+        đến từng khách hàng.
+      </p>
+    </section>
+
+    <!-- HOẠT ĐỘNG NỔI BẬT -->
+    <section class="about-section">
+      <h2 class="section-heading">MỘT SỐ HOẠT ĐỘNG NỔI BẬT CỦA NHÀ THUỐC</h2>
+
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="{% static 'images/trangchu1.jpg' %}" alt="Hoạt động 1" />
+          </div>
+          <h3>Hành trình từ sinh viên IT đến Nhà thuốc - Bước tiến vững chắc của Nhà thuốc</h3>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="{% static 'images/trangchu2.webp' %}" alt="Hoạt động 2" />
+          </div>
+          <h3>Dược sĩ Nguyễn Phúc Hoàng - hành trình 10 năm gắn bó với nghề dược</h3>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="{% static 'images/trangchu3.webp' %}" alt="Hoạt động 3" />
+          </div>
+          <h3>
+            <a href="{% url 'opening' %}">Khai trương website chính thức của Nhà thuốc</a>
+          </h3>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <img src="{% static 'images/trangchu4.jpg' %}" alt="Hoạt động 4" />
+          </div>
+          <h3>Nhà thuốc - Địa chỉ chăm sóc sức khỏe uy tín</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- SẢN PHẨM NỔI BẬT -->
+    <section class="about-section">
+      <h2 class="section-heading">MỘT SỐ SẢN PHẨM NỔI BẬT</h2>
+
+      <div class="featured-product-grid">
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="anh lon 1.webp" alt="Thuốc Savi Leucin 500mg" />
+          </div>
+          <h3>Thuốc Savi Leucin 500mg điều trị cơn chóng mặt</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="danhsach1.webp" alt="Thuốc Stadelime 5mg" />
+          </div>
+          <h3>Thuốc Stadelime 5mg giảm các triệu chứng mất ngủ</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="danhsach2.webp" alt="Thuốc Telfor 120 DHG" />
+          </div>
+          <h3>Thuốc Telfor 120 DHG điều trị viêm mũi dị ứng</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="danhsach3.webp" alt="Thuốc Aerius 5mg Organon" />
+          </div>
+          <h3>Thuốc Aerius 5mg Organon giảm viêm mũi dị ứng</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="danhsach4.webp" alt="Thuốc Npluvico Nature" />
+          </div>
+          <h3>Thuốc Npluvico Nature điều trị suy tuần hoàn não</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="danhsach5.webp" alt="Viên ngậm Strepsils Orange & Vitamin C" />
+          </div>
+          <h3>Viên ngậm Strepsils Orange & Vitamin C trị đau họng</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="anhgiohang1.webp" alt="Viên nén Panadol Extra Đỏ" />
+          </div>
+          <h3>Viên nén Panadol Extra Đỏ – Giảm triệu chứng đau, hạ sốt</h3>
+        </div>
+
+        <div class="featured-product-card">
+          <div class="featured-product-image">
+            <img src="anhgiohang2.jpg" alt="Viên nén Briozcal" />
+          </div>
+          <h3>Viên nén Briozcal điều trị, phòng ngừa thiếu D3 và calci</h3>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand footer-brand-inner">
+          <div class="brand-icon">
+            <i class="bi bi-capsule"></i>
+          </div>
+          <div class="brand-text">
+            <h3>NHÀ THUỐC</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <a href="#">Giới thiệu</a>
+        <a href="#">Giấy phép kinh doanh</a>
+        <a href="#">Quy chế hoạt động</a>
+        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="#">Chính sách nội dung</a>
+        <a href="#">Chính sách thanh toán</a>
+        <a href="#">Câu hỏi thường gặp</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Tổng đài</h3>
+        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Chứng nhận bởi</h3>
+        <div class="certificates">
+            <div class="certificate">
+                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+            </div>
+
+            <div class="certificate">
+              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+            </div>
+
+            <div class="certificate">
+                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
+      <div class="footer-bottom-links">
+        <a href="#">Trợ giúp</a>
+        <a href="#">Chính sách quyền riêng tư</a>
+      </div>
+    </div>
+  </footer>
+<!-- POPUP ĐĂNG NHẬP -->
+<div class="auth-overlay" id="loginPopup">
+  <div class="auth-popup">
+    <h2>Đăng nhập</h2>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+      <button class="auth-main-btn" type="submit">Đăng nhập</button>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP ĐĂNG KÝ -->
+<div class="auth-overlay" id="registerPopup">
+  <div class="auth-popup">
+    <h2>Đăng ký</h2>
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+      <div class="auth-form-group">
+        <label>Họ và tên</label>
+        <div class="auth-input-icon">
+          <input type="text" name="full_name" placeholder="Nhập họ và tên" />
+        </div>
+      </div>
+      <div class="auth-form-group">
+        <label>Số điện thoại</label>
+        <div class="auth-input-icon">
+          <input type="text" name="phone" placeholder="Nhập số điện thoại" />
+        </div>
+      </div>
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+      <div class="auth-form-group">
+        <label>Nhập lại mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
+        </div>
+      </div>
+      <button class="auth-main-btn" type="submit">Đăng kí ngay</button>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP QUÊN MẬT KHẨU -->
+<div class="auth-overlay" id="forgotPopup">
+  <div class="auth-popup">
+    <h2>Quên mật khẩu</h2>
+
+    <div class="auth-form-group">
+      <label>Tên đăng nhập</label>
+      <div class="auth-input-icon">
+        <input type="text" placeholder="Nhập tên đăng nhập" />
+      </div>
+    </div>
+
+    <div class="auth-form-group">
+      <label>Nhập số điện thoại</label>
+      <div class="auth-input-icon">
+        <input type="text" placeholder="Nhập số điện thoại" />
+      </div>
+    </div>
+
+    <button class="auth-main-btn" type="button">Quên mật khẩu</button>
+  </div>
+</div>
+<script>
+  function closeAllAuthPopups() {
+    document.getElementById("loginPopup").classList.remove("show");
+    document.getElementById("registerPopup").classList.remove("show");
+    document.getElementById("forgotPopup").classList.remove("show");
+  }
+
+  function openLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+    document.getElementById("loginPopup").classList.add("show");
+  }
+
+  function openRegisterPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+    document.getElementById("registerPopup").classList.add("show");
+  }
+
+  function openForgotPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+    document.getElementById("forgotPopup").classList.add("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const forgotPopup = document.getElementById("forgotPopup");
+
+    if (event.target === loginPopup) {
+      loginPopup.classList.remove("show");
+    }
+
+    if (event.target === registerPopup) {
+      registerPopup.classList.remove("show");
+    }
+
+    if (event.target === forgotPopup) {
+      forgotPopup.classList.remove("show");
+    }
+  });
+</script>
+</body>
+</html>

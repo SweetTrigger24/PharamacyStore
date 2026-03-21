@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khai trương website chính thức của Nhà thuốc</title>
+
+  <link rel="stylesheet" href="{% static 'css/khaitruongwebsite.css' %}" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <a href="{% url 'home' %}" class="brand-icon">
+            <i class="bi bi-capsule"></i>
+        </a>
+      <div class="brand-text">
+         <h3>NHÀ THUỐC</h3>
+      </div>
+    </div>
+
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Tìm tên thuốc" />
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <a href="{% url 'cart' %}" class="icon-btn">
+        <i class="bi bi-cart-fill"></i>
+      </a>
+      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
+
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong>Đăng nhập</strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU PHỤ -->
+  <nav class="sub-navbar">
+    <div class="sub-navbar-inner">
+      <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
+      <a href="#" class="sub-nav-link">Hệ thống nhà thuốc</a>
+      <a href="{% url 'intro' %}" class="sub-nav-link">Về chúng tôi</a>
+      <a href="#" class="sub-nav-link">Liên hệ</a>
+      <a href="#" class="sub-nav-link">Góp ý, khiếu nại</a>
+    </div>
+  </nav>
+
+  <!-- NỘI DUNG -->
+  <main class="page-wrapper opening-page">
+    <section class="opening-content">
+      <h1>KHAI TRƯƠNG WEBSITE CHÍNH THỨC CỦA NHÀ THUỐC</h1>
+
+      <p>
+        Nhà thuốc trân trọng thông báo đến quý khách hàng sự kiện Khai trương website chính thức tại địa chỉ:
+        https://nhathuoc.com.vn/ – nền tảng mua sắm trực tuyến an toàn, tiện lợi và nhanh chóng,
+        giúp quý khách dễ dàng tiếp cận các sản phẩm chăm sóc sức khỏe và sắc đẹp uy tín ngay tại nhà.
+      </p>
+
+      <h2>Vì sao nên chọn mua hàng tại Website Nhà thuốc ?</h2>
+
+      <h3>Sản phẩm chính hãng 100%</h3>
+      <p>
+        Cung cấp đa dạng sản phẩm: Thuốc kê đơn, không kê đơn, thực phẩm chức năng, mỹ phẩm và dược mỹ phẩm.
+        Cam kết nguồn gốc rõ ràng với đầy đủ giấy tờ chứng nhận từ các thương hiệu uy tín trong và ngoài nước.
+      </p>
+
+      <h3>Tư vấn tận tâm từ dược sĩ giàu kinh nghiệm</h3>
+      <p>
+        Đội ngũ dược sĩ chuyên môn luôn sẵn sàng tư vấn, giúp khách hàng lựa chọn sản phẩm phù hợp với nhu cầu
+        sức khỏe và sắc đẹp.
+      </p>
+
+      <h3>Giao hàng toàn quốc – Nhanh chóng, an toàn</h3>
+      <p>
+        Đặt hàng trực tuyến và nhận sản phẩm tại nhà với các đối tác vận chuyển uy tín.
+        Miễn phí vận chuyển với đơn hàng từ 500.000 VNĐ (áp dụng cho khu vực nội thành TP.HCM và một số khu vực lân cận).
+      </p>
+
+      <h3>Ưu đãi đặc biệt nhân dịp khai trương</h3>
+      <p>
+        Giảm giá 10% cho đơn hàng đầu tiên khi nhập mã: PHUCHOANG37<br />
+        Miễn phí giao hàng toàn quốc cho 100 đơn hàng đầu tiên.<br />
+        Cơ hội nhận quà tặng hấp dẫn khi mua các sản phẩm thuộc danh mục Thực phẩm chức năng và Mỹ phẩm chăm sóc da.
+      </p>
+
+      <h3>Các tính năng nổi bật trên website</h3>
+      <p>
+        Tìm kiếm và đặt hàng nhanh chóng: Chỉ với vài cú nhấp chuột, bạn đã có thể sở hữu sản phẩm yêu thích.<br />
+        Thông tin sản phẩm chi tiết: Đầy đủ thông tin về thành phần, công dụng, hướng dẫn sử dụng và giá bán minh bạch.<br />
+        Hỗ trợ tư vấn trực tuyến: Kết nối trực tiếp với đội ngũ dược sĩ qua hotline.<br />
+        Nhiều phương thức thanh toán: Hỗ trợ thanh toán COD (nhận hàng trả tiền), chuyển khoản ngân hàng.<br />
+        Chính sách đổi trả và bảo hành minh bạch: Đảm bảo quyền lợi tối đa cho khách hàng với chính sách đổi trả dễ dàng và bảo hành theo quy định.
+      </p>
+
+      <h3>Lời cảm ơn từ Nhà thuốc</h3>
+      <p>
+        Việc ra mắt website chính thức là một bước tiến quan trọng giúp chúng tôi tiếp cận và phục vụ quý khách hàng tốt hơn.
+        Nhà thuốc xin gửi lời cảm ơn chân thành đến tất cả khách hàng đã đồng hành và tin tưởng chúng tôi trong suốt thời gian qua.
+      </p>
+
+      <p>
+        Hãy cùng chúng tôi lan tỏa thông điệp “Chăm sóc sức khỏe toàn diện – Vì một cộng đồng khỏe mạnh”
+        bằng cách truy cập ngay: https://nhathuoc.com.vn/
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand footer-brand-inner">
+          <div class="brand-icon">
+            <i class="bi bi-capsule"></i>
+          </div>
+          <div class="brand-text">
+            <h3>NHÀ THUỐC</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <a href="#">Giới thiệu</a>
+        <a href="#">Giấy phép kinh doanh</a>
+        <a href="#">Quy chế hoạt động</a>
+        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="#">Chính sách nội dung</a>
+        <a href="#">Chính sách thanh toán</a>
+        <a href="#">Câu hỏi thường gặp</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Tổng đài</h3>
+        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Chứng nhận bởi</h3>
+        <div class="certificates">
+            <div class="certificate">
+                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+            </div>
+
+            <div class="certificate">
+              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+            </div>
+
+            <div class="certificate">
+                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
+      <div class="footer-bottom-links">
+        <a href="#">Trợ giúp</a>
+        <a href="#">Chính sách quyền riêng tư</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông tin thanh toán</title>
+</head>
+<body>
+  <h2>Thông tin thanh toán chuyển khoản</h2>
+
+  <p>Mã đơn hàng: {{ order.code }}</p>
+  <p>Người nhận: {{ order.receiver_name }}</p>
+  <p>Số điện thoại: {{ order.receiver_phone }}</p>
+  <p>Địa chỉ: {{ order.delivery_address }}</p>
+  <p>Tổng tiền: {{ order.subtotal }}đ</p>
+  <p>Phương thức thanh toán: {{ order.get_payment_method_display }}</p>
+
+  <p>Trang này bạn sẽ thiết kế sau để hiển thị QR và nội dung chuyển khoản.</p>
+</body>
+</html>

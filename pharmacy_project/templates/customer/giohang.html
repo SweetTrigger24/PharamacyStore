@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giỏ hàng</title>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- CSS chung -->
+  <link rel="stylesheet" href="{% static 'css/giohang.css'%}" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <a href="{% url 'home' %}" class="brand-icon">
+            <i class="bi bi-capsule"></i>
+        </a>
+      <div class="brand-text">
+         <h3>NHÀ THUỐC</h3>
+      </div>
+    </div>
+
+      <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" placeholder="Tìm tên thuốc" />
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <a href="{% url 'cart' %}" class="icon-btn">
+        <i class="bi bi-cart-fill"></i>
+      </a>
+      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
+
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong>
+          <a href="{% url 'profile' %}" class="user-link">N.P.Hoàng</a>
+        </strong>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="page-wrapper">
+    <section class="cart-page-layout">
+
+      <!-- BÊN TRÁI -->
+      <div class="cart-main card">
+        <div class="cart-header">
+          <h2><i class="bi bi-cart3"></i> Giỏ hàng ({{ items|length }})</h2>
+        </div>
+        <div class="cart-table">
+          <!-- Dòng tiêu đề -->
+          <div class="cart-table-head">
+            <div>Sản phẩm</div>
+            <div>Đơn giá</div>
+            <div>Số lượng</div>
+            <div></div>
+          </div>
+          {% for item in items %}
+          <div class="cart-row">
+            <div class="product-cell">
+              <div class="product-thumb">
+                {% if item.product.image %}
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                {% else %}
+                <div class="no-image">
+                  <i class="bi bi-image"></i>
+                </div>
+                {% endif %}
+              </div>
+              <div class="product-info">
+                <div class="product-name">{{ item.product.name }}</div>
+              </div>
+            </div>
+            <div>{{ item.product.price|floatformat:0 }} VND</div>
+            <div>{{ item.quantity }}</div>
+            <div class="cart-action">
+              <form method="post" action="{% url 'delete_cart_item' item.id %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-item-btn" title="Xóa sản phẩm">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+          {% empty %}
+          <div class="cart-row">
+            <div>Giỏ hàng của bạn đang trống.</div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- BÊN PHẢI -->
+      <aside class="cart-summary card">
+        <div class="cart-summary-row">
+          <span>Tổng tiền</span>
+          <span>{{ cart.total_amount|floatformat:0 }} VND</span>
+        </div>
+
+        <a href="{% url 'checkout' %}" class="buy-btn">Mua hàng ({{ items|length }})</a>
+      </aside>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand footer-brand-inner">
+          <div class="brand-icon">
+            <i class="bi bi-capsule"></i>
+          </div>
+          <div class="brand-text">
+            <h3>NHÀ THUỐC</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <a href="#">Giới thiệu</a>
+        <a href="#">Giấy phép kinh doanh</a>
+        <a href="#">Quy chế hoạt động</a>
+        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="#">Chính sách nội dung</a>
+        <a href="#">Chính sách thanh toán</a>
+        <a href="#">Câu hỏi thường gặp</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Tổng đài</h3>
+        <p>Hỗ trợ đặt hàng<br>1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br>1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br>1800 0003 (Nhánh 3)</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Chứng nhận bởi</h3>
+        <div class="certificates">
+            <div class="certificate">
+                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+            </div>
+
+            <div class="certificate">
+              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+            </div>
+
+            <div class="certificate">
+                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
+      <div class="footer-bottom-links">
+        <a href="#">Trợ giúp</a>
+        <a href="#">Chính sách quyền riêng tư</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
