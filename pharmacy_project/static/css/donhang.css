@@ -528,3 +528,134 @@ background-color: #584ee6;
   color: #6b7280;
   padding: 24px 16px;
 }
+
+.edit-btn, .delete-btn, .view-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.view-btn {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.view-btn:hover {
+  background-color: #bfdbfe;
+}
+
+.action-cell {
+  white-space: nowrap;
+}
+
+.popup-order-detail {
+  width: min(620px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-order-detail .popup-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+}
+
+.order-summary {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.order-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background-color: #f9fafb;
+}
+
+.order-item-name {
+  font-weight: 500;
+  color: #111827;
+}
+
+.order-item-qty {
+  font-weight: 700;
+  color: #4f46e5;
+  white-space: nowrap;
+}
+
+.empty-order-items {
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .popup-order-detail {
+    width: calc(100vw - 20px);
+  }
+
+  .order-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.action-cell {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s ease;
+  padding: 0;
+}
+
+.action-btn i {
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* Nút xem + nút sửa nền xám nhạt */
+.view-btn,
+.edit-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.view-btn:hover,
+.edit-btn:hover {
+  background-color: #e5e7eb;
+}
+
+/* Nút xóa nền đỏ */
+.delete-btn {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}

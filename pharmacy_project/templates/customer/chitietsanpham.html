@@ -69,48 +69,105 @@
        NỘI DUNG CHÍNH
        ========================= -->
   <main class="page-wrapper">
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <a href="{% url 'home' %}">Trang chủ</a>
-      <span>/</span>
-      <a href="#">Thuốc thần kinh</a>
-      <span>/</span>
-      <span>Thuốc chống say tàu xe Momvina Hadiphar</span>
+  <div class="breadcrumb">
+    <a href="{% url 'home' %}">Trang chủ</a>
+    <span>/</span>
+    <span>{{ product.category.name }}</span>
+    <span>/</span>
+    <span>{{ product.name }}</span>
+  </div>
+
+  <section class="product-detail-page">
+    <!-- CỘT TRÁI -->
+    <div class="product-gallery-area">
+      <div class="main-image-card">
+        <div class="main-image-box">
+          {% if product.image %}
+            <img
+              src="{{ product.image.url }}"
+              alt="{{ product.name }}"
+              class="main-product-image"
+            />
+          {% else %}
+            <div class="image-placeholder">
+              <i class="bi bi-image"></i>
+              <span>Chưa có ảnh sản phẩm</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <p class="gallery-note">
+        Mẫu mã sản phẩm có thể thay đổi theo lô hàng
+      </p>
     </div>
 
-    <section class="product-detail-page">
+    <!-- CỘT PHẢI -->
+    <div class="product-info-area">
+      <h1 class="product-title">{{ product.name }}</h1>
 
-      <!-- CỘT TRÁI: ẢNH SẢN PHẨM -->
-      <div class="product-gallery-area">
-
-        <!-- Hàng chứa nút trái - ảnh lớn - nút phải -->
-        <div class="gallery-main-row">
-          {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-          {% endif %}
-        <p class="gallery-note">
-          Mẫu mã sản phẩm có thể thay đổi theo lô hàng
-        </p>
+      <div class="product-main-price">
+        {{ product.price|floatformat:0 }}đ / {{ product.unit }}
       </div>
 
-      <!-- CỘT PHẢI: THÔNG TIN -->
-      <div class="product-info-area">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.price }}đ / {{ product.unit }}</p>
-        {% if request.user.is_authenticated %}
-        <form method="post" action="{% url 'add_to_cart' product.id %}">
-          {% csrf_token %}
-          <button type="submit" class="add-to-cart-btn">Thêm vào giỏ hàng</button>
-        </form>
-        {% else %}
-        <button type="button" class="add-to-cart-btn" onclick="openRequireLoginPopup(event)">
+      {% if request.user.is_authenticated %}
+      <form method="post" action="{% url 'add_to_cart' product.id %}" class="purchase-box">
+        {% csrf_token %}
+
+        <div class="product-quantity-box">
+          <label>Chọn số lượng</label>
+
+          <div class="quantity-control">
+            <button type="button" class="qty-btn qty-minus">−</button>
+            <input type="text" name="quantity" value="1" class="qty-input" readonly>
+            <button type="button" class="qty-btn qty-plus">+</button>
+          </div>
+        </div>
+
+        <button type="submit" class="add-to-cart-btn">
+          <i class="bi bi-cart-plus"></i>
           Thêm vào giỏ hàng
         </button>
-        {% endif %}
-        <p>{{ product.description }}</p>
+      </form>
+      {% else %}
+      <div class="purchase-box">
+        <div class="product-quantity-box">
+          <label>Chọn số lượng</label>
+          <div class="quantity-control">
+            <button type="button" class="qty-btn qty-minus">-</button>
+            <input type="text" value="1" class="qty-input" readonly>
+            <button type="button" class="qty-btn qty-plus">+</button>
+          </div>
+        </div>
+
+        <button type="button" class="add-to-cart-btn" onclick="openRequireLoginPopup(event)">
+          <i class="bi bi-cart-plus"></i>
+          Thêm vào giỏ hàng
+        </button>
       </div>
-    </section>
-  </main>
+      {% endif %}
+
+      <div class="product-info-table">
+        <div class="info-row">
+          <div class="info-label">Danh mục :</div>
+          <div class="info-value">{{ product.category.name }}</div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-label">Quy cách :</div>
+          <div class="info-value">{{ product.unit }}</div>
+        </div>
+
+        <div class="info-row info-row-top">
+          <div class="info-label">Mô tả ngắn :</div>
+          <div class="info-value">
+            {{ product.description|default:"Sản phẩm hiện chưa có mô tả." }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
   <!-- =========================
        FOOTER
@@ -197,6 +254,23 @@
     if (event.target === popup) {
       popup.classList.remove("show");
     }
+  });
+</script>
+<script>
+  document.querySelectorAll(".quantity-control").forEach(function(control) {
+    const minusBtn = control.querySelector(".qty-minus");
+    const plusBtn = control.querySelector(".qty-plus");
+    const input = control.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      if (value > 1) input.value = value - 1;
+    });
+
+    plusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      input.value = value + 1;
+    });
   });
 </script>
 </body>

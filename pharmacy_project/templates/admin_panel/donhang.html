@@ -84,7 +84,16 @@
                 <td>{{ order.customer.full_name }}</td>
                 <td>{{ order.get_status_display }}</td>
                 <td>{{ order.note }}</td>
-                <td>
+                <td class="action-cell">
+                  <button
+                    type="button"
+                    class="view-btn open-view-popup"
+                    data-id="{{ order.id }}"
+                    data-code="{{ order.code }}"
+                    data-customer="{{ order.customer.full_name }}"
+                  >
+                    <i class="bi bi-eye-fill"></i>
+                  </button>
                   <button
                     type="button"
                     class="edit-btn open-edit-popup"
@@ -105,6 +114,16 @@
                       <i class="bi bi-trash"></i>
                     </button>
                   </form>
+                  <div id="order-items-{{ order.id }}" class="order-items-data" style="display: none;">
+                    {% for item in order.items.all %}
+                    <div class="order-item-row">
+                      <span class="order-item-name">{{ item.product.name }}</span>
+                      <span class="order-item-qty">x{{ item.quantity }}</span>
+                    </div>
+                    {% empty %}
+                    <p class="empty-order-items">Đơn hàng này chưa có sản phẩm.</p>
+                    {% endfor %}
+                  </div>
                 </td>
               </tr>
               {% empty %}
@@ -116,7 +135,6 @@
           </table>
         </div>
       </section>
-
       <footer class="footer">
         <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu.</p>
         <div class="footer-links">
@@ -169,13 +187,33 @@
     </form>
   </div>
 </div>
-  <script>
+<div class="popup-overlay" id="viewPopupOverlay">
+  <div class="popup popup-order-detail">
+    <div class="popup-header">
+      <h2>Chi tiết đơn hàng</h2>
+      <button class="close-btn" id="closeViewPopup" type="button">&times;</button>
+    </div>
+
+    <div class="popup-body">
+      <div class="order-summary">
+        <p><strong>Mã đơn hàng:</strong> <span id="viewOrderCode"></span></p>
+        <p><strong>Khách hàng:</strong> <span id="viewOrderCustomer"></span></p>
+      </div>
+
+      <div class="order-items-list" id="viewOrderItems"></div>
+    </div>
+
+    <div class="popup-footer">
+      <button class="cancel-btn" id="closeViewPopupFooter" type="button">Đóng</button>
+    </div>
+  </div>
+</div>
+<script>
   const editButtons = document.querySelectorAll(".open-edit-popup");
   const closeEditPopup = document.getElementById("closeEditPopup");
   const cancelEditPopup = document.getElementById("cancelEditPopup");
   const editPopupOverlay = document.getElementById("editPopupOverlay");
   const editOrderForm = document.getElementById("editOrderForm");
-
   const editOrderCode = document.getElementById("editOrderCode");
   const editOrderCustomer = document.getElementById("editOrderCustomer");
   const editOrderStatus = document.getElementById("editOrderStatus");
@@ -194,7 +232,6 @@
       editOrderStatus.value = status;
       editOrderNote.value = note;
       editOrderForm.action = `/dashboard/don-hang/sua/${id}/`;
-
       editPopupOverlay.style.display = "flex";
     });
   });
@@ -210,6 +247,44 @@
   editPopupOverlay.addEventListener("click", function (event) {
     if (event.target === editPopupOverlay) {
       editPopupOverlay.style.display = "none";
+    }
+  });
+
+  /* ===== Popup xem chi tiết đơn hàng ===== */
+  const viewButtons = document.querySelectorAll(".open-view-popup");
+  const viewPopupOverlay = document.getElementById("viewPopupOverlay");
+  const closeViewPopup = document.getElementById("closeViewPopup");
+  const closeViewPopupFooter = document.getElementById("closeViewPopupFooter");
+  const viewOrderCode = document.getElementById("viewOrderCode");
+  const viewOrderCustomer = document.getElementById("viewOrderCustomer");
+  const viewOrderItems = document.getElementById("viewOrderItems");
+
+  viewButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      const id = this.dataset.id;
+      const code = this.dataset.code;
+      const customer = this.dataset.customer;
+      const hiddenItems = document.getElementById(`order-items-${id}`);
+
+      viewOrderCode.textContent = code;
+      viewOrderCustomer.textContent = customer;
+      viewOrderItems.innerHTML = hiddenItems ? hiddenItems.innerHTML : "<p class='empty-order-items'>Không có dữ liệu sản phẩm.</p>";
+
+      viewPopupOverlay.style.display = "flex";
+    });
+  });
+
+  closeViewPopup.addEventListener("click", function () {
+    viewPopupOverlay.style.display = "none";
+  });
+
+  closeViewPopupFooter.addEventListener("click", function () {
+    viewPopupOverlay.style.display = "none";
+  });
+
+  viewPopupOverlay.addEventListener("click", function (event) {
+    if (event.target === viewPopupOverlay) {
+      viewPopupOverlay.style.display = "none";
     }
   });
 </script>

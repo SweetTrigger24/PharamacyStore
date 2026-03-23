@@ -495,11 +495,6 @@ font-size: 13px;
   margin-bottom: 8px;
 }
 
-.popup {
-  width: 720px;
-  max-width: 95%;
-}
-
 .form-group textarea {
   width: 100%;
   min-height: 96px;
@@ -636,4 +631,51 @@ font-size: 13px;
   text-align: center;
   color: #6b7280;
   padding: 24px 16px;
+}
+
+.popup-product {
+  width: min(680px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-product form {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 32px);
+}
+
+.popup-product .popup-body {
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+}
+
+.popup-product .popup-footer {
+  flex-shrink: 0;
+}
+
+.popup-product .form-group select,
+.popup-product .form-group input,
+.popup-product .form-group textarea {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .popup-product {
+    width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
+    border-radius: 10px;
+  }
+
+  .popup-product .popup-body {
+    padding: 16px;
+    max-height: calc(100vh - 150px);
+  }
+
+  .popup-product .popup-header,
+  .popup-product .popup-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }

@@ -34,12 +34,13 @@
       <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
 
       <div class="user-box">
-        <span>Xin chào</span>
-        <strong>
-          <a href="{% url 'profile' %}" class="user-link">{{ request.user.username }}</a>
-        </strong>
-        <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
-      </div>
+  <span>Xin chào</span>
+
+  <div class="user-actions">
+    <a href="{% url 'profile' %}" class="user-link">{{ request.user.username }}</a>
+    <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
+  </div>
+</div>
     </div>
   </header>
 
@@ -47,66 +48,83 @@
   <main class="page-wrapper">
     <section class="profile-page">
       <h1 class="profile-page-title">Thông tin cá nhân</h1>
-
-      <div class="profile-card">
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
-          <div class="profile-avatar-section">
-            <h3>Ảnh đại diện</h3>
-            <div class="profile-avatar-row">
-              <div class="profile-avatar">
-                {% if customer.avatar %}
-                <img src="{{ customer.avatar.url }}" alt="{{ customer.full_name }}">
-                {% else %}
-                <i class="bi bi-person"></i>
-                {% endif %}
-              </div>
-              <div class="profile-avatar-info">
-                <label class="upload-btn" for="avatarFile">Cập nhật ảnh mới</label>
-                <input type="file" id="avatarFile" name="avatar" hidden />
-                <p>Dung lượng file tối đa 5MB</p>
-                <p>Định dạng: .JPEG, .PNG</p>
-              </div>
-            </div>
-          </div>
-          <div class="profile-form-side">
-            <div class="profile-form-group">
-              <label for="fullName">Họ và tên</label>
-              <input type="text" id="fullName" name="full_name" value="{{ customer.full_name }}" />
-            </div>
-            <div class="profile-form-group">
-              <label for="phone">Số điện thoại</label>
-              <input type="text" id="phone" name="phone" value="{{ customer.phone }}" />
-            </div>
-            <div class="profile-form-group">
-              <label for="address">Địa chỉ</label>
-              <input type="text" id="address" name="address" value="{{ customer.address }}" />
-            </div>
-            <button class="save-profile-btn" type="submit">Lưu thay đổi</button>
-          </div>
-        </form>
+      {% if messages %}
+  <div class="profile-messages">
+    {% for message in messages %}
+      <div class="profile-alert {{ message.tags }}">
+        {{ message }}
       </div>
-        <div class="profile-content">
-          <!-- CỘT TRÁI -->
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="text" name="full_name" value="{{ customer.full_name }}">
-            <input type="text" name="phone" value="{{ customer.phone }}">
-            <input type="text" name="address" value="{{ customer.address }}">
-            <input type="file" name="avatar">
-            <button type="submit">Lưu thay đổi</button>
-          </form>
-          <!-- CỘT PHẢI -->
-          <div class="profile-password-side">
-            <div class="password-row">
-              <span>Mật khẩu</span>
-              <a href="#" onclick="openPasswordPopup(event)">
-                Đổi mật khẩu <i class="bi bi-chevron-right"></i>
-              </a>
-            </div>
-          </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="profile-card">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="profile-avatar-section">
+      <h3>Ảnh đại diện</h3>
+
+      <div class="profile-avatar-row">
+        <div class="profile-avatar">
+          {% if customer.avatar %}
+            <img
+              src="{{ customer.avatar.url }}"
+              alt="{{ customer.full_name }}"
+              id="avatarPreview"
+            >
+            <i class="bi bi-person" id="avatarIcon" style="display:none;"></i>
+          {% else %}
+            <img
+              src=""
+              alt="{{ customer.full_name }}"
+              id="avatarPreview"
+              style="display:none;"
+            >
+            <i class="bi bi-person" id="avatarIcon"></i>
+          {% endif %}
+        </div>
+
+        <div class="profile-avatar-info">
+          <label class="upload-btn" for="avatarFile">Cập nhật ảnh mới</label>
+          <input type="file" id="avatarFile" name="avatar" accept="image/png,image/jpeg" hidden>
+          <p>Dung lượng file tối đa 5MB</p>
+          <p>Định dạng: .JPEG, .PNG</p>
         </div>
       </div>
+    </div>
+
+    <div class="profile-content">
+      <div class="profile-form-side">
+        <div class="profile-form-group">
+          <label for="fullName">Họ và tên</label>
+          <input type="text" id="fullName" name="full_name" value="{{ customer.full_name }}">
+        </div>
+
+        <div class="profile-form-group">
+          <label for="phone">Số điện thoại</label>
+          <input type="text" id="phone" name="phone" value="{{ customer.phone }}">
+        </div>
+
+        <div class="profile-form-group">
+          <label for="address">Địa chỉ</label>
+          <input type="text" id="address" name="address" value="{{ customer.address }}">
+        </div>
+
+        <button class="save-profile-btn" type="submit">Lưu thay đổi</button>
+      </div>
+
+      <div class="profile-password-side">
+        <div class="password-row">
+          <span>Mật khẩu</span>
+          <a href="#" onclick="openPasswordPopup(event)">
+            Đổi mật khẩu <i class="bi bi-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
     </section>
   </main>
 
@@ -169,30 +187,43 @@
     </div>
   </footer>
 <!-- POPUP ĐỔI MẬT KHẨU -->
-<form method="post" action="{% url 'change_password' %}">
-  {% csrf_token %}
-  <div class="popup-body">
-    <div class="popup-form-group">
-      <label for="oldPassword">Mật khẩu cũ</label>
-      <input type="password" id="oldPassword" name="old_password" />
+<!-- POPUP ĐỔI MẬT KHẨU -->
+<div class="popup-overlay" id="passwordPopup">
+  <div class="password-popup">
+    <div class="popup-header">
+      <h2>Đổi mật khẩu</h2>
+      <button type="button" class="close-popup" onclick="closePasswordPopup()">
+        <i class="bi bi-x-lg"></i>
+      </button>
     </div>
 
-    <div class="popup-form-group">
-      <label for="newPassword">Mật khẩu mới</label>
-      <input type="password" id="newPassword" name="new_password" />
-    </div>
+    <form method="post" action="{% url 'change_password' %}">
+      {% csrf_token %}
 
-    <div class="popup-form-group">
-      <label for="confirmPassword">Nhập lại mật khẩu</label>
-      <input type="password" id="confirmPassword" name="confirm_password" />
-    </div>
+      <div class="popup-body">
+        <div class="popup-form-group">
+          <label for="oldPassword">Mật khẩu cũ</label>
+          <input type="password" id="oldPassword" name="old_password" required>
+        </div>
+
+        <div class="popup-form-group">
+          <label for="newPassword">Mật khẩu mới</label>
+          <input type="password" id="newPassword" name="new_password" required>
+        </div>
+
+        <div class="popup-form-group">
+          <label for="confirmPassword">Nhập lại mật khẩu</label>
+          <input type="password" id="confirmPassword" name="confirm_password" required>
+        </div>
+      </div>
+
+      <div class="popup-footer">
+        <button class="popup-cancel-btn" type="button" onclick="closePasswordPopup()">Hủy</button>
+        <button class="popup-save-btn" type="submit">Lưu thay đổi</button>
+      </div>
+    </form>
   </div>
-
-  <div class="popup-footer">
-    <button class="popup-cancel-btn" type="button" onclick="closePasswordPopup()">Hủy</button>
-    <button class="popup-save-btn" type="submit">Lưu thay đổi</button>
-  </div>
-</form>
+</div>
 <script>
   function openPasswordPopup(event) {
     event.preventDefault();
@@ -214,6 +245,23 @@
       closePasswordPopup();
     }
   };
+</script>
+<script>
+  const avatarInput = document.getElementById("avatarFile");
+  const avatarPreview = document.getElementById("avatarPreview");
+  const avatarIcon = document.getElementById("avatarIcon");
+
+  if (avatarInput) {
+    avatarInput.addEventListener("change", function () {
+      const file = this.files && this.files[0];
+      if (!file) return;
+
+      const imageUrl = URL.createObjectURL(file);
+      avatarPreview.src = imageUrl;
+      avatarPreview.style.display = "block";
+      avatarIcon.style.display = "none";
+    });
+  }
 </script>
 </body>
 </html>

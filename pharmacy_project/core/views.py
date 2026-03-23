@@ -129,17 +129,24 @@ def logout_view(request):
 
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:
-        return redirect(request.META.get('HTTP_REFERER', 'home'))
+        return redirect('home')
 
     product = get_object_or_404(Product, id=product_id)
-    customer = get_or_create_customer(request.user)
+    customer = request.user.customer
     cart = get_customer_cart(customer)
 
-    item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    if not created:
-        item.quantity += 1
-        item.save()
+    quantity = int(request.POST.get('quantity', 1))
+    if quantity < 1:
+        quantity = 1
 
+    item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+
+    if created:
+        item.quantity = quantity
+    else:
+        item.quantity += quantity
+
+    item.save()
     return redirect('cart')
 
 
@@ -937,3 +944,41 @@ def admin_orders(request):
         'orders': orders,
         'keyword': keyword,
     })
+
+def admin_orders(request):
+    orders = (
+        Order.objects
+        .select_related('customer')
+        .prefetch_related('items__product')
+        .all()
+        .order_by('-created_at')
+    )
+    return render(request, 'admin_panel/donhang.html', {
+        'orders': orders
+    })
+
+@login_required
+def change_password_view(request):
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password', '').strip()
+        new_password = request.POST.get('new_password', '').strip()
+        confirm_password = request.POST.get('confirm_password', '').strip()
+
+        user = request.user
+
+        if not user.check_password(old_password):
+            messages.error(request, 'Mật khẩu cũ không đúng')
+            return redirect('profile')
+
+        if new_password != confirm_password:
+            messages.error(request, 'Mật khẩu nhập lại không khớp')
+            return redirect('profile')
+
+        user.set_password(new_password)
+        user.save()
+        update_session_auth_hash(request, user)
+
+        messages.success(request, 'Đổi mật khẩu thành công')
+        return redirect('profile')
+
+    return redirect('profile')
