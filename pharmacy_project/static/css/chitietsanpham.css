@@ -943,3 +943,124 @@ body {
   line-height: 1.7;
   margin: 0;
 }
+
+/* =========================
+   ACCOUNT BOX DÙNG CHUNG
+   Chuẩn theo kiểu:
+   dòng 1: Xin chào
+   dòng 2: tên tài khoản + Đăng xuất
+   ========================= */
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* CUSTOMER */
+.user-box {
+  display: grid !important;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "hello hello"
+    "name logout";
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+  line-height: 1.15;
+  min-width: max-content;
+}
+
+.user-box > span {
+  grid-area: hello;
+  display: block !important;
+  margin: 0 !important;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.user-box > strong {
+  grid-area: name;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.user-box .user-link,
+.user-box .login-trigger {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.user-box .logout-link {
+  grid-area: logout;
+  color: #4f46e5;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.user-box .user-link:hover,
+.user-box .login-trigger:hover,
+.user-box .logout-link:hover {
+  text-decoration: underline;
+}
+
+/* ADMIN */
+.user-info.user-info-vertical {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  margin-left: auto;
+}
+
+.user-info.user-info-vertical i {
+  font-size: 22px;
+  line-height: 1;
+  margin-top: 2px;
+  color: #4b5563;
+}
+
+.user-info.user-info-vertical > div {
+  display: grid !important;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "hello hello"
+    "name logout";
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+  line-height: 1.15;
+}
+
+.user-info.user-info-vertical > div > span {
+  grid-area: hello;
+  display: block;
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.user-info.user-info-vertical > div > strong {
+  grid-area: name;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.user-info.user-info-vertical > div > .logout-link {
+  grid-area: logout;
+  color: #4f46e5;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.user-info.user-info-vertical > div > .logout-link:hover {
+  text-decoration: underline;
+}
