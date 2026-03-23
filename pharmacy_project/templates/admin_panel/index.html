@@ -77,7 +77,6 @@
                 <th>Ngày đặt</th>
                 <th>Tổng tiền</th>
                 <th>Trạng thái</th>
-                <th>Hành động</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +87,6 @@
                 <td>{{ order.created_at|date:"d/m/Y" }}</td>
                 <td>{{ order.subtotal }} VNĐ</td>
                 <td>{{ order.get_status_display }}</td>
-                <td><a href="{% url 'admin_order_update' order.id %}">Xem</a></td>
               </tr>
               {% endfor %}
             </tbody>
