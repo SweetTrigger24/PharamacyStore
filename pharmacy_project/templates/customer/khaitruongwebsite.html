@@ -194,6 +194,196 @@
       </div>
     </div>
   </footer>
+<!-- POPUP THÔNG BÁO CẦN ĐĂNG NHẬP -->
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
 
+<!-- POPUP ĐĂNG NHẬP -->
+<div class="auth-overlay" id="loginPopup">
+  <div class="auth-popup">
+    <h2>Đăng nhập</h2>
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng nhập</button>
+
+      <p class="auth-switch-text">
+        Chưa có tài khoản?
+        <a href="#" onclick="openRegisterPopup(event)">Đăng ký ngay</a>
+      </p>
+    </form>
+  </div>
+</div>
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
+
+<script>
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    document.getElementById("requireLoginPopup").classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("requireLoginPopup");
+    if (event.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll(".quantity-control").forEach(function(control) {
+    const minusBtn = control.querySelector(".qty-minus");
+    const plusBtn = control.querySelector(".qty-plus");
+    const input = control.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      if (value > 1) input.value = value - 1;
+    });
+
+    plusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      input.value = value + 1;
+    });
+  });
+</script>
+<!-- POPUP ĐĂNG KÝ -->
+<div class="auth-overlay" id="registerPopup">
+  <div class="auth-popup">
+    <h2>Đăng ký</h2>
+
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Họ và tên</label>
+        <div class="auth-input-icon">
+          <input type="text" name="full_name" placeholder="Nhập họ và tên" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Số điện thoại</label>
+        <div class="auth-input-icon">
+          <input type="text" name="phone" placeholder="Nhập số điện thoại" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Nhập lại mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng kí ngay</button>
+    </form>
+  </div>
+</div>
+<script>
+  function closeAllAuthPopups() {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup) loginPopup.classList.remove("show");
+    if (registerPopup) registerPopup.classList.remove("show");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
+  }
+
+  function openLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const loginPopup = document.getElementById("loginPopup");
+    if (loginPopup) loginPopup.classList.add("show");
+  }
+
+  function openRegisterPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const registerPopup = document.getElementById("registerPopup");
+    if (registerPopup) registerPopup.classList.add("show");
+  }
+
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup && event.target === loginPopup) {
+      loginPopup.classList.remove("show");
+    }
+
+    if (registerPopup && event.target === registerPopup) {
+      registerPopup.classList.remove("show");
+    }
+
+    if (requireLoginPopup && event.target === requireLoginPopup) {
+      requireLoginPopup.classList.remove("show");
+    }
+  });
+</script>
 </body>
 </html>

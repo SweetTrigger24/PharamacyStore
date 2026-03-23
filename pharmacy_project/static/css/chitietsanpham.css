@@ -1064,3 +1064,127 @@ body {
 .user-info.user-info-vertical > div > .logout-link:hover {
   text-decoration: underline;
 }
+
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.18);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.auth-overlay.show {
+  display: flex;
+}
+
+.auth-popup {
+  width: 480px;
+  max-width: calc(100% - 24px);
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 26px 22px 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.auth-popup h2 {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 22px;
+}
+
+.auth-form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form-group label {
+  display: block;
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.auth-input-icon {
+  position: relative;
+}
+
+.auth-input-icon input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background-color: #f3f4f6;
+  padding: 0 14px;
+  font-size: 15px;
+  color: #374151;
+  outline: none;
+}
+
+.auth-input-icon.auth-input-right input {
+  padding-right: 40px;
+}
+
+.auth-main-btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 6px;
+  background-color: #6366f1;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-main-btn:hover {
+  background-color: #5659ea;
+}
+
+.auth-switch-text {
+  text-align: center;
+  font-size: 14px;
+  color: #374151;
+  margin-top: 30px;
+}
+
+.auth-switch-text a {
+  color: #6366f1;
+  text-decoration: none;
+}
+
+.auth-switch-text a:hover {
+  text-decoration: underline;
+}
+
+.auth-notice-popup {
+  text-align: center;
+}
+
+.auth-message-text {
+  margin: 12px 0 20px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.auth-close-btn {
+  width: 140px;
+  margin: 0 auto;
+  display: block;
+}
+
+.login-trigger {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-trigger:hover {
+  color: #4f46e5;
+  text-decoration: underline;
+}

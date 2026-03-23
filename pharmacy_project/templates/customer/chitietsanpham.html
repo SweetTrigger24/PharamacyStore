@@ -5,46 +5,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chi tiết sản phẩm</title>
-
-  <!-- Bootstrap Icons -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
   />
-
-  <!-- File CSS chung -->
   <link rel="stylesheet" href="{% static 'css/chitietsanpham.css' %}" />
   <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
 </head>
 <body>
-
-  <!-- =========================
-       TOPBAR
-       ========================= -->
   <header class="topbar">
     <div class="topbar-left">
       <div class="brand">
         <a href="{% url 'home' %}" class="brand-icon">
             <i class="bi bi-capsule"></i>
         </a>
-      <div class="brand-text">
-         <h3>NHÀ THUỐC</h3>
+        <div class="brand-text">
+          <h3>NHÀ THUỐC</h3>
+        </div>
       </div>
-    </div>
-
       <form action="{% url 'product_list' %}" method="get" class="search-box">
-  <button type="submit" class="search-submit" aria-label="Tìm kiếm">
-    <i class="bi bi-search"></i>
-  </button>
-  <input
-    type="text"
-    name="q"
-    value="{{ request.GET.q|default:'' }}"
-    placeholder="Tìm tên thuốc hoặc mô tả"
-  />
-</form>
+        <button type="submit" class="search-submit" aria-label="Tìm kiếm">
+          <i class="bi bi-search"></i>
+        </button>
+        <input
+          type="text"
+          name="q"
+          value="{{ request.GET.q|default:'' }}"
+          placeholder="Tìm tên thuốc hoặc mô tả"
+        />
+      </form>
     </div>
-
     <div class="topbar-right">
       {% if request.user.is_authenticated %}
       <a href="{% url 'cart' %}" class="icon-btn">
@@ -72,103 +62,85 @@
       {% endif %}
     </div>
   </header>
-
-  <!-- =========================
-       NỘI DUNG CHÍNH
-       ========================= -->
   <main class="page-wrapper">
-  <div class="breadcrumb">
-    <a href="{% url 'home' %}">Trang chủ</a>
-    <span>/</span>
-    <span>{{ product.category.name }}</span>
-    <span>/</span>
-    <span>{{ product.name }}</span>
-  </div>
-
-  <section class="product-detail-page">
-    <!-- CỘT TRÁI -->
-    <div class="product-gallery-area">
-      <div class="main-image-card">
-        <div class="main-image-box">
-          {% if product.image %}
+    <div class="breadcrumb">
+      <a href="{% url 'home' %}">Trang chủ</a>
+      <span>/</span>
+      <span>{{ product.category.name }}</span>
+      <span>/</span>
+      <span>{{ product.name }}</span>
+    </div>
+    <section class="product-detail-page">
+      <div class="product-gallery-area">
+        <div class="main-image-card">
+          <div class="main-image-box">
+            {% if product.image %}
             <img
               src="{{ product.image.url }}"
               alt="{{ product.name }}"
               class="main-product-image"
             />
-          {% else %}
+            {% else %}
             <div class="image-placeholder">
               <i class="bi bi-image"></i>
               <span>Chưa có ảnh sản phẩm</span>
             </div>
-          {% endif %}
-        </div>
-      </div>
-
-      <p class="gallery-note">
-        Mẫu mã sản phẩm có thể thay đổi theo lô hàng
-      </p>
-    </div>
-
-    <!-- CỘT PHẢI -->
-    <div class="product-info-area">
-      <h1 class="product-title">{{ product.name }}</h1>
-
-      <div class="product-main-price">
-        {{ product.price|floatformat:0 }}đ / {{ product.unit }}
-      </div>
-
-      {% if request.user.is_authenticated %}
-      <form method="post" action="{% url 'add_to_cart' product.id %}" class="purchase-box">
-        {% csrf_token %}
-
-        <div class="product-quantity-box">
-          <label>Chọn số lượng</label>
-
-          <div class="quantity-control">
-            <button type="button" class="qty-btn qty-minus">−</button>
-            <input type="text" name="quantity" value="1" class="qty-input" readonly>
-            <button type="button" class="qty-btn qty-plus">+</button>
+            {% endif %}
           </div>
         </div>
-
-        <button type="submit" class="add-to-cart-btn">
-          <i class="bi bi-cart-plus"></i>
-          Thêm vào giỏ hàng
-        </button>
-      </form>
-      {% else %}
-      <div class="purchase-box">
-        <div class="product-quantity-box">
-          <label>Chọn số lượng</label>
-          <div class="quantity-control">
-            <button type="button" class="qty-btn qty-minus">-</button>
-            <input type="text" value="1" class="qty-input" readonly>
-            <button type="button" class="qty-btn qty-plus">+</button>
-          </div>
-        </div>
-
-        <button type="button" class="add-to-cart-btn" onclick="openRequireLoginPopup(event)">
-          <i class="bi bi-cart-plus"></i>
-          Thêm vào giỏ hàng
-        </button>
+        <p class="gallery-note">
+          Mẫu mã sản phẩm có thể thay đổi theo lô hàng
+        </p>
       </div>
-      {% endif %}
-
-      <div class="product-info-table">
-        <div class="info-row">
-          <div class="info-label">Danh mục :</div>
-          <div class="info-value">{{ product.category.name }}</div>
+      <div class="product-info-area">
+        <h1 class="product-title">{{ product.name }}</h1>
+        <div class="product-main-price">
+          {{ product.price|floatformat:0 }}đ / {{ product.unit }}
         </div>
-
-        <div class="info-row">
-          <div class="info-label">Quy cách :</div>
-          <div class="info-value">{{ product.unit }}</div>
+        {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'add_to_cart' product.id %}" class="purchase-box">
+          {% csrf_token %}
+          <div class="product-quantity-box">
+            <label>Chọn số lượng</label>
+            <div class="quantity-control">
+              <button type="button" class="qty-btn qty-minus">−</button>
+              <input type="text" name="quantity" value="1" class="qty-input" readonly>
+              <button type="button" class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+          <button type="submit" class="add-to-cart-btn">
+            <i class="bi bi-cart-plus"></i>
+            Thêm vào giỏ hàng
+          </button>
+        </form>
+        {% else %}
+        <div class="purchase-box">
+          <div class="product-quantity-box">
+            <label>Chọn số lượng</label>
+            <div class="quantity-control">
+              <button type="button" class="qty-btn qty-minus">-</button>
+              <input type="text" value="1" class="qty-input" readonly>
+              <button type="button" class="qty-btn qty-plus">+</button>
+            </div>
+          </div>
+          <button type="button" class="add-to-cart-btn" onclick="openRequireLoginPopup(event)">
+            <i class="bi bi-cart-plus"></i>
+            Thêm vào giỏ hàng
+          </button>
         </div>
-
-        <div class="info-row info-row-top">
-          <div class="info-label">Mô tả ngắn :</div>
-          <div class="info-value">
+        {% endif %}
+        <div class="product-info-table">
+          <div class="info-row">
+            <div class="info-label">Danh mục :</div>
+            <div class="info-value">{{ product.category.name }}</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Quy cách :</div>
+            <div class="info-value">{{ product.unit }}</div>
+          </div>
+          <div class="info-row info-row-top">
+            <div class="info-label">Mô tả ngắn :</div>
+            <div class="info-value">
             {{ product.description|default:"Sản phẩm hiện chưa có mô tả." }}
           </div>
         </div>
@@ -176,59 +148,49 @@
     </div>
   </section>
 </main>
-
-  <!-- =========================
-       FOOTER
-       ========================= -->
-  <footer class="site-footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <div class="brand footer-brand-inner">
-          <div class="brand-icon">
-            <i class="bi bi-capsule"></i>
-          </div>
-          <div class="brand-text">
-            <h3>NHÀ THUỐC</h3>
-          </div>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <div class="brand footer-brand-inner">
+        <div class="brand-icon">
+          <i class="bi bi-capsule"></i>
         </div>
-      </div>
-
-      <div class="footer-column">
-        <h3>Về chúng tôi</h3>
-        <a href="#">Giới thiệu</a>
-        <a href="#">Giấy phép kinh doanh</a>
-        <a href="#">Quy chế hoạt động</a>
-        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
-        <a href="#">Chính sách nội dung</a>
-        <a href="#">Chính sách thanh toán</a>
-        <a href="#">Câu hỏi thường gặp</a>
-      </div>
-
-      <div class="footer-column">
-        <h3>Tổng đài</h3>
-        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
-        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
-        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
-      </div>
-
-      <div class="footer-column">
-        <h3>Chứng nhận bởi</h3>
-        <div class="certificates">
-            <div class="certificate">
-                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
-            </div>
-
-            <div class="certificate">
-              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
-            </div>
-
-            <div class="certificate">
-                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
-            </div>
+        <div class="brand-text">
+          <h3>NHÀ THUỐC</h3>
         </div>
       </div>
     </div>
-
+    <div class="footer-column">
+      <h3>Về chúng tôi</h3>
+      <a href="#">Giới thiệu</a>
+      <a href="#">Giấy phép kinh doanh</a>
+      <a href="#">Quy chế hoạt động</a>
+      <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+      <a href="#">Chính sách nội dung</a>
+      <a href="#">Chính sách thanh toán</a>
+      <a href="#">Câu hỏi thường gặp</a>
+    </div>
+    <div class="footer-column">
+      <h3>Tổng đài</h3>
+      <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+      <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+      <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
+    </div>
+    <div class="footer-column">
+      <h3>Chứng nhận bởi</h3>
+      <div class="certificates">
+          <div class="certificate">
+              <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+          </div>
+          <div class="certificate">
+            <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+          </div>
+          <div class="certificate">
+              <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="footer-bottom">
       <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
       <div class="footer-bottom-links">
@@ -237,7 +199,8 @@
       </div>
     </div>
   </footer>
-  <div class="auth-overlay" id="requireLoginPopup">
+<!-- POPUP THÔNG BÁO CẦN ĐĂNG NHẬP -->
+<div class="auth-overlay" id="requireLoginPopup">
   <div class="auth-popup auth-notice-popup">
     <h2>Thông báo</h2>
     <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
@@ -247,20 +210,140 @@
   </div>
 </div>
 
+<!-- POPUP ĐĂNG NHẬP -->
+<div class="auth-overlay" id="loginPopup">
+  <div class="auth-popup">
+    <h2>Đăng nhập</h2>
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng nhập</button>
+
+      <p class="auth-switch-text">
+        Chưa có tài khoản?
+        <a href="#" onclick="openRegisterPopup(event)">Đăng ký ngay</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP ĐĂNG KÝ -->
+<div class="auth-overlay" id="registerPopup">
+  <div class="auth-popup">
+    <h2>Đăng ký</h2>
+
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Họ và tên</label>
+        <div class="auth-input-icon">
+          <input type="text" name="full_name" placeholder="Nhập họ và tên" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Số điện thoại</label>
+        <div class="auth-input-icon">
+          <input type="text" name="phone" placeholder="Nhập số điện thoại" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Nhập lại mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng kí ngay</button>
+    </form>
+  </div>
+</div>
 <script>
+  function closeAllAuthPopups() {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup) loginPopup.classList.remove("show");
+    if (registerPopup) registerPopup.classList.remove("show");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
+  }
+
+  function openLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const loginPopup = document.getElementById("loginPopup");
+    if (loginPopup) loginPopup.classList.add("show");
+  }
+
+  function openRegisterPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const registerPopup = document.getElementById("registerPopup");
+    if (registerPopup) registerPopup.classList.add("show");
+  }
+
   function openRequireLoginPopup(event) {
     if (event) event.preventDefault();
-    document.getElementById("requireLoginPopup").classList.add("show");
+    closeAllAuthPopups();
+
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.add("show");
   }
 
   function closeRequireLoginPopup() {
-    document.getElementById("requireLoginPopup").classList.remove("show");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
   }
 
   window.addEventListener("click", function (event) {
-    const popup = document.getElementById("requireLoginPopup");
-    if (event.target === popup) {
-      popup.classList.remove("show");
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup && event.target === loginPopup) {
+      loginPopup.classList.remove("show");
+    }
+
+    if (registerPopup && event.target === registerPopup) {
+      registerPopup.classList.remove("show");
+    }
+
+    if (requireLoginPopup && event.target === requireLoginPopup) {
+      requireLoginPopup.classList.remove("show");
     }
   });
 </script>
