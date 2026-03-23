@@ -3,7 +3,7 @@ from .models import Product, Category, Customer, Cart, CartItem, Order, OrderIte
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Sum, Count
+from django.db.models import Sum, Count, Q
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models.functions import TruncDate
@@ -366,10 +366,10 @@ def is_admin(user):
 def admin_products(request):
     if request.method == 'POST':
         category_id = request.POST.get('category_id')
-        proid = request.POST.get('proid')
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        unit = request.POST.get('unit')
+        proid = request.POST.get('proid', '').strip()
+        name = request.POST.get('name', '').strip()
+        description = request.POST.get('description', '').strip()
+        unit = request.POST.get('unit', '').strip()
         price = request.POST.get('price')
         quantity = request.POST.get('quantity')
         image = request.FILES.get('image')
@@ -393,11 +393,15 @@ def admin_products(request):
 
         return redirect('admin_products')
 
-    keyword = request.GET.get('q', '')
-    products = Product.objects.select_related('category').all()
+    keyword = request.GET.get('q', '').strip()
+
+    products = Product.objects.select_related('category').all().order_by('id')
 
     if keyword:
-        products = products.filter(name__icontains=keyword)
+        products = products.filter(
+            Q(name__icontains=keyword) |
+            Q(proid__icontains=keyword)
+        )
 
     categories = Category.objects.all()
 
@@ -687,9 +691,21 @@ def admin_categories(request):
             )
         return redirect('admin_categories')
 
+    keyword = request.GET.get('q', '').strip()
+
     categories = Category.objects.all().order_by('id')
+
+    if keyword:
+        if keyword.isdigit():
+            categories = categories.filter(
+                Q(name__icontains=keyword) | Q(id=int(keyword))
+            )
+        else:
+            categories = categories.filter(name__icontains=keyword)
+
     return render(request, 'admin_panel/danhmuc.html', {
-        'categories': categories
+        'categories': categories,
+        'keyword': keyword,
     })
 
 
@@ -856,4 +872,67 @@ def admin_statistics(request):
         'total_revenue': total_revenue,
         'start_date': start_date,
         'end_date': end_date,
+    })
+
+@login_required
+@user_passes_test(is_admin)
+def admin_inventory(request):
+    keyword = request.GET.get('q', '').strip()
+
+    inventories = Inventory.objects.select_related('product').all().order_by('id')
+
+    if keyword:
+        inventories = inventories.filter(
+            Q(product__name__icontains=keyword) |
+            Q(product__proid__icontains=keyword)
+        )
+
+    return render(request, 'admin_panel/tonkho.html', {
+        'inventories': inventories,
+        'keyword': keyword,
+    })
+
+@login_required
+@user_passes_test(is_admin)
+def admin_customers(request):
+    keyword = request.GET.get('q', '').strip()
+
+    customers = Customer.objects.select_related('user').all().order_by('id')
+
+    if keyword:
+        query = (
+            Q(user__username__icontains=keyword) |
+            Q(full_name__icontains=keyword) |
+            Q(phone__icontains=keyword)
+        )
+
+        if keyword.isdigit():
+            query = query | Q(id=int(keyword))
+
+        customers = customers.filter(query)
+
+    return render(request, 'admin_panel/khachhang.html', {
+        'customers': customers,
+        'keyword': keyword,
+    })
+
+@login_required
+@user_passes_test(is_admin)
+def admin_orders(request):
+    keyword = request.GET.get('q', '').strip()
+
+    orders = Order.objects.select_related('customer').all().order_by('-created_at')
+
+    if keyword:
+        query = Q(code__icontains=keyword) | Q(customer__full_name__icontains=keyword)
+
+        # Nếu bạn muốn tìm thêm theo order.id thật (số nguyên)
+        if keyword.isdigit():
+            query = query | Q(id=int(keyword))
+
+        orders = orders.filter(query)
+
+    return render(request, 'admin_panel/donhang.html', {
+        'orders': orders,
+        'keyword': keyword,
     })

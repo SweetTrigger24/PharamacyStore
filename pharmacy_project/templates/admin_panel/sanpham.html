@@ -45,7 +45,7 @@
       <section class="titleql">
         <h2>Quản lý sản phẩm thuốc</h2>
         <p class="subtitle">
-          Quản lý các sản phẩm thuốc, thêm mới, chỉnh sửa hoặc xoá các danh mục hiện có
+          Quản lý các sản phẩm thuốc, thêm mới, chỉnh sửa hoặc xoá các sản phẩm hiện có
         </p>
 
         <div class="action-bar">
@@ -54,10 +54,21 @@
             Thêm sản phẩm
           </button>
 
-          <div class="small-search-box">
-            <i class="bi bi-search"></i>
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-          </div>
+          <form method="get" action="{% url 'admin_products' %}" class="search-form">
+            <div class="small-search-box">
+              <i class="bi bi-search"></i>
+              <input
+                type="text"
+                name="q"
+                value="{{ keyword|default:'' }}"
+                placeholder="Tìm theo ID hoặc tên sản phẩm..."
+              />
+            </div>
+            <button type="submit" class="search-btn">Tìm</button>
+            {% if keyword %}
+            <a href="{% url 'admin_products' %}" class="reset-btn">Xóa lọc</a>
+            {% endif %}
+          </form>
         </div>
 
         <div class="table-wrapper">
@@ -100,6 +111,10 @@
                     </button>
                   </form>
                 </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="4" class="empty-row">Không tìm thấy sản phẩm phù hợp.</td>
               </tr>
               {% endfor %}
             </tbody>

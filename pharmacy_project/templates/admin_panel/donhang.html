@@ -49,10 +49,21 @@
         </p>
 
         <div class="action-bar">
-          <div class="small-search-box">
-            <i class="bi bi-search"></i>
-            <input type="text" placeholder="Tìm kiếm đơn hàng..." />
-          </div>
+          <form method="get" action="{% url 'admin_orders' %}" class="search-form">
+            <div class="small-search-box">
+              <i class="bi bi-search"></i>
+              <input
+                type="text"
+                name="q"
+                value="{{ keyword|default:'' }}"
+                placeholder="Tìm theo ID đơn hàng hoặc tên khách hàng..."
+              />
+            </div>
+            <button type="submit" class="search-btn">Tìm</button>
+            {% if keyword %}
+            <a href="{% url 'admin_orders' %}" class="reset-btn">Xóa lọc</a>
+            {% endif %}
+          </form>
         </div>
 
         <div class="table-wrapper">
@@ -95,6 +106,10 @@
                     </button>
                   </form>
                 </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5" class="empty-row">Không tìm thấy đơn hàng phù hợp.</td>
               </tr>
               {% endfor %}
             </tbody>
