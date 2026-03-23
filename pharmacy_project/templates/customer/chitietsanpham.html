@@ -96,25 +96,18 @@
       <!-- CỘT PHẢI: THÔNG TIN -->
       <div class="product-info-area">
         <h1>{{ product.name }}</h1>
-
         <p>{{ product.price }}đ / {{ product.unit }}</p>
-
-        <div class="product-quantity-box">
-          <form method="post" action="{% url 'add_to_cart' product.id %}">
-            {% csrf_token %}
-            <button type="submit">Thêm vào giỏ hàng</button>
-          </form>
-        </div>
-
-        <button type="button" class="add-to-cart-btn" onclick="themVaoGioHang()">
-            <i class="bi bi-cart-plus"></i>
-            Thêm vào giỏ hàng
-        </button>
-        <p>{{ product.description }}</p>
+        {% if request.user.is_authenticated %}
         <form method="post" action="{% url 'add_to_cart' product.id %}">
           {% csrf_token %}
-          <button type="submit">Thêm vào giỏ hàng</button>
+          <button type="submit" class="add-to-cart-btn">Thêm vào giỏ hàng</button>
         </form>
+        {% else %}
+        <button type="button" class="add-to-cart-btn" onclick="openRequireLoginPopup(event)">
+          Thêm vào giỏ hàng
+        </button>
+        {% endif %}
+        <p>{{ product.description }}</p>
       </div>
     </section>
   </main>
@@ -179,10 +172,32 @@
       </div>
     </div>
   </footer>
-    <script>
-        function themVaoGioHang() {
-        alert("Đã thêm vào giỏ hàng!");
-        }
-    </script>
+  <div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
+
+<script>
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    document.getElementById("requireLoginPopup").classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("requireLoginPopup");
+    if (event.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+</script>
 </body>
 </html>

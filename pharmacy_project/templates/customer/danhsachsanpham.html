@@ -51,7 +51,9 @@
       </button>
       <div class="user-box">
         <span>Xin chào</span>
-        <strong class="login-trigger" onclick="openLoginPopup(event)">Đăng nhập</strong>
+        <strong>
+          <a href="{% url 'home' %}" class="login-trigger">Đăng nhập</a>
+        </strong>
       </div>
       {% endif %}
     </div>
@@ -207,16 +209,12 @@
     </div>
   </footer>
 <div class="auth-overlay" id="requireLoginPopup">
-  <div class="auth-popup">
+  <div class="auth-popup auth-notice-popup">
     <h2>Thông báo</h2>
-    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng giỏ hàng.</p>
-
-    <div class="auth-action-row">
-      <button type="button" class="auth-outline-btn" onclick="closeRequireLoginPopup()">
-        Đóng
-      </button>
-      <a href="{% url 'home' %}?show_login=1" class="auth-main-btn">Đăng nhập</a>
-    </div>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
   </div>
 </div>
 
