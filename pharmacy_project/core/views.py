@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db.models import Sum, Count, Q
 from django.utils import timezone
 from django.contrib import messages
-from django.db.models.functions import TruncDate
+from django.db.models.functions import TruncDate, Coalesce
 import uuid 
 
 def home(request):
@@ -1015,4 +1015,23 @@ def product_list(request):
         'keyword': keyword,
         'selected_category': category_id,
         'selected_price_range': price_range,
+    })
+
+def home(request):
+    featured_products = (
+        Product.objects
+        .annotate(
+            total_sold=Coalesce(
+                Sum(
+                    'orderitem__quantity',
+                    filter=~Q(orderitem__order__status='cancelled')
+                ),
+                0
+            )
+        )
+        .order_by('-total_sold', 'name')[:8]
+    )
+
+    return render(request, 'customer/trangchu.html', {
+        'featured_products': featured_products,
     })

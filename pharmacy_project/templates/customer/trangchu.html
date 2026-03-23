@@ -133,67 +133,29 @@
     </section>
 
     <!-- SẢN PHẨM NỔI BẬT -->
-    <section class="about-section">
-      <h2 class="section-heading">MỘT SỐ SẢN PHẨM NỔI BẬT</h2>
+<section class="about-section">
+  <h2 class="section-heading">MỘT SỐ SẢN PHẨM NỔI BẬT</h2>
 
-      <div class="featured-product-grid">
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="anh lon 1.webp" alt="Thuốc Savi Leucin 500mg" />
-          </div>
-          <h3>Thuốc Savi Leucin 500mg điều trị cơn chóng mặt</h3>
+  <div class="featured-product-grid">
+    {% for product in featured_products %}
+      <a href="{% url 'product_detail' product.id %}" class="featured-product-card featured-product-link">
+        <div class="featured-product-image">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="{% static 'images/no-image.png' %}" alt="{{ product.name }}">
+          {% endif %}
         </div>
 
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="danhsach1.webp" alt="Thuốc Stadelime 5mg" />
-          </div>
-          <h3>Thuốc Stadelime 5mg giảm các triệu chứng mất ngủ</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="danhsach2.webp" alt="Thuốc Telfor 120 DHG" />
-          </div>
-          <h3>Thuốc Telfor 120 DHG điều trị viêm mũi dị ứng</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="danhsach3.webp" alt="Thuốc Aerius 5mg Organon" />
-          </div>
-          <h3>Thuốc Aerius 5mg Organon giảm viêm mũi dị ứng</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="danhsach4.webp" alt="Thuốc Npluvico Nature" />
-          </div>
-          <h3>Thuốc Npluvico Nature điều trị suy tuần hoàn não</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="danhsach5.webp" alt="Viên ngậm Strepsils Orange & Vitamin C" />
-          </div>
-          <h3>Viên ngậm Strepsils Orange & Vitamin C trị đau họng</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="anhgiohang1.webp" alt="Viên nén Panadol Extra Đỏ" />
-          </div>
-          <h3>Viên nén Panadol Extra Đỏ – Giảm triệu chứng đau, hạ sốt</h3>
-        </div>
-
-        <div class="featured-product-card">
-          <div class="featured-product-image">
-            <img src="anhgiohang2.jpg" alt="Viên nén Briozcal" />
-          </div>
-          <h3>Viên nén Briozcal điều trị, phòng ngừa thiếu D3 và calci</h3>
-        </div>
+        <h3>{{ product.name }}</h3>
+      </a>
+    {% empty %}
+      <div class="featured-product-empty">
+        Chưa có sản phẩm nào.
       </div>
-    </section>
+    {% endfor %}
+  </div>
+</section>
 
   </main>
 

@@ -787,3 +787,51 @@ body {
 .user-info.user-info-vertical > div > .logout-link:hover {
   text-decoration: underline;
 }
+
+.featured-product-link {
+  text-decoration: none;
+  min-height: 88px;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.featured-product-link:hover {
+  border-color: #6366f1;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
+  transform: translateY(-2px);
+}
+
+.featured-product-link h3 {
+  width: 100%;
+  max-width: none;
+  min-height: auto;
+  margin: 0;
+  text-align: center;
+  color: #303642;
+}
+
+.featured-product-empty {
+  grid-column: 1 / -1;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 18px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.featured-product-link {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.featured-product-link:hover {
+  border-color: #6366f1;
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.12);
+  transform: translateY(-2px);
+}
+
+.featured-product-link h3 {
+  text-decoration: none;
+}
