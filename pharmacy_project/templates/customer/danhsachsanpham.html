@@ -7,6 +7,7 @@
   <title>Sản phẩm</title>
 
   <link rel="stylesheet" href="{% static 'css/danhsachsanpham.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
@@ -23,10 +24,17 @@
         </div>
       </div>
 
-      <div class="search-box">
-        <i class="bi bi-search"></i>
-        <input type="text" placeholder="Tìm tên thuốc" />
-      </div>
+      <form action="{% url 'product_list' %}" method="get" class="search-box">
+  <button type="submit" class="search-submit" aria-label="Tìm kiếm">
+    <i class="bi bi-search"></i>
+  </button>
+  <input
+    type="text"
+    name="q"
+    value="{{ keyword }}"
+    placeholder="Tìm tên thuốc hoặc mô tả"
+  />
+</form>
     </div>
 
     <div class="topbar-right">
@@ -75,57 +83,92 @@
     <section class="product-list-page">
 
       <!-- BÊN TRÁI: BỘ LỌC -->
-      <aside class="filter-sidebar card">
-        <div class="filter-header">
-          <span>Bộ lọc</span>
-          <a href="#">Thiết lập lại</a>
-        </div>
+      <form method="get" action="{% url 'product_list' %}" class="filter-sidebar card">
+  <div class="filter-header">
+    <span>Bộ lọc</span>
+    <a href="{% url 'product_list' %}">Thiết lập lại</a>
+  </div>
 
-        <div class="filter-section">
-          <h3>Khoảng giá</h3>
+  {% if keyword %}
+    <input type="hidden" name="q" value="{{ keyword }}">
+  {% endif %}
 
-          <label class="filter-check">
-            <input type="checkbox" />
-            <span>Dưới 100.000đ</span>
-          </label>
+  <div class="filter-section">
+    <h3>Khoảng giá</h3>
 
-          <label class="filter-check">
-            <input type="checkbox" />
-            <span>100.000đ - 300.000đ</span>
-          </label>
+    <label class="filter-check">
+      <input
+        type="radio"
+        name="price_range"
+        value="under_100"
+        {% if selected_price_range == 'under_100' %}checked{% endif %}
+      />
+      <span>Dưới 100.000đ</span>
+    </label>
 
-          <label class="filter-check">
-            <input type="checkbox" />
-            <span>300.000đ - 500.000đ</span>
-          </label>
+    <label class="filter-check">
+      <input
+        type="radio"
+        name="price_range"
+        value="100_300"
+        {% if selected_price_range == '100_300' %}checked{% endif %}
+      />
+      <span>100.000đ - 300.000đ</span>
+    </label>
 
-          <label class="filter-check">
-            <input type="checkbox" />
-            <span>Trên 500.000đ</span>
-          </label>
-        </div>
+    <label class="filter-check">
+      <input
+        type="radio"
+        name="price_range"
+        value="300_500"
+        {% if selected_price_range == '300_500' %}checked{% endif %}
+      />
+      <span>300.000đ - 500.000đ</span>
+    </label>
 
-        <div class="filter-section">
-          <h3>Danh mục</h3>
+    <label class="filter-check">
+      <input
+        type="radio"
+        name="price_range"
+        value="over_500"
+        {% if selected_price_range == 'over_500' %}checked{% endif %}
+      />
+      <span>Trên 500.000đ</span>
+    </label>
+  </div>
 
-          <select class="filter-select" name="category">
-            <option value="">Chọn danh mục</option>
-            {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
-            {% endfor %}
-          </select>
-        </div>
-            <button class="apply-filter-btn">Áp dụng</button>
-      </aside>
+  <div class="filter-section">
+    <h3>Danh mục</h3>
+
+    <select class="filter-select" name="category">
+      <option value="">Chọn danh mục</option>
+      {% for category in categories %}
+        <option
+          value="{{ category.id }}"
+          {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}
+        >
+          {{ category.name }}
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit" class="apply-filter-btn">Áp dụng</button>
+</form>
 
       <!-- BÊN PHẢI: DANH SÁCH -->
       <section class="product-list-content">
         <div class="product-list-top">
-          <div>
-            <h1>Danh sách sản phẩm</h1>
-            <p>Lưu ý: Thuốc kê đơn và một số sản sẽ cần tư vấn từ dược sĩ</p>
-          </div>
-        </div>
+  <div>
+    <h1>Danh sách sản phẩm</h1>
+
+    {% if keyword %}
+      <p>Kết quả tìm kiếm cho "{{ keyword }}" - {{ products|length }} sản phẩm</p>
+    {% else %}
+      <p>Lưu ý: Thuốc kê đơn và một số sản sẽ cần tư vấn từ dược sĩ</p>
+    {% endif %}
+  </div>
+</div>
 
         <div class="product-grid">
           {% for product in products %}
@@ -143,8 +186,14 @@
                 </div>
             </div>
             {% empty %}
-            <p>Chưa có sản phẩm nào.</p>
-            {% endfor %}
+<p>
+  {% if keyword or selected_category or selected_price_range %}
+    Không tìm thấy sản phẩm phù hợp.
+  {% else %}
+    Chưa có sản phẩm nào.
+  {% endif %}
+</p>
+{% endfor %}
         </div>
       </section>
     </section>

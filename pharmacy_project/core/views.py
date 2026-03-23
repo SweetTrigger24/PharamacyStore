@@ -982,3 +982,37 @@ def change_password_view(request):
         return redirect('profile')
 
     return redirect('profile')
+
+def product_list(request):
+    keyword = request.GET.get('q', '').strip()
+    category_id = request.GET.get('category', '').strip()
+    price_range = request.GET.get('price_range', '').strip()
+
+    products = Product.objects.select_related('category').all().order_by('-id')
+    categories = Category.objects.all().order_by('name')
+
+    if keyword:
+        products = products.filter(
+            Q(name__icontains=keyword) |
+            Q(description__icontains=keyword)
+        )
+
+    if category_id:
+        products = products.filter(category_id=category_id)
+
+    if price_range == 'under_100':
+        products = products.filter(price__lt=100000)
+    elif price_range == '100_300':
+        products = products.filter(price__gte=100000, price__lte=300000)
+    elif price_range == '300_500':
+        products = products.filter(price__gte=300000, price__lte=500000)
+    elif price_range == 'over_500':
+        products = products.filter(price__gt=500000)
+
+    return render(request, 'customer/danhsachsanpham.html', {
+        'products': products,
+        'categories': categories,
+        'keyword': keyword,
+        'selected_category': category_id,
+        'selected_price_range': price_range,
+    })

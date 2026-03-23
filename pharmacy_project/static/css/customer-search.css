@@ -1,0 +1,26 @@
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-submit {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0 0 0 -8px;
+  cursor: pointer;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.search-submit:hover {
+  color: #4f46e5;
+}
+
+.search-box input {
+  flex: 1;
+}

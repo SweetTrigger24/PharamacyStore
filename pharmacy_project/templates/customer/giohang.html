@@ -11,6 +11,7 @@
 
   <!-- CSS chung -->
   <link rel="stylesheet" href="{% static 'css/giohang.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
 </head>
 <body>
 
@@ -26,10 +27,17 @@
       </div>
     </div>
 
-      <div class="search-box">
-        <i class="bi bi-search"></i>
-        <input type="text" placeholder="Tìm tên thuốc" />
-      </div>
+      <form action="{% url 'product_list' %}" method="get" class="search-box">
+  <button type="submit" class="search-submit" aria-label="Tìm kiếm">
+    <i class="bi bi-search"></i>
+  </button>
+  <input
+    type="text"
+    name="q"
+    value="{{ request.GET.q|default:'' }}"
+    placeholder="Tìm tên thuốc hoặc mô tả"
+  />
+</form>
     </div>
 
     <div class="topbar-right">
