@@ -30,15 +30,30 @@
     </div>
 
     <div class="topbar-right">
+      {% if request.user.is_authenticated %}
       <a href="{% url 'cart' %}" class="icon-btn">
         <i class="bi bi-cart-fill"></i>
       </a>
-      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
-
+      <button class="icon-btn" type="button">
+        <i class="bi bi-person-circle"></i>
+      </button>
       <div class="user-box">
         <span>Xin chào</span>
-        <strong href="#" class="login-trigger" onclick="openLoginPopup(event)">Đăng nhập</strong>
+        <strong>{{ request.user.username }}</strong>
+        <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
       </div>
+      {% else %}
+      <a href="#" class="icon-btn" onclick="openRequireLoginPopup(event)">
+        <i class="bi bi-cart-fill"></i>
+      </a>
+      <button class="icon-btn" type="button">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong class="login-trigger" onclick="openLoginPopup(event)">Đăng nhập</strong>
+      </div>
+      {% endif %}
     </div>
   </header>
 
@@ -323,6 +338,11 @@
     document.getElementById("loginPopup").classList.remove("show");
     document.getElementById("registerPopup").classList.remove("show");
     document.getElementById("forgotPopup").classList.remove("show");
+
+    const requirePopup = document.getElementById("requireLoginPopup");
+    if (requirePopup) {
+      requirePopup.classList.remove("show");
+    }
   }
 
   function openLoginPopup(event) {
@@ -343,21 +363,35 @@
     document.getElementById("forgotPopup").classList.add("show");
   }
 
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    const requirePopup = document.getElementById("requireLoginPopup");
+    if (requirePopup) {
+      requirePopup.classList.remove("show");
+    }
+  }
+
   window.addEventListener("click", function (event) {
     const loginPopup = document.getElementById("loginPopup");
     const registerPopup = document.getElementById("registerPopup");
     const forgotPopup = document.getElementById("forgotPopup");
+    const requirePopup = document.getElementById("requireLoginPopup");
 
-    if (event.target === loginPopup) {
-      loginPopup.classList.remove("show");
-    }
+    if (event.target === loginPopup) loginPopup.classList.remove("show");
+    if (event.target === registerPopup) registerPopup.classList.remove("show");
+    if (event.target === forgotPopup) forgotPopup.classList.remove("show");
+    if (requirePopup && event.target === requirePopup) requirePopup.classList.remove("show");
+  });
 
-    if (event.target === registerPopup) {
-      registerPopup.classList.remove("show");
-    }
-
-    if (event.target === forgotPopup) {
-      forgotPopup.classList.remove("show");
+  document.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("show_login") === "1") {
+      openLoginPopup();
     }
   });
 </script>

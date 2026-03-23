@@ -30,15 +30,30 @@
     </div>
 
     <div class="topbar-right">
+      {% if request.user.is_authenticated %}
       <a href="{% url 'cart' %}" class="icon-btn">
         <i class="bi bi-cart-fill"></i>
       </a>
-      <button class="icon-btn"><i class="bi bi-person-circle"></i></button>
-
+      <button class="icon-btn" type="button">
+        <i class="bi bi-person-circle"></i>
+      </button>
       <div class="user-box">
         <span>Xin chào</span>
-        <strong>Đăng nhập</strong>
+        <strong>{{ request.user.username }}</strong>
+        <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
       </div>
+      {% else %}
+      <a href="#" class="icon-btn" onclick="openRequireLoginPopup(event)">
+        <i class="bi bi-cart-fill"></i>
+      </a>
+      <button class="icon-btn" type="button">
+        <i class="bi bi-person-circle"></i>
+      </button>
+      <div class="user-box">
+        <span>Xin chào</span>
+        <strong class="login-trigger" onclick="openLoginPopup(event)">Đăng nhập</strong>
+      </div>
+      {% endif %}
     </div>
   </header>
 

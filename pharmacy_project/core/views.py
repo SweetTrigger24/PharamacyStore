@@ -129,10 +129,10 @@ def logout_view(request):
 
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
     product = get_object_or_404(Product, id=product_id)
-    customer = request.user.customer
+    customer = get_or_create_customer(request.user)
     cart = get_customer_cart(customer)
 
     item, created = CartItem.objects.get_or_create(cart=cart, product=product)
@@ -142,12 +142,13 @@ def add_to_cart(request, product_id):
 
     return redirect('cart')
 
+
 def cart(request):
     if not request.user.is_authenticated:
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
-    customer = request.user.customer
-    cart = customer.cart
+    customer = get_or_create_customer(request.user)
+    cart = get_customer_cart(customer)
     items = cart.items.all()
 
     return render(request, 'customer/giohang.html', {

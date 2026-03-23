@@ -35,7 +35,10 @@
 
       <div class="user-box">
         <span>Xin chào</span>
-        <strong>N.P.Hoàng</strong>
+        <strong>
+          <a href="{% url 'profile' %}" class="user-link">{{ request.user.username }}</a>
+        </strong>
+        <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
       </div>
     </div>
   </header>
