@@ -47,7 +47,7 @@
       </button>
       <div class="user-box">
         <span>Xin chào</span>
-        <strong>{{ request.user.username }}</strong>
+        <a href="{% url 'profile' %}" class="user-link">{{ request.user.username }}</a>
         <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
       </div>
       {% else %}

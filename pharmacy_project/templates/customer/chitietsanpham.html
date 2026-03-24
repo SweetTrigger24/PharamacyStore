@@ -45,7 +45,7 @@
       </button>
       <div class="user-box">
         <span>Xin chào</span>
-        <strong>{{ request.user.username }}</strong>
+        <a href="{% url 'profile' %}" class="user-link">{{ request.user.username }}</a>
         <a href="{% url 'logout' %}" class="logout-link">Đăng xuất</a>
       </div>
       {% else %}
@@ -130,6 +130,10 @@
         </div>
         {% endif %}
         <div class="product-info-table">
+          <div class="info-row">
+            <div class="info-label">Tồn kho còn :</div>
+            <div class="info-value">{{ inventory.product.quantiny }}</div>
+          </div>
           <div class="info-row">
             <div class="info-label">Danh mục :</div>
             <div class="info-value">{{ product.category.name }}</div>
