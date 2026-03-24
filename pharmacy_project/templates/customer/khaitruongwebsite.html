@@ -65,56 +65,325 @@
     </div>
   </header>
 
-  <body>
-    <div class="payment-page">
-        <div class="payment-card">
-            <h1>Thông tin thanh toán chuyển khoản</h1>
-
-            <div class="payment-image-wrap">
-                {% if first_item and first_item.product.image %}
-                    <img src="{% static 'images/ten-anh-cua-ban.png' %}" alt="Thông tin chuyển khoản">
-                {% else %}
-                    <div class="payment-image-placeholder">Chưa có ảnh sản phẩm</div>
-                {% endif %}
-            </div>
-
-            <div class="payment-amount">
-                Số tiền: {{ order.subtotal|floatformat:0 }}đ
-            </div>
-
-            <div class="payment-content">
-                Nội dung thanh toán: {{ transfer_content }}
-            </div>
-
-            <div class="payment-info-list">
-                <div class="payment-info-item">
-                    <div class="payment-info-label">Mã đơn hàng:</div>
-                    <div>{{ order.code }}</div>
-                </div>
-
-                <div class="payment-info-item">
-                    <div class="payment-info-label">Người nhận:</div>
-                    <div>{{ order.receiver_name }}</div>
-                </div>
-
-                <div class="payment-info-item">
-                    <div class="payment-info-label">Số điện thoại:</div>
-                    <div>{{ order.receiver_phone }}</div>
-                </div>
-
-                <div class="payment-info-item">
-                    <div class="payment-info-label">Địa chỉ:</div>
-                    <div>{{ order.delivery_address }}</div>
-                </div>
-
-                <div class="payment-info-item">
-                    <div class="payment-info-label">Phương thức:</div>
-                    <div>{{ order.get_payment_method_display }}</div>
-                </div>
-            </div>
-
-            <a href="{% url 'home' %}" class="back-home-btn">Quay về trang chủ</a>
-        </div>
+  <!-- MENU PHỤ -->
+  <nav class="sub-navbar">
+    <div class="sub-navbar-inner">
+      <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
+      <a href="#" class="sub-nav-link">Hệ thống nhà thuốc</a>
+      <a href="{% url 'intro' %}" class="sub-nav-link">Về chúng tôi</a>
+      <a href="#" class="sub-nav-link">Liên hệ</a>
+      <a href="#" class="sub-nav-link">Góp ý, khiếu nại</a>
     </div>
+  </nav>
+
+  <!-- NỘI DUNG -->
+  <main class="page-wrapper opening-page">
+    <section class="opening-content">
+      <h1>KHAI TRƯƠNG WEBSITE CHÍNH THỨC CỦA NHÀ THUỐC</h1>
+
+      <p>
+        Nhà thuốc trân trọng thông báo đến quý khách hàng sự kiện Khai trương website chính thức tại địa chỉ:
+        https://nhathuoc.com.vn/ – nền tảng mua sắm trực tuyến an toàn, tiện lợi và nhanh chóng,
+        giúp quý khách dễ dàng tiếp cận các sản phẩm chăm sóc sức khỏe và sắc đẹp uy tín ngay tại nhà.
+      </p>
+
+      <h2>Vì sao nên chọn mua hàng tại Website Nhà thuốc ?</h2>
+
+      <h3>Sản phẩm chính hãng 100%</h3>
+      <p>
+        Cung cấp đa dạng sản phẩm: Thuốc kê đơn, không kê đơn, thực phẩm chức năng, mỹ phẩm và dược mỹ phẩm.
+        Cam kết nguồn gốc rõ ràng với đầy đủ giấy tờ chứng nhận từ các thương hiệu uy tín trong và ngoài nước.
+      </p>
+
+      <h3>Tư vấn tận tâm từ dược sĩ giàu kinh nghiệm</h3>
+      <p>
+        Đội ngũ dược sĩ chuyên môn luôn sẵn sàng tư vấn, giúp khách hàng lựa chọn sản phẩm phù hợp với nhu cầu
+        sức khỏe và sắc đẹp.
+      </p>
+
+      <h3>Giao hàng toàn quốc – Nhanh chóng, an toàn</h3>
+      <p>
+        Đặt hàng trực tuyến và nhận sản phẩm tại nhà với các đối tác vận chuyển uy tín.
+        Miễn phí vận chuyển với đơn hàng từ 500.000 VNĐ (áp dụng cho khu vực nội thành TP.HCM và một số khu vực lân cận).
+      </p>
+
+      <h3>Ưu đãi đặc biệt nhân dịp khai trương</h3>
+      <p>
+        Giảm giá 10% cho đơn hàng đầu tiên khi nhập mã: PHUCHOANG37<br />
+        Miễn phí giao hàng toàn quốc cho 100 đơn hàng đầu tiên.<br />
+        Cơ hội nhận quà tặng hấp dẫn khi mua các sản phẩm thuộc danh mục Thực phẩm chức năng và Mỹ phẩm chăm sóc da.
+      </p>
+
+      <h3>Các tính năng nổi bật trên website</h3>
+      <p>
+        Tìm kiếm và đặt hàng nhanh chóng: Chỉ với vài cú nhấp chuột, bạn đã có thể sở hữu sản phẩm yêu thích.<br />
+        Thông tin sản phẩm chi tiết: Đầy đủ thông tin về thành phần, công dụng, hướng dẫn sử dụng và giá bán minh bạch.<br />
+        Hỗ trợ tư vấn trực tuyến: Kết nối trực tiếp với đội ngũ dược sĩ qua hotline.<br />
+        Nhiều phương thức thanh toán: Hỗ trợ thanh toán COD (nhận hàng trả tiền), chuyển khoản ngân hàng.<br />
+        Chính sách đổi trả và bảo hành minh bạch: Đảm bảo quyền lợi tối đa cho khách hàng với chính sách đổi trả dễ dàng và bảo hành theo quy định.
+      </p>
+
+      <h3>Lời cảm ơn từ Nhà thuốc</h3>
+      <p>
+        Việc ra mắt website chính thức là một bước tiến quan trọng giúp chúng tôi tiếp cận và phục vụ quý khách hàng tốt hơn.
+        Nhà thuốc xin gửi lời cảm ơn chân thành đến tất cả khách hàng đã đồng hành và tin tưởng chúng tôi trong suốt thời gian qua.
+      </p>
+
+      <p>
+        Hãy cùng chúng tôi lan tỏa thông điệp “Chăm sóc sức khỏe toàn diện – Vì một cộng đồng khỏe mạnh”
+        bằng cách truy cập ngay: https://nhathuoc.com.vn/
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand footer-brand-inner">
+          <div class="brand-icon">
+            <i class="bi bi-capsule"></i>
+          </div>
+          <div class="brand-text">
+            <h3>NHÀ THUỐC</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <a href="#">Giới thiệu</a>
+        <a href="#">Giấy phép kinh doanh</a>
+        <a href="#">Quy chế hoạt động</a>
+        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="#">Chính sách nội dung</a>
+        <a href="#">Chính sách thanh toán</a>
+        <a href="#">Câu hỏi thường gặp</a>
+      </div>
+
+      <div class="footer-column">
+        <h3>Tổng đài</h3>
+        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
+      </div>
+
+      <div class="footer-column">
+        <h3>Chứng nhận bởi</h3>
+        <div class="certificates">
+            <div class="certificate">
+                <img src="{% static 'images/iso.jpg' %}" alt="Chứng nhận ISO" />
+            </div>
+
+            <div class="certificate">
+              <img src="{% static 'images/dmca.png' %}" alt="Chứng nhận DMCA" />
+            </div>
+
+            <div class="certificate">
+                <img src="{% static 'images/FDA.jpg' %}" alt="Chứng nhận FDA" />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
+      <div class="footer-bottom-links">
+        <a href="#">Trợ giúp</a>
+        <a href="#">Chính sách quyền riêng tư</a>
+      </div>
+    </div>
+  </footer>
+<!-- POPUP THÔNG BÁO CẦN ĐĂNG NHẬP -->
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
+
+<!-- POPUP ĐĂNG NHẬP -->
+<div class="auth-overlay" id="loginPopup">
+  <div class="auth-popup">
+    <h2>Đăng nhập</h2>
+
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng nhập</button>
+
+      <p class="auth-switch-text">
+        Chưa có tài khoản?
+        <a href="#" onclick="openRegisterPopup(event)">Đăng ký ngay</a>
+      </p>
+    </form>
+  </div>
+</div>
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
+
+<script>
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    document.getElementById("requireLoginPopup").classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("requireLoginPopup");
+    if (event.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll(".quantity-control").forEach(function(control) {
+    const minusBtn = control.querySelector(".qty-minus");
+    const plusBtn = control.querySelector(".qty-plus");
+    const input = control.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      if (value > 1) input.value = value - 1;
+    });
+
+    plusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      input.value = value + 1;
+    });
+  });
+</script>
+<!-- POPUP ĐĂNG KÝ -->
+<div class="auth-overlay" id="registerPopup">
+  <div class="auth-popup">
+    <h2>Đăng ký</h2>
+
+    <form method="post" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <div class="auth-form-group">
+        <label>Họ và tên</label>
+        <div class="auth-input-icon">
+          <input type="text" name="full_name" placeholder="Nhập họ và tên" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Số điện thoại</label>
+        <div class="auth-input-icon">
+          <input type="text" name="phone" placeholder="Nhập số điện thoại" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Tên đăng nhập</label>
+        <div class="auth-input-icon">
+          <input type="text" name="username" placeholder="Nhập tên đăng nhập" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="password" placeholder="Nhập mật khẩu" />
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label>Nhập lại mật khẩu</label>
+        <div class="auth-input-icon auth-input-right">
+          <input type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
+        </div>
+      </div>
+
+      <button class="auth-main-btn" type="submit">Đăng kí ngay</button>
+    </form>
+  </div>
+</div>
+<script>
+  function closeAllAuthPopups() {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup) loginPopup.classList.remove("show");
+    if (registerPopup) registerPopup.classList.remove("show");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
+  }
+
+  function openLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const loginPopup = document.getElementById("loginPopup");
+    if (loginPopup) loginPopup.classList.add("show");
+  }
+
+  function openRegisterPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const registerPopup = document.getElementById("registerPopup");
+    if (registerPopup) registerPopup.classList.add("show");
+  }
+
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    closeAllAuthPopups();
+
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+    if (requireLoginPopup) requireLoginPopup.classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const loginPopup = document.getElementById("loginPopup");
+    const registerPopup = document.getElementById("registerPopup");
+    const requireLoginPopup = document.getElementById("requireLoginPopup");
+
+    if (loginPopup && event.target === loginPopup) {
+      loginPopup.classList.remove("show");
+    }
+
+    if (registerPopup && event.target === registerPopup) {
+      registerPopup.classList.remove("show");
+    }
+
+    if (requireLoginPopup && event.target === requireLoginPopup) {
+      requireLoginPopup.classList.remove("show");
+    }
+  });
+</script>
 </body>
 </html>
