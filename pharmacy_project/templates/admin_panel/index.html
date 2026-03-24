@@ -85,7 +85,7 @@
                 <td>{{ order.code }}</td>
                 <td>{{ order.customer.full_name }}</td>
                 <td>{{ order.created_at|date:"d/m/Y" }}</td>
-                <td>{{ order.subtotal }} VNĐ</td>
+                <td>{{ order.subtotal|floatformat:0 }} VNĐ</td>
                 <td>{{ order.get_status_display }}</td>
               </tr>
               {% endfor %}

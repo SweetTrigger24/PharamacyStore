@@ -78,7 +78,7 @@
                   <p>{{ item.product.unit }}</p>
                 </div>
                 <div class="product-qty">x{{ item.quantity }}</div>
-                <div class="product-price">{{ item.line_total }}đ</div>
+                <div class="product-price">{{ item.line_total|floatformat:0 }}đ</div>
               </div>
               {% empty %}
               <p>Giỏ hàng của bạn đang trống.</p>
@@ -122,7 +122,7 @@
               <h2>Chi tiết thanh toán</h2>
               <div class="summary-row">
                 <span>Tổng tiền</span>
-                <strong>{{ cart.total_amount }}đ</strong>
+                <strong>{{ cart.total_amount|floatformat:0 }}đ</strong>
               </div>
               <p class="product-count">{{ items|length }} sản phẩm</p>
               <label class="payment-option">

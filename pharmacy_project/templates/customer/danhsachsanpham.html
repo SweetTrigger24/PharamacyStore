@@ -178,7 +178,7 @@
               </div>
                 <div class="product-card-body">
                   <h3>{{ product.name }}</h3>
-                  <div class="product-card-price">{{ product.price }}đ / {{ product.unit }}</div>
+                  <div class="product-card-price">{{ product.price|floatformat:0 }}đ / {{ product.unit }}</div>
                   <p>{{ product.description|truncatechars:40 }}</p>
                   <a href="{% url 'product_detail' product.id %}" class="choose-btn">Chọn mua</a>
                 </div>
