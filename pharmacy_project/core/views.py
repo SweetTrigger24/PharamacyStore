@@ -90,8 +90,16 @@ def product_list(request):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+    inventory = Inventory.objects.filter(product=product).first()
+    stock_quantity = inventory.quantity if inventory else 0
+
+    stock_error_popup = request.session.pop('stock_error_popup', None)
+
     return render(request, 'customer/chitietsanpham.html', {
-        'product': product
+        'product': product,
+        'inventory': inventory,
+        'stock_quantity': stock_quantity,
+        'stock_error_popup': stock_error_popup,
     })
 
 def register_view(request):
@@ -192,6 +200,26 @@ def checkout(request):
                 'payment_method': payment_method,
             })
 
+        # Kiểm tra tồn kho trước khi tạo đơn
+        for item in items:
+            inventory = Inventory.objects.filter(product=item.product).first()
+            available_quantity = inventory.quantity if inventory else 0
+
+            if item.quantity > available_quantity:
+                return render(request, 'customer/dathang.html', {
+                    'cart': cart,
+                    'items': items,
+                    'receiver_name': receiver_name,
+                    'receiver_phone': receiver_phone,
+                    'delivery_address': delivery_address,
+                    'note': note,
+                    'payment_method': payment_method,
+                    'stock_error_popup': (
+                        f'Sản phẩm "{item.product.name}" chỉ còn '
+                        f'{available_quantity} {item.product.unit} trong kho.'
+                    )
+                })
+
         order = Order.objects.create(
             customer=customer,
             code='DH' + uuid.uuid4().hex[:8].upper(),
@@ -220,10 +248,12 @@ def checkout(request):
 
         cart.items.all().delete()
 
+        # Dùng session popup thay vì messages.success
+        request.session['order_success_popup'] = 'Đặt hàng thành công!'
+
         if payment_method == 'bank':
             return redirect('payment_info', order_id=order.id)
 
-        messages.success(request, 'Đặt hàng thành công!')
         return redirect('home')
 
     return render(request, 'customer/dathang.html', {
@@ -664,9 +694,11 @@ def get_or_create_customer(user):
 def payment_info(request, order_id):
     customer = request.user.customer
     order = get_object_or_404(Order, id=order_id, customer=customer)
+    order_success_popup = request.session.pop('order_success_popup', None)
 
     return render(request, 'customer/payment_info.html', {
-        'order': order
+        'order': order,
+        'order_success_popup': order_success_popup
     })
 
 @login_required
@@ -1032,6 +1064,42 @@ def home(request):
         .order_by('-total_sold', 'name')[:8]
     )
 
+    order_success_popup = request.session.pop('order_success_popup', None)
+
     return render(request, 'customer/trangchu.html', {
         'featured_products': featured_products,
+        'order_success_popup': order_success_popup,
     })
+
+def add_to_cart(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    product = get_object_or_404(Product, id=product_id)
+    customer = request.user.customer
+    cart = get_customer_cart(customer)
+
+    quantity = int(request.POST.get('quantity', 1))
+    if quantity < 1:
+        quantity = 1
+
+    inventory = Inventory.objects.filter(product=product).first()
+    stock_quantity = inventory.quantity if inventory else 0
+
+    item = CartItem.objects.filter(cart=cart, product=product).first()
+    current_quantity = item.quantity if item else 0
+    new_quantity = current_quantity + quantity
+
+    if new_quantity > stock_quantity:
+        request.session['stock_error_popup'] = (
+            f'Sản phẩm "{product.name}" chỉ còn {stock_quantity} {product.unit} trong kho.'
+        )
+        return redirect('product_detail', product_id=product.id)
+
+    if item:
+        item.quantity = new_quantity
+        item.save()
+    else:
+        CartItem.objects.create(cart=cart, product=product, quantity=quantity)
+
+    return redirect('cart')

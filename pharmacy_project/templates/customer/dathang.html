@@ -54,11 +54,6 @@
   <main class="page-wrapper">
     <section class="checkout-page">
       <h1>Đặt hàng</h1>
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert-message">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
       <form method="post">
         {% csrf_token %}
         <div class="checkout-layout">
@@ -219,6 +214,17 @@
     </p>
   </div>
 </div>
+{% if stock_error_popup %}
+<div class="auth-overlay show" id="stockErrorPopup">
+    <div class="auth-popup auth-notice-popup">
+        <h2>Thông báo</h2>
+        <p class="auth-message-text">{{ stock_error_popup }}</p>
+        <button type="button" class="auth-main-btn auth-close-btn" onclick="closeStockErrorPopup()">
+            Đóng
+        </button>
+    </div>
+</div>
+{% endif %}
 <script>
   function showQrPopup() {
     document.getElementById('qrPopup').style.display = 'flex';
@@ -227,6 +233,12 @@
   function hideQrPopup() {
     document.getElementById('qrPopup').style.display = 'none';
   }
+</script>
+<script>
+function closeStockErrorPopup() {
+    const popup = document.getElementById("stockErrorPopup");
+    if (popup) popup.classList.remove("show");
+}
 </script>
 </body>
 </html>

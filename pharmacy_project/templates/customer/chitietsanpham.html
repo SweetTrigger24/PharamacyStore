@@ -104,7 +104,14 @@
             <label>Chọn số lượng</label>
             <div class="quantity-control">
               <button type="button" class="qty-btn qty-minus">−</button>
-              <input type="text" name="quantity" value="1" class="qty-input" readonly>
+              <input
+                type="text"
+                name="quantity"
+                value="1"
+                class="qty-input"
+                readonly
+                data-max-stock="{{ stock_quantity }}"
+              >
               <button type="button" class="qty-btn qty-plus">+</button>
             </div>
           </div>
@@ -132,7 +139,7 @@
         <div class="product-info-table">
           <div class="info-row">
             <div class="info-label">Tồn kho còn :</div>
-            <div class="info-value">{{ inventory.product.quantiny }}</div>
+            <div class="info-value">{{ stock_quantity }} {{ product.unit }}</div>
           </div>
           <div class="info-row">
             <div class="info-label">Danh mục :</div>
@@ -203,6 +210,17 @@
       </div>
     </div>
   </footer>
+{% if stock_error_popup %}
+<div class="auth-overlay show" id="stockErrorPopup">
+    <div class="auth-popup auth-notice-popup">
+        <h2>Thông báo</h2>
+        <p class="auth-message-text">{{ stock_error_popup }}</p>
+        <button type="button" class="auth-main-btn auth-close-btn" onclick="closeStockErrorPopup()">
+            Đóng
+        </button>
+    </div>
+</div>
+{% endif %}
 <!-- POPUP THÔNG BÁO CẦN ĐĂNG NHẬP -->
 <div class="auth-overlay" id="requireLoginPopup">
   <div class="auth-popup auth-notice-popup">
@@ -352,21 +370,34 @@
   });
 </script>
 <script>
-  document.querySelectorAll(".quantity-control").forEach(function(control) {
+document.querySelectorAll(".quantity-control").forEach(function(control) {
     const minusBtn = control.querySelector(".qty-minus");
     const plusBtn = control.querySelector(".qty-plus");
     const input = control.querySelector(".qty-input");
+    const maxStock = parseInt(input.dataset.maxStock || "0");
 
     minusBtn.addEventListener("click", function() {
-      let value = parseInt(input.value) || 1;
-      if (value > 1) input.value = value - 1;
+        let value = parseInt(input.value) || 1;
+        if (value > 1) input.value = value - 1;
     });
 
     plusBtn.addEventListener("click", function() {
-      let value = parseInt(input.value) || 1;
-      input.value = value + 1;
+        let value = parseInt(input.value) || 1;
+        if (value < maxStock) {
+            input.value = value + 1;
+        } else if (maxStock === 0) {
+            alert("Sản phẩm hiện đã hết hàng.");
+        } else {
+            alert("Quá số lượng tồn kho.");
+        }
     });
-  });
+});
+</script>
+<script>
+function closeStockErrorPopup() {
+    const popup = document.getElementById("stockErrorPopup");
+    if (popup) popup.classList.remove("show");
+}
 </script>
 </body>
 </html>

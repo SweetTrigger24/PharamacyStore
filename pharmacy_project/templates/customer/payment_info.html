@@ -17,4 +17,21 @@
 
   <p>Trang này bạn sẽ thiết kế sau để hiển thị QR và nội dung chuyển khoản.</p>
 </body>
+{% if order_success_popup %}
+<div class="auth-overlay show" id="orderSuccessPopup">
+    <div class="auth-popup auth-notice-popup">
+        <h2>Thông báo</h2>
+        <p class="auth-message-text">{{ order_success_popup }}</p>
+        <button type="button" class="auth-main-btn auth-close-btn" onclick="closeOrderSuccessPopup()">
+            Đóng
+        </button>
+    </div>
+</div>
+{% endif %}
+<script>
+function closeOrderSuccessPopup() {
+    const popup = document.getElementById("orderSuccessPopup");
+    if (popup) popup.classList.remove("show");
+}
+</script>
 </html>
