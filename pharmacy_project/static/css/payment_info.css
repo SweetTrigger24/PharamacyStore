@@ -835,3 +835,132 @@ body {
 .featured-product-link h3 {
   text-decoration: none;
 }
+* {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .payment-page {
+            min-height: 100vh;
+            padding: 30px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .payment-card {
+            width: 100%;
+            max-width: 760px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 28px 24px 32px;
+            text-align: center;
+        }
+
+        .payment-card h1 {
+            margin: 0 0 28px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .payment-image-wrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 26px;
+        }
+
+        .payment-image-wrap img {
+            width: 230px;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .payment-image-placeholder {
+            width: 230px;
+            height: 230px;
+            border: 1px dashed #bbb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 15px;
+            background: #fafafa;
+        }
+
+        .payment-amount,
+        .payment-content {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .payment-content {
+            margin-bottom: 24px;
+        }
+
+        .payment-info-list {
+            text-align: left;
+            max-width: 520px;
+            margin: 0 auto 24px;
+            padding-top: 18px;
+            border-top: 1px solid #eee;
+        }
+
+        .payment-info-item {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .payment-info-label {
+            min-width: 140px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 12px 22px;
+            background: #4f7cff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .back-home-btn:hover {
+            opacity: 0.92;
+        }
+
+        @media (max-width: 640px) {
+            .payment-card {
+                padding: 22px 16px 26px;
+            }
+
+            .payment-card h1 {
+                font-size: 21px;
+            }
+
+            .payment-info-item {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .payment-info-label {
+                min-width: auto;
+            }
+        }

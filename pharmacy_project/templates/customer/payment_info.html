@@ -68,9 +68,6 @@
   </header>
 <body>
   <h2>Thông tin thanh toán chuyển khoản</h2>
-
-  <p>Mã đơn hàng: {{ order.code }}</p>
-  <p>Số điện thoại: {{ order.receiver_phone }}</p>
   <p>Tổng tiền: {{ order.subtotal|floatformat:0 }}đ</p>
   <p>Nội dung thanh toán: {{ order.code }} {{ order.receiver_phone}}</p>
 </body>

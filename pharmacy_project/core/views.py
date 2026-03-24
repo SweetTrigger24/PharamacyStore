@@ -694,11 +694,14 @@ def get_or_create_customer(user):
 def payment_info(request, order_id):
     customer = request.user.customer
     order = get_object_or_404(Order, id=order_id, customer=customer)
-    order_success_popup = request.session.pop('order_success_popup', None)
+
+    first_item = order.items.select_related('product').first()
+    transfer_content = f"{order.code} {order.receiver_phone}"
 
     return render(request, 'customer/payment_info.html', {
         'order': order,
-        'order_success_popup': order_success_popup
+        'first_item': first_item,
+        'transfer_content': transfer_content,
     })
 
 @login_required
