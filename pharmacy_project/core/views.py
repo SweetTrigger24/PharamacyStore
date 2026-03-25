@@ -9,9 +9,6 @@ from django.contrib import messages
 from django.db.models.functions import TruncDate, Coalesce
 import uuid 
 
-def home(request):
-    return render(request, 'customer/trangchu.html')
-
 def intro(request):
     return render(request, 'customer/gioithieu.html')
 
@@ -36,75 +33,12 @@ def tunhanvienit(request):
 def opening(request):
     return render(request, 'customer/khaitruongwebsite.html')
 
-def product_list(request):
-    return render(request, 'customer/danhsachsanpham.html')
-
-def product_detail(request, product_id):
-    return render(request, 'customer/chitietsanpham.html')
-
-@login_required
-def cart(request):
-    customer = request.user.customer
-    cart = get_customer_cart(customer)
-    items = cart.items.select_related('product').all()
-
-    return render(request, 'customer/giohang.html', {
-        'cart': cart,
-        'items': items
-    })
-
-def checkout(request):
-    return render(request, 'customer/dathang.html')
-
-def profile(request):
-    return render(request, 'customer/thongtincanhan.html')
-
-def dashboard(request):
-    return render(request, 'admin_panel/index.html')
-
-def admin_categories(request):
-    return render(request, 'admin_panel/danhmuc.html')
-
-def admin_products(request):
-    return render(request, 'admin_panel/sanpham.html')
-
-def admin_inventory(request):
-    return render(request, 'admin_panel/tonkho.html')
-
-def admin_customers(request):
-    return render(request, 'admin_panel/khachhang.html')
-
-def admin_orders(request):
-    return render(request, 'admin_panel/donhang.html')
-
-def admin_statistics(request):
-    return render(request, 'admin_panel/thongke.html')
+def is_admin(user):
+    return user.is_staff
 
 def get_customer_cart(customer):
     cart, created = Cart.objects.get_or_create(customer=customer)
     return cart
-
-def product_list(request):
-    products = Product.objects.all()
-    categories = Category.objects.all()
-
-    category_id = request.GET.get('category')
-    min_price = request.GET.get('min_price')
-    max_price = request.GET.get('max_price')
-
-    if category_id:
-        products = products.filter(category_id=category_id)
-
-    if min_price:
-        products = products.filter(price__gte=min_price)
-
-    if max_price:
-        products = products.filter(price__lte=max_price)
-
-    return render(request, 'customer/danhsachsanpham.html', {
-        'products': products,
-        'categories': categories,
-    })
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -119,62 +53,6 @@ def product_detail(request, product_id):
         'stock_quantity': stock_quantity,
         'stock_error_popup': stock_error_popup,
     })
-
-def register_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-        full_name = request.POST.get('full_name')
-        phone = request.POST.get('phone')
-
-        if password != confirm_password:
-            return redirect('home')
-
-        if User.objects.filter(username=username).exists():
-            return redirect('home')
-
-        user = User.objects.create_user(username=username, password=password)
-
-        customer = Customer.objects.create(
-            user=user,
-            full_name=full_name,
-            phone=phone,
-            address=''
-        )
-
-        Cart.objects.get_or_create(customer=customer)
-
-        return redirect('home')
-
-    return redirect('home')
-
-def logout_view(request):
-    logout(request)
-    return redirect('home')
-
-def add_to_cart(request, product_id):
-    if not request.user.is_authenticated:
-        return redirect('home')
-
-    product = get_object_or_404(Product, id=product_id)
-    customer = request.user.customer
-    cart = get_customer_cart(customer)
-
-    quantity = int(request.POST.get('quantity', 1))
-    if quantity < 1:
-        quantity = 1
-
-    item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-
-    if created:
-        item.quantity = quantity
-    else:
-        item.quantity += quantity
-
-    item.save()
-    return redirect('cart')
-
 
 def cart(request):
     if not request.user.is_authenticated:
@@ -218,7 +96,6 @@ def checkout(request):
                 'payment_method': payment_method,
             })
 
-        # Kiểm tra tồn kho trước khi tạo đơn
         for item in items:
             inventory = Inventory.objects.filter(product=item.product).first()
             available_quantity = inventory.quantity if inventory else 0
@@ -266,7 +143,6 @@ def checkout(request):
 
         cart.items.all().delete()
 
-        # Dùng session popup thay vì messages.success
         request.session['order_success_popup'] = 'Đặt hàng thành công!'
 
         if payment_method == 'bank':
@@ -283,139 +159,6 @@ def checkout(request):
         'note': '',
         'payment_method': '',
     })
-
-def profile(request):
-    if not request.user.is_authenticated:
-        return redirect('home')
-
-    customer = request.user.customer
-
-    if request.method == 'POST':
-        customer.full_name = request.POST.get('full_name')
-        customer.phone = request.POST.get('phone')
-        customer.address = request.POST.get('address')
-
-        if 'avatar' in request.FILES:
-            customer.avatar = request.FILES['avatar']
-
-        customer.save()
-        return redirect('profile')
-
-    return render(request, 'customer/thongtincanhan.html', {
-        'customer': customer
-    })
-@login_required
-def change_password_view(request):
-    if request.method == 'POST':
-        old_password = request.POST.get('old_password')
-        new_password = request.POST.get('new_password')
-
-        user = request.user
-        if user.check_password(old_password):
-            user.set_password(new_password)
-            user.save()
-            return redirect('home')
-
-    return redirect('profile')
-
-def is_admin(user):
-    return user.is_staff
-
-@login_required
-@user_passes_test(is_admin)
-def dashboard(request):
-    return render(request, 'admin_panel/index.html')
-
-@login_required
-@user_passes_test(is_admin)
-def admin_categories(request):
-    categories = Category.objects.all()
-    return render(request, 'admin_panel/danhmuc.html', {
-        'categories': categories
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_products(request):
-    if request.method == 'POST':
-        category_id = request.POST.get('category_id')
-        proid = request.POST.get('proid')
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        unit = request.POST.get('unit')
-        price = request.POST.get('price')
-        image = request.FILES.get('image')
-
-        category = Category.objects.get(id=category_id)
-
-        Product.objects.create(
-            category=category,
-            proid=proid,
-            name=name,
-            description=description,
-            unit=unit,
-            price=price,
-            image=image
-        )
-
-        return redirect('admin_products')
-
-    products = Product.objects.select_related('category').all()
-    categories = Category.objects.all()
-
-    return render(request, 'admin_panel/sanpham.html', {
-        'products': products,
-        'categories': categories
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_inventory(request):
-    inventories = Inventory.objects.select_related('product').all()
-    return render(request, 'admin_panel/tonkho.html', {
-        'inventories': inventories
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_customers(request):
-    customers = Customer.objects.select_related('user').all()
-    return render(request, 'admin_panel/khachhang.html', {
-        'customers': customers
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_orders(request):
-    orders = Order.objects.select_related('customer').all().order_by('-created_at')
-    return render(request, 'admin_panel/donhang.html', {
-        'orders': orders
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_statistics(request):
-    orders = Order.objects.all()
-
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
-
-    if start_date:
-        orders = orders.filter(created_at__date__gte=start_date)
-
-    if end_date:
-        orders = orders.filter(created_at__date__lte=end_date)
-
-    total_orders = orders.count()
-    total_revenue = orders.aggregate(total=Sum('subtotal'))['total'] or 0
-
-    return render(request, 'admin_panel/thongke.html', {
-        'total_orders': total_orders,
-        'total_revenue': total_revenue,
-    })
-
-def is_admin(user):
-    return user.is_staff
 
 @login_required
 @user_passes_test(is_admin)
@@ -503,70 +246,6 @@ def admin_product_delete(request, product_id):
 
 @login_required
 @user_passes_test(is_admin)
-def admin_inventory(request):
-    keyword = request.GET.get('q', '')
-    inventories = Inventory.objects.select_related('product').all()
-
-    if keyword:
-        inventories = inventories.filter(product__name__icontains=keyword)
-
-    return render(request, 'admin_panel/tonkho.html', {
-        'inventories': inventories,
-        'keyword': keyword,
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_inventory_update(request, inventory_id):
-    inventory = get_object_or_404(Inventory.objects.select_related('product'), id=inventory_id)
-
-    if request.method == 'POST':
-        inventory.quantity = request.POST.get('quantity')
-        inventory.save()
-        return redirect('admin_inventory')
-
-    return render(request, 'admin_panel/inventory_edit.html', {
-        'inventory': inventory,
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_orders(request):
-    keyword = request.GET.get('q', '')
-    orders = Order.objects.select_related('customer').all().order_by('-created_at')
-
-    if keyword:
-        orders = orders.filter(code__icontains=keyword)
-
-    return render(request, 'admin_panel/donhang.html', {
-        'orders': orders,
-        'keyword': keyword,
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_order_update(request, order_id):
-    order = get_object_or_404(Order.objects.select_related('customer'), id=order_id)
-
-    if request.method == 'POST':
-        order.status = request.POST.get('status')
-        order.note = request.POST.get('note')
-        order.save()
-        return redirect('admin_orders')
-
-    return render(request, 'admin_panel/order_edit.html', {
-        'order': order,
-    })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_order_delete(request, order_id):
-    order = get_object_or_404(Order, id=order_id)
-    order.delete()
-    return redirect('admin_orders')
-
-@login_required
-@user_passes_test(is_admin)
 def dashboard(request):
     total_revenue = Order.objects.aggregate(total=Sum('subtotal'))['total'] or 0
     total_orders = Order.objects.count()
@@ -579,30 +258,6 @@ def dashboard(request):
         'total_stock': total_stock,
         'recent_orders': recent_orders,
     })
-
-@login_required
-@user_passes_test(is_admin)
-def admin_statistics(request):
-    orders = Order.objects.all()
-
-    start_date = request.GET.get('start_date')
-    end_date = request.GET.get('end_date')
-
-    if start_date:
-        orders = orders.filter(created_at__date__gte=start_date)
-
-    if end_date:
-        orders = orders.filter(created_at__date__lte=end_date)
-
-    total_orders = orders.count()
-    total_revenue = orders.aggregate(total=Sum('subtotal'))['total'] or 0
-
-    return render(request, 'admin_panel/thongke.html', {
-        'total_orders': total_orders,
-        'total_revenue': total_revenue,
-        'start_date': start_date,
-        'end_date': end_date,
-    })      
 
 @login_required
 def profile(request):
@@ -622,32 +277,6 @@ def profile(request):
     return render(request, 'customer/thongtincanhan.html', {
         'customer': customer
     })
-
-@login_required
-def change_password_view(request):
-    if request.method == 'POST':
-        old_password = request.POST.get('old_password')
-        new_password = request.POST.get('new_password')
-        confirm_password = request.POST.get('confirm_password')
-
-        user = request.user
-
-        if not user.check_password(old_password):
-            messages.error(request, 'Mật khẩu cũ không đúng')
-            return redirect('profile')
-
-        if new_password != confirm_password:
-            messages.error(request, 'Mật khẩu nhập lại không khớp')
-            return redirect('profile')
-
-        user.set_password(new_password)
-        user.save()
-        update_session_auth_hash(request, user)
-
-        messages.success(request, 'Đổi mật khẩu thành công')
-        return redirect('profile')
-
-    return redirect('profile')
 
 def register_view(request):
     if request.method == 'POST':
@@ -734,10 +363,6 @@ def delete_cart_item(request, item_id):
 
     return redirect('cart')
 
-def is_admin(user):
-    return user.is_staff
-
-
 @login_required
 @user_passes_test(is_admin)
 def admin_categories(request):
@@ -795,15 +420,6 @@ def admin_category_delete(request, category_id):
 
 @login_required
 @user_passes_test(is_admin)
-def admin_inventory(request):
-    inventories = Inventory.objects.select_related('product').all().order_by('product__proid')
-    return render(request, 'admin_panel/tonkho.html', {
-        'inventories': inventories
-    })
-
-
-@login_required
-@user_passes_test(is_admin)
 def admin_inventory_update(request, inventory_id):
     inventory = get_object_or_404(Inventory.objects.select_related('product'), id=inventory_id)
 
@@ -814,14 +430,6 @@ def admin_inventory_update(request, inventory_id):
             inventory.save()
 
     return redirect('admin_inventory')
-
-@login_required
-@user_passes_test(is_admin)
-def admin_orders(request):
-    orders = Order.objects.select_related('customer').all().order_by('-created_at')
-    return render(request, 'admin_panel/donhang.html', {
-        'orders': orders
-    })
 
 @login_required
 @user_passes_test(is_admin)
@@ -845,23 +453,6 @@ def admin_order_delete(request, order_id):
         order.delete()
 
     return redirect('admin_orders')
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Customer
-
-def is_admin(user):
-    return user.is_staff
-
-
-@login_required
-@user_passes_test(is_admin)
-def admin_customers(request):
-    customers = Customer.objects.select_related('user').all().order_by('id')
-    return render(request, 'admin_panel/khachhang.html', {
-        'customers': customers
-    })
-
 
 @login_required
 @user_passes_test(is_admin)
@@ -982,23 +573,6 @@ def admin_customers(request):
 def admin_orders(request):
     keyword = request.GET.get('q', '').strip()
 
-    orders = Order.objects.select_related('customer').all().order_by('-created_at')
-
-    if keyword:
-        query = Q(code__icontains=keyword) | Q(customer__full_name__icontains=keyword)
-
-        # Nếu bạn muốn tìm thêm theo order.id thật (số nguyên)
-        if keyword.isdigit():
-            query = query | Q(id=int(keyword))
-
-        orders = orders.filter(query)
-
-    return render(request, 'admin_panel/donhang.html', {
-        'orders': orders,
-        'keyword': keyword,
-    })
-
-def admin_orders(request):
     orders = (
         Order.objects
         .select_related('customer')
@@ -1006,8 +580,18 @@ def admin_orders(request):
         .all()
         .order_by('-created_at')
     )
+
+    if keyword:
+        query = Q(code__icontains=keyword) | Q(customer__full_name__icontains=keyword)
+
+        if keyword.isdigit():
+            query |= Q(id=int(keyword))
+
+        orders = orders.filter(query)
+
     return render(request, 'admin_panel/donhang.html', {
-        'orders': orders
+        'orders': orders,
+        'keyword': keyword,
     })
 
 @login_required
