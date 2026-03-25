@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khai trương website chính thức của Nhà thuốc</title>
+  <title>Giới thiệu nhà thuốc</title>
 
-  <link rel="stylesheet" href="{% static 'css/khaitruongwebsite.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/gioithieu.css' %}" />
   <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
@@ -23,7 +23,6 @@
          <h3>NHÀ THUỐC</h3>
       </div>
     </div>
-
       <form action="{% url 'product_list' %}" method="get" class="search-box">
   <button type="submit" class="search-submit" aria-label="Tìm kiếm">
     <i class="bi bi-search"></i>
@@ -77,63 +76,78 @@
   </nav>
 
   <!-- NỘI DUNG -->
-  <main class="page-wrapper opening-page">
-    <section class="opening-content">
-      <h1>KHAI TRƯƠNG WEBSITE CHÍNH THỨC CỦA NHÀ THUỐC</h1>
-
-      <p>
-        Nhà thuốc trân trọng thông báo đến quý khách hàng sự kiện Khai trương website chính thức tại địa chỉ:
-        https://nhathuoc.com.vn/ – nền tảng mua sắm trực tuyến an toàn, tiện lợi và nhanh chóng,
-        giúp quý khách dễ dàng tiếp cận các sản phẩm chăm sóc sức khỏe và sắc đẹp uy tín ngay tại nhà.
-      </p>
-
-      <h2>Vì sao nên chọn mua hàng tại Website Nhà thuốc ?</h2>
-
-      <h3>Sản phẩm chính hãng 100%</h3>
-      <p>
-        Cung cấp đa dạng sản phẩm: Thuốc kê đơn, không kê đơn, thực phẩm chức năng, mỹ phẩm và dược mỹ phẩm.
-        Cam kết nguồn gốc rõ ràng với đầy đủ giấy tờ chứng nhận từ các thương hiệu uy tín trong và ngoài nước.
-      </p>
-
-      <h3>Tư vấn tận tâm từ dược sĩ giàu kinh nghiệm</h3>
-      <p>
-        Đội ngũ dược sĩ chuyên môn luôn sẵn sàng tư vấn, giúp khách hàng lựa chọn sản phẩm phù hợp với nhu cầu
-        sức khỏe và sắc đẹp.
-      </p>
-
-      <h3>Giao hàng toàn quốc – Nhanh chóng, an toàn</h3>
-      <p>
-        Đặt hàng trực tuyến và nhận sản phẩm tại nhà với các đối tác vận chuyển uy tín.
-        Miễn phí vận chuyển với đơn hàng từ 500.000 VNĐ (áp dụng cho khu vực nội thành TP.HCM và một số khu vực lân cận).
-      </p>
-
-      <h3>Ưu đãi đặc biệt nhân dịp khai trương</h3>
-      <p>
-        Giảm giá 10% cho đơn hàng đầu tiên khi nhập mã: PHUCHOANG37<br />
-        Miễn phí giao hàng toàn quốc cho 100 đơn hàng đầu tiên.<br />
-        Cơ hội nhận quà tặng hấp dẫn khi mua các sản phẩm thuộc danh mục Thực phẩm chức năng và Mỹ phẩm chăm sóc da.
-      </p>
-
-      <h3>Các tính năng nổi bật trên website</h3>
-      <p>
-        Tìm kiếm và đặt hàng nhanh chóng: Chỉ với vài cú nhấp chuột, bạn đã có thể sở hữu sản phẩm yêu thích.<br />
-        Thông tin sản phẩm chi tiết: Đầy đủ thông tin về thành phần, công dụng, hướng dẫn sử dụng và giá bán minh bạch.<br />
-        Hỗ trợ tư vấn trực tuyến: Kết nối trực tiếp với đội ngũ dược sĩ qua hotline.<br />
-        Nhiều phương thức thanh toán: Hỗ trợ thanh toán COD (nhận hàng trả tiền), chuyển khoản ngân hàng.<br />
-        Chính sách đổi trả và bảo hành minh bạch: Đảm bảo quyền lợi tối đa cho khách hàng với chính sách đổi trả dễ dàng và bảo hành theo quy định.
-      </p>
-
-      <h3>Lời cảm ơn từ Nhà thuốc</h3>
-      <p>
-        Việc ra mắt website chính thức là một bước tiến quan trọng giúp chúng tôi tiếp cận và phục vụ quý khách hàng tốt hơn.
-        Nhà thuốc xin gửi lời cảm ơn chân thành đến tất cả khách hàng đã đồng hành và tin tưởng chúng tôi trong suốt thời gian qua.
-      </p>
-
-      <p>
-        Hãy cùng chúng tôi lan tỏa thông điệp “Chăm sóc sức khỏe toàn diện – Vì một cộng đồng khỏe mạnh”
-        bằng cách truy cập ngay: https://nhathuoc.com.vn/
-      </p>
-    </section>
+  <main class="page-wrapper intro-page">
+    <section class="intro-content-block">
+      <h1>Hành trình từ sinh viên IT đến Nhà thuốc - Bước tiến vững chắc của Nhà thuốc</h1>
+      <p>Chặng đường từ một sinh viên IT đến một nhà thuốc đạt chuẩn GPP không chỉ là sự thay đổi về quy mô mà còn là hành trình phát triển, khẳng định uy tín và sự tận tâm của Nhà thuốc trong suốt những năm qua. Đó là câu chuyện của niềm đam mê nghề dược, của sự kiên trì và trên hết là mong muốn mang đến những giải pháp chăm sóc sức khỏe tốt nhất cho cộng đồng.</p>
+      <h1>1. Những Ngày Đầu Gian Nan – Khởi Nguồn Từ Một Sinh Viên IT Trái Ngành</h1>
+      <p>Cách đây hơn 10 năm, Dược sĩ Nguyễn Phúc Hoàng bắt đầu hành trình của mình với tấm bằng cử nhân ngành IT. Với tấm bằng dược sĩ văn bằng 2 và niềm đam mê với nghề, anh mong muốn tạo dựng một nơi không chỉ bán thuốc mà còn là nơi chia sẻ kiến thức, tư vấn và đồng hành cùng người bệnh.</p>
+      <p>Thời gian đầu, quầy thuốc gặp không ít khó khăn:</p>
+      <ul>
+        <li>Nguồn lực hạn chế: Với quy mô nhỏ, quầy thuốc chỉ cung cấp một số lượng hạn chế các loại thuốc thông dụng và thực phẩm chức năng cơ bản.</li>
+        <li>Cạnh tranh cao: Giữa vô số quầy thuốc lớn nhỏ tại TP.Hà Nội, việc xây dựng thương hiệu và tạo được lòng tin với khách hàng không hề dễ dàng.</li>
+        <li>Thiếu nhận diện thương hiệu: Ban đầu, quầy thuốc đơn giản chỉ là một nơi bán thuốc như bao quầy thuốc khác, chưa có dấu ấn đặc biệt.</li>
+      </ul>
+      <p>Tuy nhiên, chính trong những ngày đầu gian nan đó, Dược sĩ Nguyễn Phúc Hoàng đã thấm nhuần triết lý nghề dược: “Bán thuốc không chỉ là bán sản phẩm, mà là bán niềm tin và hy vọng về sức khỏe.”</p>
+      <h1>2. Xây Dựng Niềm Tin – Từng Bước Khẳng Định Chất Lượng</h1>
+      <p>Chìa khóa giúp quầy thuốc dần được nhiều khách hàng biết đến và yêu mến không đến từ những chiến dịch quảng cáo rầm rộ, mà bắt nguồn từ sự tận tâm và uy tín trong từng lần tư vấn, từng đơn thuốc được kê.</p>
+      <h2>Các yếu tố làm nên thương hiệu từ những ngày đầu:</h2>
+      <ul>
+        <li>Tư vấn tận tình: Không đơn thuần bán thuốc, quầy thuốc luôn chú trọng tư vấn kỹ lưỡng về cách dùng thuốc, liều lượng và những lưu ý quan trọng, giúp người bệnh sử dụng thuốc an toàn và hiệu quả.</li>
+        <li>Sản phẩm chất lượng: Dù quy mô nhỏ, nhưng Dược sĩ Nguyễn Phúc Hoàng luôn đặt tiêu chí “chỉ bán sản phẩm chính hãng” lên hàng đầu, tuyệt đối nói không với hàng giả, hàng nhái hay thuốc không rõ nguồn gốc.</li>
+        <li>Thái độ phục vụ tận tâm: Với tôn chỉ “bệnh nhân là trung tâm”, quầy thuốc luôn chào đón và phục vụ khách hàng với thái độ niềm nở, tận tình.</li>
+      </ul>
+      <p>Nhờ sự kiên trì và tận tâm ấy, số lượng khách hàng tìm đến quầy thuốc ngày càng tăng. Đặc biệt, những lời giới thiệu từ khách hàng cũ đã tạo ra một cộng đồng người tiêu dùng tin tưởng, giúp quầy thuốc từng bước khẳng định được chỗ đứng của mình.</p>
+      <h1>3. Bước Ngoặt Quan Trọng – Từ Quầy Thuốc Đến Nhà Thuốc Đạt Chuẩn GPP</h1>
+      <p>Sau nhiều năm nỗ lực không ngừng, quầy thuốc chính thức chuyển mình thành một nhà thuốc đạt chuẩn GPP (Thực hành tốt nhà thuốc), đánh dấu một bước ngoặt quan trọng trong hành trình phát triển.</p>
+      <p>Các thay đổi quan trọng khi chuyển đổi thành nhà thuốc:</p>
+      <ul>
+        <li>Cơ sở vật chất hiện đại: Nhà thuốc được mở rộng với không gian thoáng mát, sạch sẽ, sắp xếp khoa học theo từng nhóm sản phẩm giúp khách hàng dễ dàng tìm kiếm.</li>
+        <li>
+            Danh mục sản phẩm đa dạng: Từ một quầy thuốc nhỏ lẻ, nhà thuốc đã mở rộng danh mục sản phẩm, bao gồm:
+            <ul>
+                <li>Thuốc kê đơn và không kê đơn</li>
+                <li>Thực phẩm chức năng</li>
+                <li>Mỹ phẩm và dược mỹ phẩm</li>
+                <li>Sản phẩm dành cho mẹ và bé</li>
+            </ul>
+        </li>
+        <li>Đội ngũ dược sĩ chuyên nghiệp: Số lượng dược sĩ được tăng cường, tất cả đều được đào tạo bài bản và có chứng chỉ hành nghề hợp lệ.</li>
+        <li>Ứng dụng công nghệ: Nhà thuốc áp dụng phần mềm quản lý hiện đại, giúp quản lý đơn hàng, tồn kho và theo dõi hồ sơ khách hàng hiệu quả hơn.</li>
+      </ul>
+      <p>Việc đạt chuẩn GPP không chỉ là bước tiến về quy mô mà còn là minh chứng cho cam kết chất lượng và sự uy tín mà Nhà thuốc dành cho khách hàng.</p>
+      <h1>4. Phát Triển Nhà Thuốc Online – Đưa Sản Phẩm Đến Gần Hơn Với Cộng Đồng</h1>
+      <p>Hiểu được nhu cầu ngày càng cao của khách hàng về mua sắm trực tuyến, Nhà thuốc đã tiếp tục mở rộng mô hình hoạt động với việc xây dựng nền tảng mua sắm online tại https://nhathuoc.com.vn/.</p>
+      <p>Những ưu điểm nổi bật của Nhà thuốc Online:</p>
+      <ul>
+        <li>Đặt hàng dễ dàng: Khách hàng chỉ cần vài thao tác đơn giản để tìm kiếm và đặt mua sản phẩm mình cần.</li>
+        <li>Tư vấn trực tuyến: Đội ngũ dược sĩ luôn sẵn sàng hỗ trợ tư vấn qua điện thoại, chat trực tuyến giúp khách hàng chọn đúng sản phẩm.</li>
+        <li>Thanh toán linh hoạt: Hỗ trợ nhiều hình thức thanh toán như COD và chuyển khoản.</li>
+        <li>Giao hàng tận nơi: Dịch vụ giao hàng nhanh chóng trên toàn quốc, đảm bảo sản phẩm đến tay khách hàng an toàn và đúng hẹn.</li>
+      </ul>
+      <p>Sự kết hợp giữa cửa hàng truyền thống và nền tảng online giúp Nhà thuốc mở rộng khả năng phục vụ khách hàng, đặc biệt là những người bận rộn hoặc không thể trực tiếp đến cửa hàng.</p>
+      <h1>5. Giá Trị Cốt Lõi – Động Lực Giúp Nhà Thuốc Phương Thảo Phát Triển</h1>
+      <p>Nhà thuốc không chỉ hướng đến việc bán sản phẩm mà còn đặt trọng tâm vào việc trao gửi sức khỏe và niềm tin cho khách hàng.</p>
+      <p>Các giá trị cốt lõi mà Nhà thuốc luôn duy trì:</p>
+      <ul>
+        <li>Chất lượng: Cam kết chỉ cung cấp sản phẩm chính hãng, có nguồn gốc rõ ràng và đạt đầy đủ tiêu chuẩn chất lượng.</li>
+        <li>Tận tâm: Luôn đồng hành cùng khách hàng trong việc chăm sóc sức khỏe, sẵn sàng tư vấn và giải đáp mọi thắc mắc liên quan đến sản phẩm và dịch vụ.</li>
+        <li>Uy tín: Lấy sự hài lòng và niềm tin của khách hàng làm kim chỉ nam trong mọi hoạt động kinh doanh.</li>
+        <li>Đổi mới: Luôn không ngừng cải tiến và cập nhật các sản phẩm, dịch vụ để đáp ứng tốt nhất nhu cầu chăm sóc sức khỏe ngày càng cao của cộng đồng.</li>
+      </ul>
+      <h1>6. Hướng Đến Tương Lai – Phát Triển Chuỗi Nhà Thuốc Uy Tín</h1>
+      <p>Từ một quầy thuốc nhỏ lẻ, đến một nhà thuốc đạt chuẩn GPP, và hiện tại là nền tảng nhà thuốc online uy tín, Nhà thuốc đang không ngừng nỗ lực để hướng tới mục tiêu phát triển thành chuỗi nhà thuốc uy tín trên toàn quốc.</p>
+      <p>Trong tương lai gần, Nhà thuốc dự kiến sẽ:</p>
+      <ul>
+        <li>Mở rộng thêm các chi nhánh tại nhiều quận, huyện và tỉnh thành khác.</li>
+        <li>Tăng cường đào tạo đội ngũ dược sĩ, đảm bảo chất lượng tư vấn và phục vụ khách hàng.</li>
+        <li>Cập nhật thêm nhiều sản phẩm mới từ các thương hiệu nổi tiếng trong và ngoài nước.</li>
+        <li>Tham gia nhiều hoạt động cộng đồng, góp phần nâng cao nhận thức và kiến thức chăm sóc sức khỏe cho người dân.</li>
+      </ul>
+      <h1>7. Lời Cảm Ơn – Sự Đồng Hành Của Khách Hàng Là Động Lực Của Chúng Tôi</h1>
+      <p>Hành trình từ quầy thuốc nhỏ lẻ đến nhà thuốc đạt chuẩn GPP là kết quả của sự kiên trì, tận tâm và không thể thiếu sự đồng hành, ủng hộ từ quý khách hàng. Nhà thuốc xin gửi lời cảm ơn chân thành nhất đến tất cả khách hàng đã luôn tin tưởng và lựa chọn chúng tôi trong suốt chặng đường qua.</p>
+      <p>Chúng tôi cam kết sẽ tiếp tục nâng cao chất lượng sản phẩm, tối ưu hóa dịch vụ và luôn đồng hành cùng quý khách hàng trên con đường chăm sóc sức khỏe cho bản thân và gia đình.</p>
+    </section> 
   </main>
 
   <!-- FOOTER -->
@@ -143,7 +157,11 @@
         <div class="brand footer-brand-inner">
           <div class="brand-icon">
             <i class="bi bi-capsule"></i>
+            <!-- Nếu muốn dùng ảnh logo thật:
+            <img src="images/logo-footer.png" alt="Logo nhà thuốc" class="brand-logo-img" />
+            -->
           </div>
+
           <div class="brand-text">
             <h3>NHÀ THUỐC</h3>
           </div>

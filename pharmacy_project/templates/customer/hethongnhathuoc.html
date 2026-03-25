@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sản phẩm</title>
+  <title>Giới thiệu nhà thuốc</title>
 
-  <link rel="stylesheet" href="{% static 'css/danhsachsanpham.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/gioithieu.css' %}" />
   <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
@@ -17,13 +17,12 @@
     <div class="topbar-left">
       <div class="brand">
         <a href="{% url 'home' %}" class="brand-icon">
-          <i class="bi bi-capsule"></i>
+            <i class="bi bi-capsule"></i>
         </a>
-        <div class="brand-text">
-          <h3>NHÀ THUỐC</h3>
-        </div>
+      <div class="brand-text">
+         <h3>NHÀ THUỐC</h3>
       </div>
-
+    </div>
       <form action="{% url 'product_list' %}" method="get" class="search-box">
   <button type="submit" class="search-submit" aria-label="Tìm kiếm">
     <i class="bi bi-search"></i>
@@ -31,7 +30,7 @@
   <input
     type="text"
     name="q"
-    value="{{ keyword }}"
+    value="{{ request.GET.q|default:'' }}"
     placeholder="Tìm tên thuốc hoặc mô tả"
   />
 </form>
@@ -65,7 +64,7 @@
     </div>
   </header>
 
-  <!-- MENU ĐIỀU HƯỚNG -->
+  <!-- MENU PHỤ -->
   <nav class="sub-navbar">
     <div class="sub-navbar-inner">
       <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
@@ -76,124 +75,53 @@
     </div>
   </nav>
 
-  <!-- NỘI DUNG CHÍNH -->
-  <main class="page-wrapper">
-    <section class="product-list-page">
-
-      <!-- BÊN TRÁI: BỘ LỌC -->
-      <form method="get" action="{% url 'product_list' %}" class="filter-sidebar card">
-  <div class="filter-header">
-    <span>Bộ lọc</span>
-    <a href="{% url 'product_list' %}">Thiết lập lại</a>
-  </div>
-
-  {% if keyword %}
-    <input type="hidden" name="q" value="{{ keyword }}">
-  {% endif %}
-
-  <div class="filter-section">
-    <h3>Khoảng giá</h3>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="under_100"
-        {% if selected_price_range == 'under_100' %}checked{% endif %}
-      />
-      <span>Dưới 100.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="100_300"
-        {% if selected_price_range == '100_300' %}checked{% endif %}
-      />
-      <span>100.000đ - 300.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="300_500"
-        {% if selected_price_range == '300_500' %}checked{% endif %}
-      />
-      <span>300.000đ - 500.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="over_500"
-        {% if selected_price_range == 'over_500' %}checked{% endif %}
-      />
-      <span>Trên 500.000đ</span>
-    </label>
-  </div>
-
-  <div class="filter-section">
-    <h3>Danh mục</h3>
-
-    <select class="filter-select" name="category">
-      <option value="">Chọn danh mục</option>
-      {% for category in categories %}
-        <option
-          value="{{ category.id }}"
-          {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}
-        >
-          {{ category.name }}
-        </option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <button type="submit" class="apply-filter-btn">Áp dụng</button>
-</form>
-
-      <!-- BÊN PHẢI: DANH SÁCH -->
-      <section class="product-list-content">
-        <div class="product-list-top">
-  <div>
-    <h1>Danh sách sản phẩm</h1>
-
-    {% if keyword %}
-      <p>Kết quả tìm kiếm cho "{{ keyword }}" - {{ products|length }} sản phẩm</p>
-    {% else %}
-      <p>Lưu ý: Thuốc kê đơn và một số sản sẽ cần tư vấn từ dược sĩ</p>
-    {% endif %}
-  </div>
-</div>
-
-        <div class="product-grid">
-          {% for product in products %}
-            <div class="product-card-item">
-              <div class="product-card-image">
-                {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" />
-                {% endif %}
-              </div>
-                <div class="product-card-body">
-                  <h3>{{ product.name }}</h3>
-                  <div class="product-card-price">{{ product.price|floatformat:0 }}đ / {{ product.unit }}</div>
-                  <p>{{ product.description|truncatechars:40 }}</p>
-                  <a href="{% url 'product_detail' product.id %}" class="choose-btn">Chọn mua</a>
-                </div>
-            </div>
-            {% empty %}
-<p>
-  {% if keyword or selected_category or selected_price_range %}
-    Không tìm thấy sản phẩm phù hợp.
-  {% else %}
-    Chưa có sản phẩm nào.
-  {% endif %}
-</p>
-{% endfor %}
-        </div>
-      </section>
+  <!-- NỘI DUNG -->
+  <main class="page-wrapper intro-page">
+    <section class="intro-content-block">
+      <p>
+        Nhằm mang đến trải nghiệm mua sắm tiện lợi và phục vụ khách hàng trên khắp cả nước, Nhà thuốc không ngừng mở rộng hệ thống phân phối và kênh bán hàng trực tuyến. Chúng tôi cam kết cung cấp sản phẩm chính hãng, chất lượng cao và dịch vụ tận tâm để khách hàng dễ dàng tiếp cận các sản phẩm chăm sóc sức khỏe và sắc đẹp hàng đầu.
+      </p>
+      <h1>Hệ thống nhà thuốc tại TP.Hà Nội</h1>
+      <p>Là trung tâm kinh tế lớn nhất cả nước, TP.Hà Nội là địa bàn trọng điểm của Nhà thuốc. Với địa chỉ chính tại 123 Nguyễn Trãi, Hà Đông, Hà Nội, chúng tôi tự hào phục vụ khách hàng với đa dạng sản phẩm từ thuốc tây, thực phẩm chức năng, mỹ phẩm chính hãng. Không gian mua sắm hiện đại và đội ngũ dược sĩ tận tâm sẵn sàng tư vấn giúp khách hàng chọn được sản phẩm phù hợp nhất.</p>
+      <h1>Mở rộng chi nhánh và dịch vụ trên toàn quốc</h1>
+      <p>
+        Mặc dù hiện tại tập trung tại TP.Hà Nội, Nhà thuốc đang từng bước mở rộng hệ thống chi nhánh đến các thành phố lớn và các tỉnh thành khác. Mục tiêu của chúng tôi là giúp khách hàng trên khắp cả nước dễ dàng tiếp cận các sản phẩm chăm sóc sức khỏe và sắc đẹp chất lượng cao, với dịch vụ tận tâm và chuyên nghiệp.
+      </p>
+      <p>
+        Nhà thuốc đang có mặt tại Miền Bắc để đáp ứng nhu cầu của khách hàng tại khu vực đồng bằng sông Hồng. Ngoài khu vực đồng bằng sông Hồng, hệ thống nhà thuốc còn phủ khắp các tỉnh phía Bắc Việt Nam như:
+      </p>
+      <ul>
+        <li>Tuyên Quang</li>
+        <li>Lạng Sơn</li>
+        <li>Hòa Bình</li>
+        <li>Bắc Ninh</li>
+        <li>Bắc Giang</li>
+      </ul>
+      <p>Các sản phẩm chất lượng cao được phân phối với giá cả hợp lý, phục vụ tận tình và chu đáo cho mọi khách hàng.</p>
+      <h1>Mua sắm tiện lợi qua hệ thống online</h1>
+      <p>Nhằm phục vụ khách hàng trên toàn quốc, Nhà thuốc đã phát triển hệ thống bán hàng trực tuyến hiện đại. Qua website https://nhathuoc.com.vn/, khách hàng có thể dễ dàng lựa chọn và đặt mua các sản phẩm chính hãng chỉ với vài thao tác đơn giản.</p>
+      <ul>
+        <li>Hỗ trợ giao hàng toàn quốc, đảm bảo an toàn và nhanh chóng.</li>
+        <li>Kiểm tra sản phẩm trước khi nhận hàng, giúp khách hàng hoàn toàn yên tâm về chất lượng.</li>
+        <li>Chính sách đổi trả linh hoạt, nếu phát hiện sản phẩm không đúng mô tả hoặc lỗi từ nhà sản xuất.</li>
+      </ul>
+      <h1>Mục tiêu phát triển hệ thống</h1>
+      <p>Nhà thuốc Phương Thảo không ngừng hướng đến mục tiêu trở thành hệ thống nhà thuốc uy tín hàng đầu tại Việt Nam. Với tầm nhìn mở rộng mạng lưới phân phối và nâng cao chất lượng dịch vụ, chúng tôi mong muốn mang đến giải pháp chăm sóc sức khỏe toàn diện cho mọi gia đình Việt.</p>
+      <h1>Chính sách và cam kết của Nhà thuốc</h1>
+      <ul>
+        <li>Cam kết 100% hàng chính hãng với đầy đủ tem chống giả và hóa đơn.</li>
+        <li>CGiá cả cạnh tranh, phù hợp với mọi đối tượng khách hàng.</li>
+        <li>Tư vấn tận tình từ đội ngũ dược sĩ giàu kinh nghiệm.</li>
+        <li>Dịch vụ giao hàng tận nơi, nhanh chóng và an toàn.</li>
+      </ul>
+      <h2>Liên hệ với Nhà thuốc Phương Thảo ngay hôm nay!</h2>
+      <ul>
+        <li>Địa chỉ: 123 Nguyễn Trãi, Hà Đông, Hà Nội</li>
+        <li>Hotline: 0934 345 456</li>
+        <li>Email: nhathuoc.contact@gmail.com</li>
+        <li>Website: https://nhathuoc.com.vn/</li>
+      </ul>
+      <h2>Nhà thuốc – Luôn đồng hành cùng sức khỏe và sắc đẹp của bạn và gia đình!</h2>
     </section>
   </main>
 
@@ -204,7 +132,11 @@
         <div class="brand footer-brand-inner">
           <div class="brand-icon">
             <i class="bi bi-capsule"></i>
+            <!-- Nếu muốn dùng ảnh logo thật:
+            <img src="images/logo-footer.png" alt="Logo nhà thuốc" class="brand-logo-img" />
+            -->
           </div>
+
           <div class="brand-text">
             <h3>NHÀ THUỐC</h3>
           </div>
@@ -297,7 +229,50 @@
     </form>
   </div>
 </div>
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
 
+<script>
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    document.getElementById("requireLoginPopup").classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("requireLoginPopup");
+    if (event.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll(".quantity-control").forEach(function(control) {
+    const minusBtn = control.querySelector(".qty-minus");
+    const plusBtn = control.querySelector(".qty-plus");
+    const input = control.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      if (value > 1) input.value = value - 1;
+    });
+
+    plusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      input.value = value + 1;
+    });
+  });
+</script>
 <!-- POPUP ĐĂNG KÝ -->
 <div class="auth-overlay" id="registerPopup">
   <div class="auth-popup">

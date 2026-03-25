@@ -68,10 +68,10 @@
   <nav class="sub-navbar">
     <div class="sub-navbar-inner">
       <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
-      <a href="#" class="sub-nav-link">Hệ thống nhà thuốc</a>
-      <a href="{% url 'intro' %}" class="sub-nav-link">Về chúng tôi</a>
-      <a href="#" class="sub-nav-link">Liên hệ</a>
-      <a href="#" class="sub-nav-link">Góp ý, khiếu nại</a>
+      <a href="{% url 'hethongnhathuoc' %}" class="sub-nav-link">Hệ thống nhà thuốc</a>
+      <a href="{% url 'intro' %}" class="sub-nav-link active">Về chúng tôi</a>
+      <a href="{% url 'lienhe' %}" class="sub-nav-link">Liên hệ</a>
+      <a href="{% url 'gopy' %}" class="sub-nav-link">Góp ý, khiếu nại</a>
     </div>
   </nav>
 
@@ -103,14 +103,18 @@
           <div class="activity-image">
             <img src="{% static 'images/trangchu1.jpg' %}" alt="Hoạt động 1" />
           </div>
-          <h3>Hành trình từ sinh viên IT đến Nhà thuốc - Bước tiến vững chắc của Nhà thuốc</h3>
+          <h3>
+            <a href="{% url 'tunhanvienit' %}">Hành trình từ sinh viên IT đến Nhà thuốc - Bước tiến vững chắc của Nhà thuốc</a>
+          </h3>
         </div>
 
         <div class="activity-card">
           <div class="activity-image">
             <img src="{% static 'images/trangchu2.webp' %}" alt="Hoạt động 2" />
           </div>
-          <h3>Dược sĩ Nguyễn Phúc Hoàng - hành trình 10 năm gắn bó với nghề dược</h3>
+          <h3>
+            <a href="{% url 'hanhtrinh10nam' %}">Dược sĩ Nguyễn Phúc Hoàng - hành trình 10 năm gắn bó với nghề dược</a>
+          </h3>
         </div>
 
         <div class="activity-card">
@@ -126,7 +130,9 @@
           <div class="activity-image">
             <img src="{% static 'images/trangchu4.jpg' %}" alt="Hoạt động 4" />
           </div>
-          <h3>Nhà thuốc - Địa chỉ chăm sóc sức khỏe uy tín</h3>
+          <h3>
+            <a href="{% url 'diachichamsocsuckhoe' %}">Nhà thuốc - Địa chỉ chăm sóc sức khỏe uy tín</a>
+          </h3>
         </div>
       </div>
     </section>

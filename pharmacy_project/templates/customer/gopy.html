@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sản phẩm</title>
+  <title>Giới thiệu nhà thuốc</title>
 
-  <link rel="stylesheet" href="{% static 'css/danhsachsanpham.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/gioithieu.css' %}" />
   <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
@@ -17,13 +17,12 @@
     <div class="topbar-left">
       <div class="brand">
         <a href="{% url 'home' %}" class="brand-icon">
-          <i class="bi bi-capsule"></i>
+            <i class="bi bi-capsule"></i>
         </a>
-        <div class="brand-text">
-          <h3>NHÀ THUỐC</h3>
-        </div>
+      <div class="brand-text">
+         <h3>NHÀ THUỐC</h3>
       </div>
-
+    </div>
       <form action="{% url 'product_list' %}" method="get" class="search-box">
   <button type="submit" class="search-submit" aria-label="Tìm kiếm">
     <i class="bi bi-search"></i>
@@ -31,7 +30,7 @@
   <input
     type="text"
     name="q"
-    value="{{ keyword }}"
+    value="{{ request.GET.q|default:'' }}"
     placeholder="Tìm tên thuốc hoặc mô tả"
   />
 </form>
@@ -65,7 +64,7 @@
     </div>
   </header>
 
-  <!-- MENU ĐIỀU HƯỚNG -->
+  <!-- MENU PHỤ -->
   <nav class="sub-navbar">
     <div class="sub-navbar-inner">
       <a href="{% url 'product_list' %}" class="sub-nav-link">Sản phẩm</a>
@@ -76,124 +75,84 @@
     </div>
   </nav>
 
-  <!-- NỘI DUNG CHÍNH -->
-  <main class="page-wrapper">
-    <section class="product-list-page">
-
-      <!-- BÊN TRÁI: BỘ LỌC -->
-      <form method="get" action="{% url 'product_list' %}" class="filter-sidebar card">
-  <div class="filter-header">
-    <span>Bộ lọc</span>
-    <a href="{% url 'product_list' %}">Thiết lập lại</a>
-  </div>
-
-  {% if keyword %}
-    <input type="hidden" name="q" value="{{ keyword }}">
-  {% endif %}
-
-  <div class="filter-section">
-    <h3>Khoảng giá</h3>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="under_100"
-        {% if selected_price_range == 'under_100' %}checked{% endif %}
-      />
-      <span>Dưới 100.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="100_300"
-        {% if selected_price_range == '100_300' %}checked{% endif %}
-      />
-      <span>100.000đ - 300.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="300_500"
-        {% if selected_price_range == '300_500' %}checked{% endif %}
-      />
-      <span>300.000đ - 500.000đ</span>
-    </label>
-
-    <label class="filter-check">
-      <input
-        type="radio"
-        name="price_range"
-        value="over_500"
-        {% if selected_price_range == 'over_500' %}checked{% endif %}
-      />
-      <span>Trên 500.000đ</span>
-    </label>
-  </div>
-
-  <div class="filter-section">
-    <h3>Danh mục</h3>
-
-    <select class="filter-select" name="category">
-      <option value="">Chọn danh mục</option>
-      {% for category in categories %}
-        <option
-          value="{{ category.id }}"
-          {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}
-        >
-          {{ category.name }}
-        </option>
-      {% endfor %}
-    </select>
-  </div>
-
-  <button type="submit" class="apply-filter-btn">Áp dụng</button>
-</form>
-
-      <!-- BÊN PHẢI: DANH SÁCH -->
-      <section class="product-list-content">
-        <div class="product-list-top">
-  <div>
-    <h1>Danh sách sản phẩm</h1>
-
-    {% if keyword %}
-      <p>Kết quả tìm kiếm cho "{{ keyword }}" - {{ products|length }} sản phẩm</p>
-    {% else %}
-      <p>Lưu ý: Thuốc kê đơn và một số sản sẽ cần tư vấn từ dược sĩ</p>
-    {% endif %}
-  </div>
-</div>
-
-        <div class="product-grid">
-          {% for product in products %}
-            <div class="product-card-item">
-              <div class="product-card-image">
-                {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" />
-                {% endif %}
-              </div>
-                <div class="product-card-body">
-                  <h3>{{ product.name }}</h3>
-                  <div class="product-card-price">{{ product.price|floatformat:0 }}đ / {{ product.unit }}</div>
-                  <p>{{ product.description|truncatechars:40 }}</p>
-                  <a href="{% url 'product_detail' product.id %}" class="choose-btn">Chọn mua</a>
-                </div>
-            </div>
-            {% empty %}
-<p>
-  {% if keyword or selected_category or selected_price_range %}
-    Không tìm thấy sản phẩm phù hợp.
-  {% else %}
-    Chưa có sản phẩm nào.
-  {% endif %}
-</p>
-{% endfor %}
-        </div>
-      </section>
+  <!-- NỘI DUNG -->
+  <main class="page-wrapper intro-page">
+    <section class="intro-content-block">
+      <p>
+        Nhà thuốc luôn nỗ lực mang đến những sản phẩm chất lượng và dịch vụ tốt nhất cho khách hàng. Chúng tôi đánh giá cao mọi phản hồi từ khách hàng và xem đó là động lực để cải thiện và phát triển. Để hỗ trợ khách hàng trong việc gửi góp ý và khiếu nại, chúng tôi xây dựng quy trình tiếp nhận đơn giản, minh bạch và hiệu quả.
+      </p>
+      <h1>1. Mục đích của chính sách góp ý và khiếu nại</h1>
+      <ul>
+        <li>Lắng nghe khách hàng: Ghi nhận các ý kiến đóng góp nhằm cải thiện chất lượng sản phẩm và dịch vụ.</li>
+        <li>Giải quyết khiếu nại: Đảm bảo quyền lợi của khách hàng và xử lý các trường hợp phát sinh một cách nhanh chóng và minh bạch.</li>
+        <li>Nâng cao chất lượng dịch vụ: Điều chỉnh quy trình và thái độ phục vụ dựa trên các phản hồi nhận được từ khách hàng.</li>
+      </ul>
+      <h1>2. Trường hợp áp dụng khiếu nại</h1>
+      <p>Khách hàng có quyền khiếu nại trong các trường hợp sau:</p>
+      <ul>
+        <li>Sản phẩm không đúng với mô tả: Sản phẩm giao đến không đúng mẫu mã, kích thước, màu sắc hoặc thông tin đã cam kết.</li>
+        <li>Sản phẩm bị hư hỏng: Sản phẩm bị lỗi kỹ thuật, hư hỏng trong quá trình vận chuyển hoặc lỗi từ nhà sản xuất.</li>
+        <li>Vấn đề về dịch vụ giao hàng: Giao hàng chậm trễ, giao sai địa chỉ hoặc thái độ không đúng mực của nhân viên giao hàng.</li>
+        <li>Vấn đề thanh toán: Lỗi phát sinh khi thanh toán hoặc có sự cố với các khoản phí không minh bạch.</li>
+        <li>Thái độ phục vụ: Nhân viên bán hàng, chăm sóc khách hàng hoặc bộ phận kỹ thuật có thái độ không tốt hoặc không hỗ trợ khách hàng đúng mực.</li>
+      </ul>
+      <h1>3. Các kênh tiếp nhận góp ý và khiếu nại</h1>
+      <p>
+        Để khách hàng dễ dàng gửi góp ý hoặc khiếu nại, Nhà thuốc tiếp nhận thông tin qua các kênh sau:
+      </p>
+      <ul>
+        <li>Hotline: 0934 345 456 (hoạt động từ 8h00 – 20h00 hàng ngày)</li>
+        <li>Email: nhathuoc.contact@gmail.com</li>
+        <li>Gửi trực tiếp tại cửa hàng: Địa chỉ: 123 Nguyễn Trãi, Hà Đông, Hà Nội</li>
+      </ul>
+      <h1>4. Quy trình xử lý khiếu nại</h1>
+      <h2>Bước 1: Tiếp nhận khiếu nại</h2>
+      <p>Khách hàng gửi khiếu nại thông qua một trong các kênh nêu trên.</p>
+      <p>Yêu cầu cung cấp đầy đủ thông tin liên quan để xử lý nhanh chóng, bao gồm:</p>
+      <ul>
+        <li>Họ tên khách hàng</li>
+        <li>Số điện thoại liên hệ</li>
+        <li>Mã đơn hàng (nếu liên quan đến sản phẩm)</li>
+        <li>Nội dung chi tiết khiếu nại</li>
+        <li>Hình ảnh hoặc video minh họa (nếu có)</li>
+      </ul>
+      <h2>Bước 2: Xác minh và đánh giá khiếu nại</h2>
+      <ul>
+        <li>Bộ phận chăm sóc khách hàng sẽ tiếp nhận và phân loại khiếu nại trong vòng 24 giờ.</li>
+        <li>Chúng tôi tiến hành xác minh thông tin từ các bộ phận liên quan (bán hàng, kho vận, giao hàng, kỹ thuật, v.v.) và đánh giá mức độ khiếu nại.</li>
+      </ul>
+      <h2>Bước 3: Phản hồi và giải quyết</h2>
+      <p>Sau khi xác minh, Nhà thuốc Phương Thảo sẽ liên hệ trực tiếp với khách hàng để thông báo kết quả xử lý.</p>
+      <p>Thời gian phản hồi và giải quyết khiếu nại:</p>
+      <ul>
+        <li>Đơn giản: 1 – 3 ngày làm việc</li>
+        <li>Phức tạp: 3 – 7 ngày làm việc (trong trường hợp cần xác minh kỹ hơn hoặc liên hệ với nhà sản xuất)</li>
+      </ul>
+      <p>Phương án giải quyết có thể bao gồm:</p>
+      <ul>
+        <li>Đổi mới sản phẩm.</li>
+        <li>Hoàn tiền toàn bộ hoặc một phần giá trị sản phẩm.</li>
+        <li>Hỗ trợ kỹ thuật, sửa chữa miễn phí.</li>
+        <li>Xin lỗi và điều chỉnh dịch vụ (trong trường hợp liên quan đến thái độ phục vụ).</li>
+      </ul>
+      <h2>Bước 4: Theo dõi và đánh giá kết quả</h2>
+      <ul>
+        <li>Sau khi khiếu nại được giải quyết, chúng tôi sẽ liên hệ lại để hỏi thăm và xác nhận mức độ hài lòng của khách hàng.</li>
+        <li>Phản hồi của khách hàng sẽ được ghi nhận để cải thiện quy trình và chất lượng dịch vụ.</li>
+      </ul>
+      <h1>5. Lưu ý khi gửi yêu cầu góp ý và khiếu nại</h1>
+      <ul>
+        <li>Gửi thông tin chi tiết và chính xác để giúp quá trình xử lý diễn ra nhanh chóng và hiệu quả.</li>
+        <li>Tránh sử dụng ngôn từ không phù hợp hoặc xúc phạm trong quá trình gửi góp ý hoặc khiếu nại.</li>
+        <li>Nhà thuốc cam kết bảo mật tuyệt đối thông tin cá nhân của khách hàng và không tiết lộ cho bên thứ ba nếu không có sự đồng ý.</li>
+      </ul>
+      <h1>6. Chính sách giải quyết tranh chấp</h1>
+      <p>Trong trường hợp khách hàng không hài lòng với phương án giải quyết:</p>
+      <ul>
+        <li>Chúng tôi sẵn sàng đàm phán để tìm giải pháp phù hợp nhất cho cả hai bên.</li>
+        <li>Nếu không thể đi đến thỏa thuận, khách hàng có quyền yêu cầu sự hỗ trợ từ cơ quan chức năng hoặc các đơn vị bảo vệ quyền lợi người tiêu dùng để đảm bảo quyền lợi hợp pháp.</li>
+      </ul>
+      <p>Nhà thuốc xin trân trọng cảm ơn sự tin tưởng và ủng hộ của quý khách. Chúng tôi luôn sẵn sàng lắng nghe và tiếp nhận mọi phản hồi để không ngừng nâng cao chất lượng dịch vụ và phục vụ khách hàng một cách tốt nhất.</p>
     </section>
   </main>
 
@@ -204,7 +163,11 @@
         <div class="brand footer-brand-inner">
           <div class="brand-icon">
             <i class="bi bi-capsule"></i>
+            <!-- Nếu muốn dùng ảnh logo thật:
+            <img src="images/logo-footer.png" alt="Logo nhà thuốc" class="brand-logo-img" />
+            -->
           </div>
+
           <div class="brand-text">
             <h3>NHÀ THUỐC</h3>
           </div>
@@ -297,7 +260,50 @@
     </form>
   </div>
 </div>
+<div class="auth-overlay" id="requireLoginPopup">
+  <div class="auth-popup auth-notice-popup">
+    <h2>Thông báo</h2>
+    <p class="auth-message-text">Vui lòng đăng nhập để sử dụng chức năng này.</p>
+    <button type="button" class="auth-main-btn auth-close-btn" onclick="closeRequireLoginPopup()">
+      Đóng
+    </button>
+  </div>
+</div>
 
+<script>
+  function openRequireLoginPopup(event) {
+    if (event) event.preventDefault();
+    document.getElementById("requireLoginPopup").classList.add("show");
+  }
+
+  function closeRequireLoginPopup() {
+    document.getElementById("requireLoginPopup").classList.remove("show");
+  }
+
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("requireLoginPopup");
+    if (event.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+</script>
+<script>
+  document.querySelectorAll(".quantity-control").forEach(function(control) {
+    const minusBtn = control.querySelector(".qty-minus");
+    const plusBtn = control.querySelector(".qty-plus");
+    const input = control.querySelector(".qty-input");
+
+    minusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      if (value > 1) input.value = value - 1;
+    });
+
+    plusBtn.addEventListener("click", function() {
+      let value = parseInt(input.value) || 1;
+      input.value = value + 1;
+    });
+  });
+</script>
 <!-- POPUP ĐĂNG KÝ -->
 <div class="auth-overlay" id="registerPopup">
   <div class="auth-popup">

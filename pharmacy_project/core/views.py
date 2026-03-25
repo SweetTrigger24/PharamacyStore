@@ -15,6 +15,24 @@ def home(request):
 def intro(request):
     return render(request, 'customer/gioithieu.html')
 
+def lienhe(request):
+    return render(request, 'customer/lienhe.html')
+
+def hethongnhathuoc(request):
+    return render(request, 'customer/hethongnhathuoc.html')
+
+def gopy(request):
+    return render(request, 'customer/gopy.html')
+
+def hanhtrinh10nam(request):
+    return render(request, 'customer/hanhtrinh10nam.html')
+
+def diachichamsocsuckhoe(request):
+    return render(request, 'customer/diachichamsocsuckhoe.html')
+
+def tunhanvienit(request):
+    return render(request, 'customer/tunhanvienit.html')
+
 def opening(request):
     return render(request, 'customer/khaitruongwebsite.html')
 
