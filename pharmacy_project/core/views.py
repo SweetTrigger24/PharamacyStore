@@ -8,6 +8,14 @@ from django.utils import timezone
 from django.contrib import messages
 from django.db.models.functions import TruncDate, Coalesce
 import uuid 
+import unicodedata
+
+def normalize_text(text):
+    text = (text or '').strip().lower()
+    text = text.replace('đ', 'd').replace('Đ', 'D')
+    text = unicodedata.normalize('NFD', text)
+    text = ''.join(ch for ch in text if unicodedata.category(ch) != 'Mn')
+    return text
 
 def intro(request):
     return render(request, 'customer/gioithieu.html')
@@ -378,16 +386,23 @@ def admin_categories(request):
         return redirect('admin_categories')
 
     keyword = request.GET.get('q', '').strip()
-
     categories = Category.objects.all().order_by('id')
 
     if keyword:
+        normalized_keyword = normalize_text(keyword)
+
+        matched_ids = [
+            category.id
+            for category in categories
+            if normalized_keyword in normalize_text(category.name)
+        ]
+
         if keyword.isdigit():
             categories = categories.filter(
-                Q(name__icontains=keyword) | Q(id=int(keyword))
+                Q(id=int(keyword))
             )
         else:
-            categories = categories.filter(name__icontains=keyword)
+            categories = categories.filter(id__in=matched_ids)
 
     return render(request, 'admin_panel/danhmuc.html', {
         'categories': categories,
