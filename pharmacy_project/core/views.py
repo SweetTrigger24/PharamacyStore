@@ -286,18 +286,32 @@ def profile(request):
         'customer': customer
     })
 
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+
 def register_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        confirm_password = request.POST.get('confirm_password')
-        full_name = request.POST.get('full_name')
-        phone = request.POST.get('phone')
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
+        confirm_password = request.POST.get('confirm_password', '')
+        full_name = request.POST.get('full_name', '').strip()
+        phone = request.POST.get('phone', '').strip()
+
+        request.session['register_old'] = {
+            'username': username,
+            'full_name': full_name,
+            'phone': phone,
+        }
 
         if password != confirm_password:
+            request.session['register_error'] = 'NHập lại mật khẩu không khớp.'
+            request.session['open_register_popup'] = True
             return redirect('home')
 
         if User.objects.filter(username=username).exists():
+            request.session['register_error'] = 'Tên đăng nhập đã tồn tại.'
+            request.session['open_register_popup'] = True
             return redirect('home')
 
         user = User.objects.create_user(username=username, password=password)
@@ -309,6 +323,9 @@ def register_view(request):
         )
         Cart.objects.create(customer=customer)
 
+        request.session.pop('register_old', None)
+        request.session['login_success'] = 'Đăng ký thành công.'
+        request.session['open_login_popup'] = True
         return redirect('home')
 
     return redirect('home')
@@ -498,21 +515,21 @@ def admin_customer_delete(request, customer_id):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '')
 
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
-
             if user.is_staff:
                 return redirect('dashboard')
-
             return redirect('home')
-        else:
-            return render(request, 'customer/trangchu.html', {
-                'login_error': 'Sai tài khoản hoặc mật khẩu'
-            })
+
+        request.session['login_error'] = 'Sai thông tin tài khoản hoặc mật khẩu.'
+        request.session['login_old_username'] = username
+        request.session['open_login_popup'] = True
+        return redirect('home')
 
     return redirect('home')
 
@@ -674,10 +691,7 @@ def home(request):
         Product.objects
         .annotate(
             total_sold=Coalesce(
-                Sum(
-                    'orderitem__quantity',
-                    filter=~Q(orderitem__order__status='cancelled')
-                ),
+                Sum('orderitem__quantity', filter=~Q(orderitem__order__status='cancelled')),
                 0
             )
         )
@@ -686,10 +700,21 @@ def home(request):
 
     order_success_popup = request.session.pop('order_success_popup', None)
 
-    return render(request, 'customer/trangchu.html', {
+    context = {
         'featured_products': featured_products,
         'order_success_popup': order_success_popup,
-    })
+
+        'login_error': request.session.pop('login_error', None),
+        'login_success': request.session.pop('login_success', None),
+        'register_error': request.session.pop('register_error', None),
+
+        'open_login_popup': request.session.pop('open_login_popup', False),
+        'open_register_popup': request.session.pop('open_register_popup', False),
+
+        'login_old_username': request.session.pop('login_old_username', ''),
+        'register_old': request.session.pop('register_old', {}),
+    }
+    return render(request, 'customer/trangchu.html', context)
 
 def add_to_cart(request, product_id):
     if not request.user.is_authenticated:

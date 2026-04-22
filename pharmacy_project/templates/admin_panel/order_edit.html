@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sửa đơn hàng</title>
+</head>
+<body>
+  <h2>Sửa đơn hàng</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <p>Mã đơn: {{ order.code }}</p>
+    <p>Khách hàng: {{ order.customer.full_name }}</p>
+
+    <label>Trạng thái</label>
+    <select name="status">
+      <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Chờ xử lý</option>
+      <option value="confirmed" {% if order.status == 'confirmed' %}selected{% endif %}>Đã xác nhận</option>
+      <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Đã hoàn thành</option>
+      <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Đã huỷ</option>
+    </select>
+
+    <br><br>
+    <label>Mô tả / ghi chú</label><br>
+    <textarea name="note" rows="4">{{ order.note }}</textarea><br><br>
+
+    <button type="submit">Cập nhật</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sửa sản phẩm</title>
+</head>
+<body>
+  <h2>Sửa sản phẩm</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="proid" value="{{ product.proid }}"><br>
+    <input type="text" name="name" value="{{ product.name }}"><br>
+    <input type="number" name="price" value="{{ product.price }}"><br>
+    <input type="text" name="unit" value="{{ product.unit }}"><br>
+
+    <select name="category_id">
+      {% for category in categories %}
+        <option value="{{ category.id }}" {% if product.category.id == category.id %}selected{% endif %}>
+          {{ category.name }}
+        </option>
+      {% endfor %}
+    </select><br>
+
+    <textarea name="description">{{ product.description }}</textarea><br>
+    <input type="file" name="image"><br>
+
+    <button type="submit">Cập nhật</button>
+  </form>
+</body>
+</html>

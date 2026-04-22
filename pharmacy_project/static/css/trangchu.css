@@ -835,3 +835,23 @@ body {
 .featured-product-link h3 {
   text-decoration: none;
 }
+
+.auth-error-text {
+  color: #ff002f;
+  background: #ffe9ec;
+  border: 1px solid #f5b8c2;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.auth-success-text {
+  color: #1f7a3d;
+  background: #eaf8ef;
+  border: 1px solid #b7e1c3;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Sửa tồn kho</title>
+</head>
+<body>
+  <h2>Sửa hàng tồn kho</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <p>ID sản phẩm: {{ inventory.product.proid }}</p>
+    <p>Tên sản phẩm: {{ inventory.product.name }}</p>
+
+    <label>Số lượng</label>
+    <input type="number" name="quantity" value="{{ inventory.quantity }}" required>
+
+    <button type="submit">Cập nhật</button>
+  </form>
+</body>
+</html>
