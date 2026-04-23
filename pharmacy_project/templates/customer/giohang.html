@@ -153,20 +153,20 @@
 
       <div class="footer-column">
         <h3>Về chúng tôi</h3>
-        <a href="#">Giới thiệu</a>
-        <a href="#">Giấy phép kinh doanh</a>
-        <a href="#">Quy chế hoạt động</a>
-        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
-        <a href="#">Chính sách nội dung</a>
-        <a href="#">Chính sách thanh toán</a>
-        <a href="#">Câu hỏi thường gặp</a>
+        <a href="{% url 'intro' %}">Giới thiệu</a>
+        <a href="{% url 'giayphepkinhdoanh' %}">Giấy phép kinh doanh</a>
+        <a href="{% url 'quychehoatdong' %}">Quy chế hoạt động</a>
+        <a href="{% url 'chinhsachbaomat' %}">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="{% url 'chinhsachnoidung' %}">Chính sách nội dung</a>
+        <a href="{% url 'chinhsachthanhtoan' %}">Chính sách thanh toán</a>
+        <a href="{% url 'quychehoatdong' %}">Câu hỏi thường gặp</a>
       </div>
 
       <div class="footer-column">
         <h3>Tổng đài</h3>
-        <p>Hỗ trợ đặt hàng<br>1800 0001 (Nhánh 1)</p>
-        <p>Thông tin nhà thuốc<br>1800 0002 (Nhánh 2)</p>
-        <p>Khiếu nại, góp ý<br>1800 0003 (Nhánh 3)</p>
+        <p>Hỗ trợ đặt hàng<br />1800 0001 (Nhánh 1)</p>
+        <p>Thông tin nhà thuốc<br />1800 0002 (Nhánh 2)</p>
+        <p>Khiếu nại, góp ý<br />1800 0003 (Nhánh 3)</p>
       </div>
 
       <div class="footer-column">
@@ -190,8 +190,8 @@
     <div class="footer-bottom">
       <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
       <div class="footer-bottom-links">
-        <a href="#">Trợ giúp</a>
-        <a href="#">Chính sách quyền riêng tư</a>
+        <a href="{% url 'lienhe' %}">Trợ giúp</a>
+        <a href="{% url 'chinhsachbaomat' %}">Chính sách quyền riêng tư</a>
       </div>
     </div>
   </footer>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giới thiệu nhà thuốc</title>
+  <title>Địa chỉ chăm sóc sức khỏe</title>
 
   <link rel="stylesheet" href="{% static 'css/gioithieu.css' %}" />
   <link rel="stylesheet" href="{% static 'css/customer-search.css' %}" />
@@ -123,13 +123,13 @@
 
       <div class="footer-column">
         <h3>Về chúng tôi</h3>
-        <a href="#">Giới thiệu</a>
-        <a href="#">Giấy phép kinh doanh</a>
-        <a href="#">Quy chế hoạt động</a>
-        <a href="#">Chính sách bảo vệ dữ liệu cá nhân</a>
-        <a href="#">Chính sách nội dung</a>
-        <a href="#">Chính sách thanh toán</a>
-        <a href="#">Câu hỏi thường gặp</a>
+        <a href="{% url 'intro' %}">Giới thiệu</a>
+        <a href="{% url 'giayphepkinhdoanh' %}">Giấy phép kinh doanh</a>
+        <a href="{% url 'quychehoatdong' %}">Quy chế hoạt động</a>
+        <a href="{% url 'chinhsachbaomat' %}">Chính sách bảo vệ dữ liệu cá nhân</a>
+        <a href="{% url 'chinhsachnoidung' %}">Chính sách nội dung</a>
+        <a href="{% url 'chinhsachthanhtoan' %}">Chính sách thanh toán</a>
+        <a href="{% url 'quychehoatdong' %}">Câu hỏi thường gặp</a>
       </div>
 
       <div class="footer-column">
@@ -160,8 +160,8 @@
     <div class="footer-bottom">
       <p>© 2026 Hệ thống Quản lý Dược phẩm. Tất cả quyền được bảo lưu</p>
       <div class="footer-bottom-links">
-        <a href="#">Trợ giúp</a>
-        <a href="#">Chính sách quyền riêng tư</a>
+        <a href="{% url 'lienhe' %}">Trợ giúp</a>
+        <a href="{% url 'chinhsachbaomat' %}">Chính sách quyền riêng tư</a>
       </div>
     </div>
   </footer>

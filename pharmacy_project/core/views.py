@@ -41,6 +41,21 @@ def tunhanvienit(request):
 def opening(request):
     return render(request, 'customer/khaitruongwebsite.html')
 
+def chinhsachbaomat(request):
+    return render(request, 'customer/chinhsachbaomat.html')
+
+def chinhsachnoidung(request):
+    return render(request, 'customer/chinhsachnoidung.html')
+
+def chinhsachthanhtoan(request):
+    return render(request, 'customer/chinhsachthanhtoan.html')
+
+def giayphepkinhdoanh(request):
+    return render(request, 'customer/giayphepkinhdoanh.html')
+
+def quychehoatdong(request):
+    return render(request, 'customer/quychehoatdong.html')
+
 def is_admin(user):
     return user.is_staff
 
