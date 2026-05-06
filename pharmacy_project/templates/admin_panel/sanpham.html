@@ -170,6 +170,11 @@
               {% endfor %}
             </select>
           </div>
+          <label>Loại thuốc</label>
+          <select name="medicine_type" required>
+            <option value="non_prescription">Thuốc không kê đơn</option>
+            <option value="prescription">Thuốc kê đơn</option>
+          </select>
           <div class="form-group full-width">
             <label>Mô tả</label>
             <textarea name="description" rows="5" placeholder="Nhập mô tả"></textarea>
@@ -226,6 +231,12 @@
             {% endfor %}
           </select>
         </div>
+
+        <label>Loại thuốc</label>
+        <select name="medicine_type" id="edit_medicine_type" required>
+          <option value="non_prescription">Thuốc không kê đơn</option>
+          <option value="prescription">Thuốc kê đơn</option>
+        </select>
 
         <div class="form-group full-width">
           <label for="editProductDesc">Mô tả</label>

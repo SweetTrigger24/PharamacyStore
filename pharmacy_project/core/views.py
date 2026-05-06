@@ -7,8 +7,46 @@ from django.db.models import Sum, Count, Q
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models.functions import TruncDate, Coalesce
+import json
+import urllib.parse
+import urllib.request
+from django.http import JsonResponse
 import uuid 
 import unicodedata
+
+def api_provinces(request):
+    url = "https://34tinhthanh.com/api/provinces"
+    try:
+        with urllib.request.urlopen(url, timeout=10) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        return JsonResponse({"success": True, "results": data}, safe=False)
+    except Exception:
+        return JsonResponse(
+            {"success": False, "message": "Không lấy được danh sách tỉnh/thành."},
+            status=500
+        )
+
+
+def api_wards(request):
+    province_code = request.GET.get("province_code", "").strip()
+    if not province_code:
+        return JsonResponse(
+            {"success": False, "message": "Thiếu province_code."},
+            status=400
+        )
+
+    query = urllib.parse.urlencode({"province_code": province_code})
+    url = f"https://34tinhthanh.com/api/wards?{query}"
+
+    try:
+        with urllib.request.urlopen(url, timeout=10) as response:
+            data = json.loads(response.read().decode("utf-8"))
+        return JsonResponse({"success": True, "results": data}, safe=False)
+    except Exception:
+        return JsonResponse(
+            {"success": False, "message": "Không lấy được danh sách phường/xã."},
+            status=500
+        )
 
 def normalize_text(text):
     text = (text or '').strip().lower()
@@ -195,6 +233,7 @@ def admin_products(request):
         price = request.POST.get('price')
         quantity = request.POST.get('quantity')
         image = request.FILES.get('image')
+        medicine_type = request.POST.get('medicine_type', 'non_prescription')
 
         category = get_object_or_404(Category, id=category_id)
 
@@ -205,7 +244,8 @@ def admin_products(request):
             description=description,
             unit=unit,
             price=price,
-            image=image
+            image=image,
+            medicine_type=medicine_type
         )
 
         Inventory.objects.create(
@@ -216,7 +256,6 @@ def admin_products(request):
         return redirect('admin_products')
 
     keyword = request.GET.get('q', '').strip()
-
     products = Product.objects.select_related('category').all().order_by('id')
 
     if keyword:
@@ -240,11 +279,13 @@ def admin_product_update(request, product_id):
 
     if request.method == 'POST':
         category_id = request.POST.get('category_id')
+
         product.proid = request.POST.get('proid', '').strip()
         product.name = request.POST.get('name', '').strip()
         product.description = request.POST.get('description', '').strip()
         product.unit = request.POST.get('unit', '').strip()
         product.price = request.POST.get('price', 0)
+        product.medicine_type = request.POST.get('medicine_type', 'non_prescription')
 
         if category_id:
             product.category = get_object_or_404(Category, id=category_id)
@@ -253,6 +294,7 @@ def admin_product_update(request, product_id):
             product.image = request.FILES.get('image')
 
         product.save()
+
         return redirect('admin_products')
 
     return redirect('admin_products')
@@ -671,6 +713,7 @@ def product_list(request):
     keyword = request.GET.get('q', '').strip()
     category_id = request.GET.get('category', '').strip()
     price_range = request.GET.get('price_range', '').strip()
+    medicine_type = request.GET.get('medicine_type', '').strip()
 
     products = Product.objects.select_related('category').all().order_by('-id')
     categories = Category.objects.all().order_by('name')
@@ -693,12 +736,16 @@ def product_list(request):
     elif price_range == 'over_500':
         products = products.filter(price__gt=500000)
 
+    if medicine_type in ['prescription', 'non_prescription']:
+        products = products.filter(medicine_type=medicine_type)
+
     return render(request, 'customer/danhsachsanpham.html', {
         'products': products,
         'categories': categories,
         'keyword': keyword,
         'selected_category': category_id,
         'selected_price_range': price_range,
+        'selected_medicine_type': medicine_type,
     })
 
 def home(request):

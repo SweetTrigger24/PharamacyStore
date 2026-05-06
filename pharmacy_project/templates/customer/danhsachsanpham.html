@@ -150,7 +150,21 @@
       {% endfor %}
     </select>
   </div>
+  <h3>Loại thuốc</h3>
 
+<select name="medicine_type">
+    <option value="">Tất cả loại thuốc</option>
+
+    <option value="prescription"
+        {% if selected_medicine_type == 'prescription' %}selected{% endif %}>
+        Thuốc kê đơn
+    </option>
+
+    <option value="non_prescription"
+        {% if selected_medicine_type == 'non_prescription' %}selected{% endif %}>
+        Thuốc không kê đơn
+    </option>
+</select>
   <button type="submit" class="apply-filter-btn">Áp dụng</button>
 </form>
 

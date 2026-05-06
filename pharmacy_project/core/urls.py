@@ -28,6 +28,8 @@ urlpatterns = [
     path('dang-nhap/', views.login_view, name='login'),
     path('dang-xuat/', views.logout_view, name='logout'),
     path('them-vao-gio/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('api/dia-chi/tinh-thanh/', views.api_provinces, name='api_provinces'),
+    path('api/dia-chi/phuong-xa/', views.api_wards, name='api_wards'),
 
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/danh-muc/', views.admin_categories, name='admin_categories'),

@@ -72,6 +72,7 @@
               <tr>
                 <th>ID đơn hàng</th>
                 <th>Tên khách hàng</th>
+                <th>Địa chỉ</th>
                 <th>Trạng thái</th>
                 <th>Mô tả</th>
                 <th>Thao tác</th>
@@ -82,6 +83,7 @@
               <tr>
                 <td>{{ order.code }}</td>
                 <td>{{ order.customer.full_name }}</td>
+                <td>{{ order.delivery_address }}</td>
                 <td>{{ order.get_status_display }}</td>
                 <td>{{ order.note }}</td>
                 <td class="action-cell">

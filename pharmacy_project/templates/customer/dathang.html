@@ -96,21 +96,41 @@
                     <input type="text" id="phone" name="receiver_phone" value="{{ receiver_phone }}" placeholder="Nhập số điện thoại" />
                   </div>
                 </div>
-                <div class="form-row">
-                  <div class="form-group full-width">
-                    <label for="address">Địa chỉ nhận hàng</label>
-                    <input type="text" id="address" name="delivery_address" value="{{ delivery_address }}" placeholder="Nhập địa chị nhận hàng" />
+                <div class="form-row two-columns">
+                  <div class="form-group">
+                    <label for="provinceSelect">Tỉnh/Thành phố</label>
+                    <select id="provinceSelect" class="address-select" required>
+                      <option value="">-- Chọn tỉnh/thành phố --</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="wardSelect">Phường/Xã</label>
+                    <select id="wardSelect" class="address-select" required disabled>
+                      <option value="">-- Chọn phường/xã --</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group full-width">
-                    <label for="note">Ghi chú (không bắt buộc)</label>
-                    <input type="text" id="note" name="note" value="{{ note }}" placeholder="Nhập ghi chú cho đơn hàng" />
+                    <label for="addressDetail">Số nhà, tên đường, thôn/xóm...</label>
+                    <input
+                      type="text"
+                      id="addressDetail"
+                      placeholder="Ví dụ: Số 12, ngõ 8, đường Trần Phú"
+                      required
+                    />
+                  </div>
+                </div>
+                <input type="hidden" id="deliveryAddress" name="delivery_address">
+                  <div class="form-row">
+                    <div class="form-group full-width">
+                      <label for="note">Ghi chú (không bắt buộc)</label>
+                      <input type="text" id="note" name="note" value="{{ note }}" placeholder="Nhập ghi chú cho đơn hàng" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           <!-- CỘT BÊN PHẢI -->
           <aside class="payment-panel">
             <div class="payment-box">
@@ -236,6 +256,99 @@ function closeStockErrorPopup() {
     const popup = document.getElementById("stockErrorPopup");
     if (popup) popup.classList.remove("show");
 }
+</script>
+<script>
+  const provinceSelect = document.getElementById('provinceSelect');
+  const wardSelect = document.getElementById('wardSelect');
+  const addressDetailInput = document.getElementById('addressDetail');
+  const deliveryAddressInput = document.getElementById('deliveryAddress');
+  const checkoutForm = document.querySelector('form[method="post"]');
+
+  function buildFullAddress() {
+    const detail = addressDetailInput.value.trim();
+
+    const provinceText =
+      provinceSelect.selectedIndex > 0
+        ? provinceSelect.options[provinceSelect.selectedIndex].text.trim()
+        : "";
+
+    const wardText =
+      wardSelect.selectedIndex > 0
+        ? wardSelect.options[wardSelect.selectedIndex].text.trim()
+        : "";
+
+    deliveryAddressInput.value = [detail, wardText, provinceText]
+      .filter(Boolean)
+      .join(", ");
+  }
+
+  async function loadProvinces() {
+    provinceSelect.innerHTML = '<option value="">-- Chọn tỉnh/thành phố --</option>';
+
+    try {
+      const response = await fetch("{% url 'api_provinces' %}");
+      const data = await response.json();
+
+      if (!data.success) return;
+
+      data.results.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.province_code;
+        option.textContent = item.name;
+        provinceSelect.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Lỗi tải tỉnh/thành:", error);
+    }
+  }
+
+  async function loadWards(provinceCode) {
+    wardSelect.innerHTML = '<option value="">-- Chọn phường/xã --</option>';
+    wardSelect.disabled = true;
+
+    if (!provinceCode) return;
+
+    try {
+      const response = await fetch(
+        `{% url 'api_wards' %}?province_code=${encodeURIComponent(provinceCode)}`
+      );
+      const data = await response.json();
+
+      if (!data.success) return;
+
+      data.results.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.ward_code;
+        option.textContent = item.ward_name;
+        wardSelect.appendChild(option);
+      });
+
+      wardSelect.disabled = false;
+    } catch (error) {
+      console.error("Lỗi tải phường/xã:", error);
+    }
+  }
+
+  provinceSelect.addEventListener("change", async function () {
+    await loadWards(this.value);
+    buildFullAddress();
+  });
+
+  wardSelect.addEventListener("change", buildFullAddress);
+  addressDetailInput.addEventListener("input", buildFullAddress);
+
+  checkoutForm.addEventListener("submit", function (e) {
+    buildFullAddress();
+
+    if (!provinceSelect.value || !wardSelect.value || !addressDetailInput.value.trim()) {
+      e.preventDefault();
+      alert("Vui lòng chọn đầy đủ địa chỉ nhận hàng.");
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    loadProvinces();
+  });
 </script>
 </body>
 </html>

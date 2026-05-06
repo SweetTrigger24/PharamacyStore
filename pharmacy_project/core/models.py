@@ -27,6 +27,10 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
+    MEDICINE_TYPE_CHOICES = [
+        ('prescription', 'Thuốc kê đơn'),
+        ('non_prescription', 'Thuốc không kê đơn'),
+    ]
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     proid = models.CharField(max_length=20, unique=True)
     name = models.TextField()
@@ -34,7 +38,12 @@ class Product(models.Model):
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     unit = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=12, decimal_places=2)
-
+    medicine_type = models.CharField(
+        max_length=30,
+        choices=MEDICINE_TYPE_CHOICES,
+        default='non_prescription',
+        verbose_name='Loại thuốc'
+    )
     def __str__(self):
         return self.name
 

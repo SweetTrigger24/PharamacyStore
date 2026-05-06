@@ -724,3 +724,41 @@ body {
 .user-info.user-info-vertical > div > .logout-link:hover {
   text-decoration: underline;
 }
+
+.address-select {
+    width: 100%;
+    height: 38px;
+    padding: 0 40px 0 12px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: #555;
+    outline: none;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+
+.address-select:focus {
+    border-color: #6c63ff;
+    background-color: #fff;
+}
+
+.address-select:disabled {
+    background-color: #f1f1f1;
+    color: #999;
+    cursor: not-allowed;
+}
+
+.address-select option {
+    color: #333;
+    background-color: #fff;
+}
