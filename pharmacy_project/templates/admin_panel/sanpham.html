@@ -98,8 +98,9 @@
                     data-unit="{{ product.unit }}"
                     data-description="{{ product.description }}"
                     data-category-id="{{ product.category.id }}"
-                  >
-                  <i class="bi bi-pencil"></i>
+                    data-medicine-type="{{ product.medicine_type }}"
+                    >
+                    <i class="bi bi-pencil"></i>
                   </button>
                   <form method="post"
                     action="{% url 'admin_product_delete' product.id %}"
@@ -170,11 +171,15 @@
               {% endfor %}
             </select>
           </div>
-          <label>Loại thuốc</label>
-          <select name="medicine_type" required>
-            <option value="non_prescription">Thuốc không kê đơn</option>
-            <option value="prescription">Thuốc kê đơn</option>
-          </select>
+
+          <div class="form-group">
+    <label>Loại thuốc</label>
+    <select name="medicine_type" required>
+        <option value="non_prescription">Thuốc không kê đơn</option>
+        <option value="prescription">Thuốc kê đơn</option>
+    </select>
+</div>
+
           <div class="form-group full-width">
             <label>Mô tả</label>
             <textarea name="description" rows="5" placeholder="Nhập mô tả"></textarea>
@@ -232,11 +237,13 @@
           </select>
         </div>
 
-        <label>Loại thuốc</label>
-        <select name="medicine_type" id="edit_medicine_type" required>
-          <option value="non_prescription">Thuốc không kê đơn</option>
-          <option value="prescription">Thuốc kê đơn</option>
-        </select>
+        <div class="form-group">
+    <label>Loại thuốc</label>
+    <select name="medicine_type" required>
+        <option value="non_prescription">Thuốc không kê đơn</option>
+        <option value="prescription">Thuốc kê đơn</option>
+    </select>
+</div>
 
         <div class="form-group full-width">
           <label for="editProductDesc">Mô tả</label>
@@ -294,29 +301,31 @@
   const editProductUnit = document.getElementById("editProductUnit");
   const editProductDesc = document.getElementById("editProductDesc");
   const editCategory = document.getElementById("editCategory");
+  const editMedicineType = document.getElementById("edit_medicine_type");
 
   editButtons.forEach(button => {
     button.addEventListener("click", function () {
-      const productId = this.dataset.id;
-      const proid = this.dataset.proid;
-      const name = this.dataset.name;
-      const price = this.dataset.price;
-      const unit = this.dataset.unit;
-      const description = this.dataset.description;
-      const categoryId = this.dataset.categoryId;
+        const productId = this.dataset.id;
+        const proid = this.dataset.proid;
+        const name = this.dataset.name;
+        const price = this.dataset.price;
+        const unit = this.dataset.unit;
+        const description = this.dataset.description;
+        const categoryId = this.dataset.categoryId;
+        const medicineType = this.dataset.medicineType;
 
-      editProductID.value = proid;
-      editProductName.value = name;
-      editProductPrice.value = price;
-      editProductUnit.value = unit;
-      editProductDesc.value = description;
-      editCategory.value = categoryId;
+        editForm.action = `/admin/products/${productId}/update/`;
+        editProductID.value = proid;
+        editProductName.value = name;
+        editProductPrice.value = price;
+        editProductUnit.value = unit;
+        editProductDesc.value = description;
+        editCategory.value = categoryId;
+        editMedicineType.value = medicineType || "non_prescription";
 
-      editForm.action = `/dashboard/san-pham/sua/${productId}/`;
-
-      editPopupOverlay.style.display = "flex";
+        editPopupOverlay.style.display = "flex";
     });
-  });
+});
 
   closeEditPopup.addEventListener("click", function () {
     editPopupOverlay.style.display = "none";

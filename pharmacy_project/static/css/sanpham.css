@@ -800,3 +800,35 @@ font-size: 13px;
 .user-info.user-info-vertical > div > .logout-link:hover {
   text-decoration: underline;
 }
+
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+}
+
+.form-group select:focus {
+    border-color: #6c63ff;
+}
+
+.medicine-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.medicine-badge.prescription {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.medicine-badge.non-prescription {
+    background-color: #dcfce7;
+    color: #166534;
+}

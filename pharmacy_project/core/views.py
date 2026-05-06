@@ -3,7 +3,7 @@ from .models import Product, Category, Customer, Cart, CartItem, Order, OrderIte
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.db.models import Sum, Count, Q
+from django.db.models import Sum, Count, Q, F, DecimalField, ExpressionWrapper
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models.functions import TruncDate, Coalesce
