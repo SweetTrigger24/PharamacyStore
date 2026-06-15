@@ -1,0 +1,1950 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$sX43a6h1axbdle61iWxbgF$P3TDe2uXW+6yZ7lHDYpg4FhY7+9BlfeyMpGB6wR65So=",
+    "last_login": "2026-06-15T02:36:25.075Z",
+    "is_superuser": true,
+    "username": "hoang",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-03-17T08:18:37.163Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$t8zn1w6ilX9yHY6CDNsHAs$KHirL5V/FIl+hAarxs6fu6MopKfn62n3iwOfpIYmFfY=",
+    "last_login": "2026-05-07T00:35:52.211Z",
+    "is_superuser": false,
+    "username": "kh01",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-18T07:11:53.021Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$u2nDEit7SF3TsXjBjJLSdH$Z6Czsr7LeoeBNm9eyQsB5/29bE8sq8hBKhm0umExm3M=",
+    "last_login": "2026-03-25T08:01:48.370Z",
+    "is_superuser": false,
+    "username": "kh02",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-23T01:28:52.047Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$BZMhXaOUEvlAKIQilvL0yP$8bKihc+VNcFmhYMkIxrw8o0OMf+zhxVPZ7BFmi+JfdQ=",
+    "last_login": "2026-03-25T10:15:09.410Z",
+    "is_superuser": false,
+    "username": "kh03",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-23T01:29:52.939Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$4iX4hvhcmFzfW71OaNxM0m$cj2D4bajT4kk/DWN9knRQcKXIw/7UuSKb/fZfGSlLMM=",
+    "last_login": "2026-03-24T08:52:22.435Z",
+    "is_superuser": false,
+    "username": "kh04",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-23T01:31:06.004Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$r0oTvTrRQ0oDEmnWPecsj0$hXbswCrddn0q4YdSUMZRfXiJ94j1MxOaI3B5ABw7uJ8=",
+    "last_login": "2026-03-24T08:07:26.270Z",
+    "is_superuser": false,
+    "username": "kh05",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-23T01:31:19.683Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$Gm2yNumYWbX1whLxjm3fvz$sFD5uLGi22mfFcGwcvNvXNa+wnJQi/QG4RcXgf4PVIM=",
+    "last_login": "2026-03-24T08:11:21.690Z",
+    "is_superuser": false,
+    "username": "kh06",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-23T01:46:37.826Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 9,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$pLkAHqUZ6bB9OryS1jqe6E$a2EwJVxz9wfCTP2YLLRaNhcBsGfhhRl9FxNTlycvFP8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-25T10:19:19.472Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0cylKPHAUDCmoxyDIFVt7G$EFMztgqZPCUIZf/Svdv6e3EQCbE3xeSf9afuyDxxyp4=",
+    "last_login": "2026-03-26T03:55:56.418Z",
+    "is_superuser": false,
+    "username": "testadmin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-25T13:58:25.322Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$GP9nX2uZaZ8f5UKuFFBzlw$lIkau5OEj0PIiZV0EaY05bQELdTy5udhssJc/tXiPWc=",
+    "last_login": "2026-04-22T07:54:32.070Z",
+    "is_superuser": false,
+    "username": "kh36",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-04-22T07:47:03.816Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 1,
+  "fields": {
+    "user": 3,
+    "full_name": "Nguyễn Thị Hồng Thắm",
+    "address": "29 Hoài Thanh",
+    "phone": "0326762642",
+    "avatar": "avatars/c985227ad3df5d8104ce_WoiyMNV.jpg"
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 2,
+  "fields": {
+    "user": 4,
+    "full_name": "Phan Thị Khánh Chi",
+    "address": "36 Bạch Liêu",
+    "phone": "0972618271",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 3,
+  "fields": {
+    "user": 5,
+    "full_name": "Nguyễn Quỳnh Hương",
+    "address": "18 Nguyễn Du",
+    "phone": "0362816833",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 4,
+  "fields": {
+    "user": 6,
+    "full_name": "Nguyễn Quỳnh Trang",
+    "address": "54 Phan Đăng Lưu",
+    "phone": "0349348375",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 5,
+  "fields": {
+    "user": 7,
+    "full_name": "Hà Thị Khánh Linh",
+    "address": "99 Mường Xén",
+    "phone": "0374627382",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 6,
+  "fields": {
+    "user": 8,
+    "full_name": "Phan Quế Anh",
+    "address": "11 Lê Viết Thuật",
+    "phone": "0976352833",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 7,
+  "fields": {
+    "user": 1,
+    "full_name": "hoang",
+    "address": "",
+    "phone": "",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 8,
+  "fields": {
+    "user": 10,
+    "full_name": "Nguyen Van Tam",
+    "address": "",
+    "phone": "0974041323",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.customer",
+  "pk": 9,
+  "fields": {
+    "user": 11,
+    "full_name": "Nguyễn Phúc Hoàng",
+    "address": "",
+    "phone": "0352814225",
+    "avatar": ""
+  }
+},
+{
+  "model": "core.employee",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "full_name": "Nguyen Phuc Hoang",
+    "phone": "0352814225"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 1,
+  "fields": {
+    "name": "Thuốc giảm đau",
+    "description": "Công dụng làm dịu và giảm thiểu tác động của những cơn đau"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 2,
+  "fields": {
+    "name": "Thuốc bổ và vitamin",
+    "description": "Những loại thuốc và thực phẩm chức năng bổ sung các loại vitamin và khoáng chất"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 3,
+  "fields": {
+    "name": "Thuốc ho",
+    "description": "Dùng để giảm ho, làm dịu cổ họng, hoặc giảm đờm, giúp làm thông thoáng đường thở"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 4,
+  "fields": {
+    "name": "Thuốc thần kinh",
+    "description": "Có tác dụng làm chậm hoạt động não bộ, giảm kích động, giảm lo âu hoặc điều chỉnh các tín hiệu thần kinh"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 5,
+  "fields": {
+    "name": "Thuốc dị ứng",
+    "description": "Công dụng giúp làm giảm, ngăn chặn các triệu chứng dị ứng"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 6,
+  "fields": {
+    "name": "Thuốc kháng sinh",
+    "description": "Dùng để tiêu diệt hoặc kìm hãm sự phát triển của vi khuẩn, giúp điều trị các bệnh nhiễm trùng ở người và động vật"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 7,
+  "fields": {
+    "name": "Thuốc ung thư",
+    "description": "Dùng để tiêu diệt, ức chế sự phát triển và phân chia của tế bào ung thư, ngăn chặn bệnh tái phát"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 8,
+  "fields": {
+    "name": "Thuốc hô hấp",
+    "description": "Dùng để điều trị, kiểm soát triệu chứng hoặc bệnh lý liên quan đến đường hô hấp"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 9,
+  "fields": {
+    "name": "Thuốc tim mạch và máu",
+    "description": "Dùng để tác động lên hệ tuần hoàn (tim và mạch máu)"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 10,
+  "fields": {
+    "name": "Thuốc trị tiểu đường",
+    "description": "Giúp hạ thấp mức đường huyết (glucose) trong máu"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 11,
+  "fields": {
+    "name": "Thuốc tiết niệu, sinh dục",
+    "description": "Dùng để điều trị viêm nhiễm, nhiễm khuẩn hoặc rối loạn chức năng tại hệ tiết niệu (thận, bàng quang, niệu đạo) và cơ quan sinh dục"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 12,
+  "fields": {
+    "name": "Thuốc tiêu hóa, gan mật",
+    "description": "Dùng để phòng ngừa, chẩn đoán và điều trị các bệnh lý liên quan đến hệ tiêu hóa (dạ dày, ruột), gan, mật và tụy"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 13,
+  "fields": {
+    "name": "Thuốc mắt, tai ,mũi ,họng",
+    "description": "Được dùng để điều trị các bệnh lý tại chỗ hoặc toàn thân liên quan đến các cơ quan này, chủ yếu tác động lên niêm mạc"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 14,
+  "fields": {
+    "name": "Thuốc cơ xương khớp",
+    "description": "Giúp giảm đau, chống viêm, tái tạo sụn khớp, và tăng cường sự linh hoạt cho hệ thống cơ, xương, khớp, sụn, dây chằng"
+  }
+},
+{
+  "model": "core.category",
+  "pk": 15,
+  "fields": {
+    "name": "Thuốc da liễu",
+    "description": "Có tác dụng tại chỗ nhằm chữa trị, làm dịu hoặc ngăn ngừa các bệnh lý về da"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "proid": "SP005",
+    "name": "Viên uống bổ sung vitamin C, tăng cường sức đề kháng C 500mg Nature's Bounty",
+    "description": "Nature's Bounty C 500mg bổ sung vitamin C cho cơ thể giúp tăng cường sức đề kháng. Có thể dùng cho người ăn chay.",
+    "image": "products/00031901_vien_uong_bo_sung_vitamin_c_natures_bounty_time_released_c_500mg_100v_lH5149K.webp",
+    "unit": "Lọ",
+    "price": "325000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "proid": "SP001",
+    "name": "Viên nén Paracetamol Stada 500mg điều trị các cơn đau đầu, đau thần kinh, đau răng",
+    "description": "Thuốc Paracetamol 500mg Stada là sản phẩm của Công ty TNHH Liên doanh Stada Việt Nam có thành phần dược chất chính Paracetamol được sử dụng để điều trị các cơn đau từ nhẹ đến trung bình bao gồm đau đầu, đau nửa đầu, đau thần kinh, đau răng, đau họng, đau do hành kinh, đau nhức, giảm triệu chứng đau nhức do thấp khớp, cảm cúm, cảm sốt và cảm lạnh.",
+    "image": "products/paracetamol_FNOrxox.jpg",
+    "unit": "Hộp",
+    "price": "50000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 4,
+  "fields": {
+    "category": 3,
+    "proid": "SP003",
+    "name": "Siro ho Prospan Engelhard điều trị viêm phế quản mạn tính (100ml)",
+    "description": "Siro ho Prospan là sản phẩm của Engelhard Arzneimittel (Đức), thành phần chính của siro ho là cao khô lá thường xuân (Hederae helicis folii extractum siccum), là thuốc tiêu nhầy, chống co thắt và giảm ho.",
+    "image": "products/siroho.jpg",
+    "unit": "Chai",
+    "price": "93000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 5,
+  "fields": {
+    "category": 2,
+    "proid": "SP004",
+    "name": "Viên uống bổ sung vitamin E hỗ trợ chống oxy hóa Vitamin E Kingphar",
+    "description": "Thực phẩm bảo vệ sức khỏe Vitamin E Kingphar bổ sung vitamin E cho cơ thể, hỗ trợ tăng cường chống oxy hóa. Giúp hạn chế lão hóa da, hỗ trợ làm đẹp da.",
+    "image": "products/vitamine.webp",
+    "unit": "Hộp",
+    "price": "116000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 7,
+  "fields": {
+    "category": 15,
+    "proid": "SP002",
+    "name": "Kem bôi da Ketoconazol 2% Medipharco điều trị các bệnh nấm da và niêm mạc",
+    "description": "Thuốc bôi da Ketoconazol 2% Medipharco có thành phần chính Ketoconazol. Đây là thuốc bôi da Ketoconazol được dùng bôi tại chỗ để điều trị các bệnh nấm ở da và niêm mạc (Candida, Trichophyton rubrum, T. mentagrophytes, Epidermophyton floccosum, Malassezia furfur...).",
+    "image": "products/IMG_4407_3c1526a388.webp",
+    "unit": "Hộp",
+    "price": "11000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 8,
+  "fields": {
+    "category": 15,
+    "proid": "SP006",
+    "name": "Kem bôi da Lifedovate Cream 0,05% Hadiphar điều trị các vết long eczema, viêm da",
+    "description": "Kem bôi Lifedovate là sản phẩm của Công ty Cổ phần Dược Hà Tĩnh chứa hoạt chất Clobetasone butyrate. Đây là thuốc dùng điều trị tại chỗ các biểu hiện viêm, ngứa đáp ứng với corticosteroid.",
+    "image": "products/IMG_4498_cfb40bbebc.webp",
+    "unit": "Tuýp",
+    "price": "35000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 9,
+  "fields": {
+    "category": 15,
+    "proid": "SP007",
+    "name": "Dung dịch PVP - IODINE 10% Danapha sát trùng vết thương hoặc vết bỏng bề mặt",
+    "description": "Thuốc Pvp - Iodine 10% do Công ty Cổ phần Dược DANAPHA sản xuất có công dụng sát trùng vết thương hoặc vết bỏng bề mặt, mức độ nhẹ, điều trị hỗ trợ các tình trạng da, niêm mạc tổn thương để tránh nhiễm khuẩn, sát trùng da, niêm mạc trước khi phẫu thuật, lau rửa các dụng cụ y tế trước khi tiệt khuẩn.",
+    "image": "products/ANH_SP_PVP_IODINE_Artboard_1_9e5306e33f.webp",
+    "unit": "Chai",
+    "price": "8500.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 10,
+  "fields": {
+    "category": 15,
+    "proid": "SP008",
+    "name": "Thuốc bôi ngoài da Biroxime 1% điều trị nấm da chân, nấm kẽ",
+    "description": "Thuốc bôi ngoài da Biroxim Cream 1% là sản phẩm của Y-Med (India) chứa hoạt chất Clotrimazole dùng trong điều trị nấm da chân, nấm kẽ, nấm bẹn, lác đồng tiền và bệnh nấm Candida do C.albicans.",
+    "image": "products/00032608_biroxim_cream_1_y_med_20g_4075_6283_large_5d36a897b0.webp",
+    "unit": "Tuýp",
+    "price": "28000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 11,
+  "fields": {
+    "category": 15,
+    "proid": "SP009",
+    "name": "Dung dịch dùng ngoài Xanh Methylen 1% Hóa Dược điều trị chốc lở, viêm da mủ",
+    "description": "Dung dịch dùng ngoài Xanh Methylen 1% là sản phẩm của Công ty Cổ phần Hóa dược Việt Nam dùng để điều trị chốc lở, viêm da mủ, điều trị nhiễm virus ngoài da.",
+    "image": "products/602_c00e18fffe.webp",
+    "unit": "Lọ",
+    "price": "13000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 12,
+  "fields": {
+    "category": 15,
+    "proid": "SP010",
+    "name": "Thuốc mỡ bôi da D.E.P Mekophar điều trị ghẻ ngứa",
+    "description": "Thuốc mỡ bôi da D.E.P của Công Ty Cổ Phẩn Hóa - Dược Phẩm Mekophar, có hoạt chất chính là Diethyl phthalate. Đây là thuốc điều trị ghẻ ngứa; điều trị và dự phòng ngứa do côn trùng đốt, vắt và đỉa.",
+    "image": "products/IMG_6666_33dcf4e653.webp",
+    "unit": "Chai",
+    "price": "7500.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 13,
+  "fields": {
+    "category": 14,
+    "proid": "SP011",
+    "name": "Thuốc Xương Khớp Trường Phúc điều trị các bệnh lý cơ xương khớp và đau dây thần kinh",
+    "description": "Xương khớp Trường Phúc là sản phẩm của Công ty TNHH Dược Thảo Hoàng Thành có thành phần chính là cao đặc hỗn hợp dược liệu bao gồm: Động hoạt, Tang ký sinh, Tần giao, Phòng phong, Tế tân, Quế chi, Ngưu tất, Đỗ trọng, Đương quy, Bạch thược, Cam thảo, Xuyên khung, Sinh địa, Đảng sâm, Bạch linh có công dụng ích can bổ thận, bổ khí huyết, khu phong tán hàn trừ thấp, thông kinh hoạt lạc; dùng trong các trường hợp: Can thận hư, phong hàn thấp gây đau nhức mỏi, thắt lưng, đầu gối, các chi dưới co duỗi khó khăn, cảm giác nặng nề.",
+    "image": "products/00501891_7317_631e_large_5ad83881d2.webp",
+    "unit": "Hộp",
+    "price": "99000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 14,
+  "fields": {
+    "category": 14,
+    "proid": "SP012",
+    "name": "Thuốc Calcid Soft cung cấp Calci và Vitamin D, giúp xương chắc khỏe",
+    "description": "CalciD Soft Usa - Nic Pharma cung cấp Calci và Vitamin D cho cơ thể trong các trường hợp trẻ còi xương, trẻ đang phát triển, loãng xương ở người già, co giật do giảm Calci huyết, phụ nữ mang thai và cho con bú.",
+    "image": "products/00022043_calcid_soft_usa_nic_pharma_10x10_4283_62ad_large_63c17ef507.webp",
+    "unit": "Hộp",
+    "price": "185000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 15,
+  "fields": {
+    "category": 14,
+    "proid": "SP013",
+    "name": "Viên sủi Calcium Hasan 500mg phòng và hỗ trợ điều trị bệnh loãng xương",
+    "description": "Viên sủi Calcium Hasan dùng phòng và hỗ trợ điều trị bệnh loãng xương ở phụ nữ mãn kinh, người cao tuổi, người hút thuốc lá, nghiện rượu và các đối tượng có nguy cơ cao như: Dùng corticoid kéo dài, sau chấn thương hoặc thời gian dài nằm bất động. Điều trị các bệnh còi xương, nhuyễn xương, mất xương cấp và mạn, bệnh Sheuermann, bổ sung calci trong một số trường hợp chỉ định.",
+    "image": "products/IMG_3111_454869e597.webp",
+    "unit": "Tuýp",
+    "price": "46000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 16,
+  "fields": {
+    "category": 14,
+    "proid": "SP014",
+    "name": "Thuốc Phong Tê Thấp Bà Giằng điều trị đau vai gáy, đau thần kinh tọa",
+    "description": "Thuốc Phong tê thấp Bà Giằng được sản xuất bởi Cơ sở sản xuất thuốc YHCT Bà Giằng, là sản phẩm bào chế từ bài thuốc gia truyền, ra đời cách đây 100 năm tại Thanh Hóa. Bà Giằng chính là người đầu tiên bào chế bài thuốc từ những nguyên liệu thiên nhiên, được chỉ định để điều trị bệnh đau khớp, xương khớp, phong tê thấp.",
+    "image": "products/b_766f48be41.webp",
+    "unit": "Hộp",
+    "price": "100000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 17,
+  "fields": {
+    "category": 14,
+    "proid": "SP015",
+    "name": "Thuốc V.phonte Vạn Xuân chữa trị phong thấp",
+    "description": "Thuốc V-Phonte của Công ty TNHH Vạn Xuân sản xuất, thuốc có thành phần chính mỗi viên là Cao khô hỗn hợp dược liệu 390mg. Thuốc dùng để: Trị đau phong thấp xương khớp, bổ khí huyết, ích can thận, tán hàn, trừ phong thấp, giảm đau, chống viêm cơ, xương khớp, thần kinh. V-Phonte được bào chế dưới dạng viên nén bao phim. Quy cách đóng hộp: Hộp 10 vỉ x 10 viên.",
+    "image": "products/00018053_v_phonte_van_xuan_10x10_9107_60fa_large_a08603a220.webp",
+    "unit": "Hộp",
+    "price": "115000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 18,
+  "fields": {
+    "category": 13,
+    "proid": "SP016",
+    "name": "Nước súc miệng Thái Dương hương bạc hà, sát trùng răng, miệng, vòm họng",
+    "description": "Nước súc miệng Thái Dương là sản phẩm của công ty cổ phần Sao Thái Dương có tác dụng sát trùng răng, miệng, vòm họng, thúc đẩy tuần hoàn lợi (nướu), ngăn ngừa nguy cơ cao răng và viêm nhiễm gây sâu răng; giúp khử sạch mùi hôi miệng, giữ cho hơi thở thơm mát; giúp răng chắc khỏe mỗi ngày.",
+    "image": "products/00005428_nuoc_suc_mieng_thai_duong_500ml_huong_bac_ha_9548_62ad_large_6819a4ce8a.webp",
+    "unit": "Chai",
+    "price": "30000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 19,
+  "fields": {
+    "category": 13,
+    "proid": "SP017",
+    "name": "Thuốc nhỏ mắt V.Rohto Vitamin hỗ trợ cải thiện tình trạng giảm thị lực, mắt mờ",
+    "description": "Thuốc nhỏ mắt V.Rohto Vitamin for Blurry Eyes là sản phẩm của Rotho - Mentholatum (Việt Nam), có thành phần chính là Natri chondroitin sulfat, Chlorphenamine, Vintamin B6 và Vitamin E. Thuốc nhỏ mắt V.Rohto Vitamin for Blurry Eyes hỗ trợ cải thiện tình trạng giảm thị lực, mắt mờ (do tiết dịch).",
+    "image": "products/IMG_4592_bc81468a43.webp",
+    "unit": "Chai",
+    "price": "55000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 20,
+  "fields": {
+    "category": 13,
+    "proid": "SP018",
+    "name": "Dung dịch xịt mũi Otrera 0.1% An Thiên giảm nghẹt mũi và sung huyết mũi",
+    "description": "Thuốc Otrera 0,1% là sản phẩm của Công ty Cổ phần Dược phẩm An Thiên, có thành phần chính là Xylometazoline hydrochloride. Đây là thuốc được sử dụng cho các trường hợp nghẹt mũi, sung huyết mũi do viêm mũi cấp hoặc mạn tính, viêm xoang, cảm lạnh, cảm mạo, dị ứng đường hô hấp trên; hỗ trợ điều trị sung huyết mũi họng trong viêm tai giữa.",
+    "image": "products/DSC_04551_acec3fe400.webp",
+    "unit": "Hộp",
+    "price": "25000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 21,
+  "fields": {
+    "category": 13,
+    "proid": "SP019",
+    "name": "Ống hít Sao Vàng Danapha điều trị nghẹt mũi, sổ mũi, ho",
+    "description": "Ống hít sao vàng của Công ty cổ phần dược Danapha, thành phần chính là menthol, camphor, tinh dầu đinh hương, tinh dầu quế, tinh dầu tràm. Thuốc dùng để điều trị: Nghẹt mũi, sổ mũi, ho, cảm lạnh, làm thông mũi và sát trùng đường hô hấp.",
+    "image": "products/517711213_2308376552915409_3920529618739208018_n_bb41b8df2b.webp",
+    "unit": "Ống",
+    "price": "9000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 22,
+  "fields": {
+    "category": 13,
+    "proid": "SP020",
+    "name": "Thuốc nhỏ mắt, nhỏ mũi Natri Clorid 0,9% Pharmedic hỗ trợ rửa mắt, rửa mũi, phụ trị nghẹt mũi, sổ mũi",
+    "description": "Thuốc nhỏ mắt - nhỏ mũi Natri Clorid 0,9% của công ty Cổ phần Dược phẩm Pharmedic, thành phần chính Natri Clorid, là thuốc dùng để rửa mắt, rửa mũi, phụ trị nghẹt mũi, sổ mũi, viêm mũi do dị ứng. Sản phẩm dùng được cho trẻ sơ sinh.",
+    "image": "products/1_eaa2c23f17.webp",
+    "unit": "Chai",
+    "price": "3500.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 23,
+  "fields": {
+    "category": 13,
+    "proid": "SP021",
+    "name": "Thuốc nhỏ mắt Sancoba Santen cải thiện sự dao động về điều tiết trong chứng mỏi mắt",
+    "description": "Dung dịch nhỏ mắt Sancoba được sản xuất bởi Công ty Santen Pharmaceutical Co, Ltd - Nhật Bản, có thành phần chính là cyanocobalamin. Dung dịch nhỏ mắt Sancoba được sử dụng trong trường hợp cải thiện sự dao động về điều tiết trong chứng mỏi mắt do điều tiết.",
+    "image": "products/00006519_sancoba_4065_62a7_large_ddca6b182d.webp",
+    "unit": "Chai",
+    "price": "59500.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 24,
+  "fields": {
+    "category": 13,
+    "proid": "SP022",
+    "name": "Thuốc súc họng, súc miệng Betadine Gargle and Mouthwash điều trị viêm và nhiễm khuẩn miệng, họng",
+    "description": "Thuốc súc họng và súc miệng Betadine Gargle And Mouth Wash 125 ml của Công ty Mundipharma Pharm., Ltd, thành phần chính Povidon - Iod 1% (kl/tt) là một loại thuốc dùng để điều trị bệnh nhiễm trùng niêm mạc miệng và cổ họng, như viêm họng, loét áp - tơ, nhiễm nấm candida, cảm, cúm, viêm nướu răng và loét miệng.",
+    "image": "products/IMG_3509_c45a7cb273.webp",
+    "unit": "Chai",
+    "price": "75000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 25,
+  "fields": {
+    "category": 12,
+    "proid": "SP023",
+    "name": "Hỗn dịch Gaviscon Dual Action Reckitt Benckiser điều trị trào ngược dạ dày, thực quản",
+    "description": "Hỗn dịch Gaviscon hồng được bào chế dưới dạng hỗn dịch uống, hộp 24 gói, mỗi gói chứa 10 ml hỗn dịch thuốc màu trắng nhờ, có mùi vị bạc hà.",
+    "image": "products/00016534_gaviscon_dual_action_24_goi_x_10ml_9446_63ab_large_cea99ca16b.webp",
+    "unit": "Hộp",
+    "price": "240000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 26,
+  "fields": {
+    "category": 12,
+    "proid": "SP024",
+    "name": "Thuốc Đại Tràng Trường Phúc điều trị viêm loét đại tràng, rối loạn tiêu hóa",
+    "description": "Thuốc Đại Tràng Trường Phúc là sản phẩm của Công ty TNHH Dược Thảo Hoàng Thành có thành phần dược chất là cao đặc hỗn hợp các dược liệu: Hoàng liên, Mộc hương, Bạch truật, Bạch thược, Ngũ bội tử, Hậu phác, Cam thảo, Xa tiền tử, Hoạt thạch. Thuốc được dùng điều trị viêm loét đại tràng, rối loạn tiêu hóa, tiêu chảy (không phải do nhiễm khuẩn). Dùng trong các trường hợp đau đầu chướng bụng, ăn không tiêu, sôi bụng, đi táo hoặc lỏng, nhầy máu mũi, phân sống...",
+    "image": "products/IMG_0219_3cd93f1c8d.webp",
+    "unit": "Hộp",
+    "price": "105000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 27,
+  "fields": {
+    "category": 12,
+    "proid": "SP025",
+    "name": "Trà Gừng Traphaco điều trị đau bụng do lạnh, đầy trướng, không tiêu",
+    "description": "Trà gừng Traphaco có thành phần chính là Gừng tươi, đây là sản phẩm được sử dụng để điều trị đau bụng do lạnh, đầy chướng không tiêu hoặc nôn, tiêu lỏng do lạnh, người nhiễm lạnh, chân tay lạnh, mạch nhỏ, ho do lạnh.",
+    "image": "products/IMG_1993_dd64841d13.webp",
+    "unit": "Hộp",
+    "price": "14000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 28,
+  "fields": {
+    "category": 12,
+    "proid": "SP026",
+    "name": "Thuốc Boganic Forte Traphaco bổ gan, hỗ trợ điều trị suy giảm chức năng gan",
+    "description": "Thuốc Boganic Forte của Công ty Cổ phần Công Nghệ Cao Traphaco, với hoạt chất chính là Cao Actisô, Cao Rau đắng đất, Cao Bìm bìm. Đây là thuốc được dùng điều trị trong suy giảm chức năng gan, đặc biệt do dùng nhiều bia, rượu, phòng và hỗ trợ điều trị viêm gan do thuốc, hóa chất, viêm gan gây mệt mỏi, khó tiêu, vàng da, bí đại tiểu tiện, táo bón. Ngoài ra, thuốc còn được dùng trong trường hợp dị ứng, mụn nhọt, lở ngứa, nổi mề đay do gan gây ra và vữa xơ động mạch, mỡ trong máu cao.",
+    "image": "products/IMG_1906_6bb1369184.webp",
+    "unit": "Hộp",
+    "price": "115000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 29,
+  "fields": {
+    "category": 11,
+    "proid": "SP027",
+    "name": "Thuốc tránh thai khẩn cấp BK-1 Stellapharm trong vòng 72 giờ sau khi giao hợp",
+    "description": "BK-1 là thuốc tránh thai khẩn cấp, dùng BK-1 trong vòng 72 giờ sau khi giao hợp không dùng biện pháp tránh thai hoặc biện pháp tránh thai đã dùng không đạt hiệu quả. Thuốc làm thay đổi dịch nhầy của tử cung, tạo nên một hàng rào ngăn cản sự di chuyển của tinh trùng vào tử cung.",
+    "image": "products/bk1_650f4d1628.webp",
+    "unit": "Hộp",
+    "price": "15000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 30,
+  "fields": {
+    "category": 11,
+    "proid": "SP028",
+    "name": "Sâm nhung bổ thận TW3 Foripharm giúp tăng cường sức khỏe, cải thiện tiểu đêm, tê mỏi chân tay",
+    "description": "Sâm Nhung Bổ Thận TW3 là sản phẩm có chứa cao đặc hỗn hợp dược liệu quý có tác dụng bổ thận, cố tinh dùng điều trị các trường hợp thận hư, thận yếu gây tiểu đêm nhiều lần, chân tay tê mỏi. Dùng cho cả nam và nữ trong các trường hợp: Tiểu đêm nhiều lần, chân tay tê mỏi, đau lưng, mỏi gối, tóc bạc sớm, sinh lý yếu.",
+    "image": "products/DSC_08923_b7e0839494_AfdOWhp.webp",
+    "unit": "Hộp",
+    "price": "295000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 31,
+  "fields": {
+    "category": 11,
+    "proid": "SP029",
+    "name": "Viên đặt âm đạo Canesten 6-Days-Therapy 100mg điều trị viêm âm đạo",
+    "description": "Canesten 100mg là thuốc ở dạng viên đặt âm đạo của Bayer Germany được chỉ định để điều trị viêm âm đạo do nấm Candida, Trichomonas và vi khuẩn nhạy cảm với Clotrimazole gây ra.",
+    "image": "products/00001553_canesten_100mg_9719_5b65_large_eff9bd5f76.webp",
+    "unit": "Hộp",
+    "price": "102000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 32,
+  "fields": {
+    "category": 11,
+    "proid": "SP030",
+    "name": "Thuốc Postinor 1 Gedeon dùng tránh thai khẩn cấp trong vòng 72 giờ sau giao hợp",
+    "description": "Postinor 1 với thành phần chính levonorgestrel, là thuốc ngừa thai khẩn cấp, có thể được dùng trong vòng 72 giờ sau các cuộc giao hợp không dùng biện pháp tránh thai, hoặc biện pháp tránh thai đã dùng không đạt hiệu quả.",
+    "image": "products/IMG_1244_d57042a289.webp",
+    "unit": "Hộp",
+    "price": "40000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 33,
+  "fields": {
+    "category": 11,
+    "proid": "SP031",
+    "name": "Thuốc Tư Âm Bổ Thận Đại Hồng Phúc cường âm, tráng dương, sinh tân dịch",
+    "description": "Tư âm bổ thận là sản phẩm của Công ty TNHH Y học Cổ truyền Đại Hồng Phúc có thành phần chính bao gồm thục địa, sơn thù, củ mài, mẫu đơn bì, mạch môn, trạch tả, phục linh, thạch hộc, đỗ trọng, ngưu tất, lộc nhung tác dụng bổ thận, giúp ổn định huyết áp và đường huyết. Ngoài ra còn có tác dụng điều hòa chức năng thận, phục hồi thần kinh suy nhược, đau lưng, mỏi gối, sinh lý yếu, tiểu đêm và mất ngủ…",
+    "image": "products/00007570_tu_am_bo_than_dai_hong_phuc_3102_5b1e_large_474a748024.webp",
+    "unit": "Hộp",
+    "price": "95000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 34,
+  "fields": {
+    "category": 9,
+    "proid": "SP032",
+    "name": "Thuốc Cebraton Traphaco bổ khí huyết, hoạt huyết dưỡng não",
+    "description": "Cebraton có thành phần chính là Đinh lăng, Cao khô lá Bạch quả. Đây là thuốc được sử dụng để phòng và điều trị suy giảm trí nhớ, căng thẳng thần kinh, kém tập trung; thiểu năng tuần hoàn não và hội chứng tiền đình với các biểu hiện như đau đầu, hoa mắt, chóng mặt, mất ngủ, mất thăng bằng; giảm chức năng não bộ, suy nhược thần kinh, di chứng não, đồng thời hỗ trợ điều trị chứng run giật ở bệnh nhân Parkinson.",
+    "image": "products/00001640_cebraton_tang_cuong_tri_nho_6243_63ab_large_acd22dde90.webp",
+    "unit": "Hộp",
+    "price": "160000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 35,
+  "fields": {
+    "category": 9,
+    "proid": "SP033",
+    "name": "Viên nén Panangin Gedeon bổ sung kali, magnesi dùng trong suy tim",
+    "description": "Thuốc Panangin là sản phẩm của Gedeon Richter PLC, có thành phần chính là Kali aspartat khan, Magie. Đây là thuốc được sử dụng để bổ sung kali và magnesi.",
+    "image": "products/IMG_2062_d16aeaf713.webp",
+    "unit": "Hộp",
+    "price": "141000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 36,
+  "fields": {
+    "category": 9,
+    "proid": "SP034",
+    "name": "Thuốc Tanganil 500mg Pierre Fabre điều trị cơn chóng mặt",
+    "description": "Tanganil 500 mg là sản phẩm của Công ty Pierre Fabre Medicament (Pháp), thành phần chính là acetylleucine. Thuốc dùng để điều trị cơn chóng mặt.",
+    "image": "products/00007165_tanganil_500mg5ml_3027_62a7_large_c8fd57a3f0_1.webp",
+    "unit": "Hộp",
+    "price": "143990.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 37,
+  "fields": {
+    "category": 10,
+    "proid": "SP035",
+    "name": "Viên nén Metformin 850mg Tipharco điều trị đái tháo đường không phụ thuộc insulin típ 2",
+    "description": "Metformin 850 mg có thành phần là Metformin hydroclorid (hàm lượng 850 mg). Thuốc được dùng đơn trị liệu trong điều trị đái tháo đường không phụ thuộc insulin (tuýp II) khi không thể điều trị tăng glucose huyết bằng chế độ ăn đơn thuần. Ngoài ra, có thể dùng metformin đồng thời với một sulfonylurea khi chế độ ăn và khi dùng metformin hoặc sulfonylurea đơn thuần không có hiệu quả kiểm soát glucose huyết một cách đầy đủ hơn.",
+    "image": "products/IMG_2720_69589abfdf.webp",
+    "unit": "Hộp",
+    "price": "200000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 38,
+  "fields": {
+    "category": 10,
+    "proid": "SP036",
+    "name": "Thuốc A.T Sitagliptin 100 mg An Thiên cải thiện kiểm soát đường huyết",
+    "description": "Thuốc A.T Sitagliptin là sản phẩm của Công ty Cổ phần Dược phẩm An Thiên chứa hoạt chất Sitagliptin được dùng để cải thiện kiểm soát đường huyết ở bệnh nhân đái tháo đường type 2.",
+    "image": "products/DSC_02879_e9945ec86b.webp",
+    "unit": "Hộp",
+    "price": "250000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 39,
+  "fields": {
+    "category": 5,
+    "proid": "SP037",
+    "name": "Thuốc Exopadin 60mg Trường Thọ điều trị viêm mũi dị ứng, mày đay",
+    "description": "Thuốc Exopadin là sản phẩm của Công ty Cổ phần Dược phẩm Trường Thọ có thành phần chính là Fexofenadin hydroclorid. Đây là thuốc được chỉ định để điều trị viêm mũi dị ứng theo mùa, điều trị các biểu hiện ngoài da không biến chứng của mày đay vô căn mạn tính ở người lớn và trẻ em từ 12 tuổi trở lên. Thuốc làm giảm ngứa và số lượng dát mày đay một cách đáng kể.",
+    "image": "products/IMG_0238_fc19904162.webp",
+    "unit": "Hộp",
+    "price": "60000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 40,
+  "fields": {
+    "category": 8,
+    "proid": "SP038",
+    "name": "Thuốc SP Ambroxol 30mg điều trị các bệnh cấp và mạn tính ở đường hô hấp",
+    "description": "SP Ambroxol là sản phẩm của Công ty TNHH Dược phẩm Shinpoong Daewoo có thành phần chính là Ambroxol hydroclorid dùng tiêu nhầy trong viêm phế quản mạn, hen phế quản, viêm phế quản dạng hen, phòng các biến chứng ở phổi sau mổ.",
+    "image": "products/IMG_7303_94e47c612d.webp",
+    "unit": "Hộp",
+    "price": "40000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 41,
+  "fields": {
+    "category": 6,
+    "proid": "SP039",
+    "name": "Thuốc Alzental 400mg Shinpoong Daewoo điều trị nhiễm một hoặc nhiều loại ký sinh trùng đường ruột",
+    "description": "Alzental có thành phần chính albendazol để điều trị nhiễm một loại hoặc nhiều loại ký sinh trùng đường ruột như giun đũa, giun kim, giun móc, giun mỏ, giun tóc, giun lươn. Albendazol cũng có hiệu quả trên ấu trùng di trú ở da.",
+    "image": "products/00021512_alzental_400mg_shinpoong_1x1_thuoc_tri_giun_1487_609c_large_908adedf56.webp",
+    "unit": "Hộp",
+    "price": "4000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 42,
+  "fields": {
+    "category": 4,
+    "proid": "SP040",
+    "name": "Viên an thần Mimosa OPC dùng cho trường hợp mất ngủ, suy nhược thần kinh",
+    "description": "Viên An Thần Mimosa - Cho Giấc Ngủ Ngon là sản phẩm của Công ty Cổ phần Dược phẩm OPC có chứa các thành phần thảo dược. Thuốc được sử dụng cho những trường hợp mất ngủ hoặc giấc ngủ đến chậm, suy nhược thần kinh. Dùng thay thế cho Diazepam khi bệnh nhân bị quen thuốc.",
+    "image": "products/IMG_1057_b4113befec.webp",
+    "unit": "Hộp",
+    "price": "98000.00",
+    "medicine_type": "non_prescription"
+  }
+},
+{
+  "model": "core.product",
+  "pk": 43,
+  "fields": {
+    "category": 7,
+    "proid": "SP041",
+    "name": "Thuốc Nolvadex-D 20mg AstraZeneca điều trị ung thư vú",
+    "description": "Nolvadex-D là sản phẩm của AstraZeneca UK Ltd có thành phần chính là Tamoxifen (dưới dạng tamoxifen citrat) dùng điều trị ung thư vú.",
+    "image": "products/00014354_nolvadex_d_9880_63aa_large_72f1b33ad4.webp",
+    "unit": "Hộp",
+    "price": "600000.00",
+    "medicine_type": "prescription"
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "quantity": 93
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 3,
+  "fields": {
+    "product": 3,
+    "quantity": 94
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 4,
+  "fields": {
+    "product": 4,
+    "quantity": 247
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 5,
+  "fields": {
+    "product": 5,
+    "quantity": 59
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 7,
+  "fields": {
+    "product": 7,
+    "quantity": 20
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 8,
+  "fields": {
+    "product": 8,
+    "quantity": 10
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 9,
+  "fields": {
+    "product": 9,
+    "quantity": 30
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 10,
+  "fields": {
+    "product": 10,
+    "quantity": 10
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 11,
+  "fields": {
+    "product": 11,
+    "quantity": 16
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 12,
+  "fields": {
+    "product": 12,
+    "quantity": 15
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 13,
+  "fields": {
+    "product": 13,
+    "quantity": 38
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 14,
+  "fields": {
+    "product": 14,
+    "quantity": 5
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 15,
+  "fields": {
+    "product": 15,
+    "quantity": 4
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 16,
+  "fields": {
+    "product": 16,
+    "quantity": 4
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 17,
+  "fields": {
+    "product": 17,
+    "quantity": 6
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 18,
+  "fields": {
+    "product": 18,
+    "quantity": 21
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 19,
+  "fields": {
+    "product": 19,
+    "quantity": 20
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 20,
+  "fields": {
+    "product": 20,
+    "quantity": 8
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 21,
+  "fields": {
+    "product": 21,
+    "quantity": 4
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 22,
+  "fields": {
+    "product": 22,
+    "quantity": 2
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 23,
+  "fields": {
+    "product": 23,
+    "quantity": 21
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 24,
+  "fields": {
+    "product": 24,
+    "quantity": 9
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 25,
+  "fields": {
+    "product": 25,
+    "quantity": 32
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 26,
+  "fields": {
+    "product": 26,
+    "quantity": 3
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 27,
+  "fields": {
+    "product": 27,
+    "quantity": 12
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 28,
+  "fields": {
+    "product": 28,
+    "quantity": 9
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 29,
+  "fields": {
+    "product": 29,
+    "quantity": 11
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 30,
+  "fields": {
+    "product": 30,
+    "quantity": 5
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 31,
+  "fields": {
+    "product": 31,
+    "quantity": 4
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 32,
+  "fields": {
+    "product": 32,
+    "quantity": 2
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 33,
+  "fields": {
+    "product": 33,
+    "quantity": 2
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 34,
+  "fields": {
+    "product": 34,
+    "quantity": 2
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 35,
+  "fields": {
+    "product": 35,
+    "quantity": 5
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 36,
+  "fields": {
+    "product": 36,
+    "quantity": 3
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 37,
+  "fields": {
+    "product": 37,
+    "quantity": 5
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 38,
+  "fields": {
+    "product": 38,
+    "quantity": 2
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 39,
+  "fields": {
+    "product": 39,
+    "quantity": 14
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 40,
+  "fields": {
+    "product": 40,
+    "quantity": 3
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 41,
+  "fields": {
+    "product": 41,
+    "quantity": 9
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 42,
+  "fields": {
+    "product": 42,
+    "quantity": 7
+  }
+},
+{
+  "model": "core.inventory",
+  "pk": 43,
+  "fields": {
+    "product": 43,
+    "quantity": 0
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 1,
+  "fields": {
+    "customer": 1
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 2,
+  "fields": {
+    "customer": 2
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 3,
+  "fields": {
+    "customer": 3
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 4,
+  "fields": {
+    "customer": 4
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 5,
+  "fields": {
+    "customer": 5
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 6,
+  "fields": {
+    "customer": 6
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 7,
+  "fields": {
+    "customer": 7
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 8,
+  "fields": {
+    "customer": 8
+  }
+},
+{
+  "model": "core.cart",
+  "pk": 9,
+  "fields": {
+    "customer": 9
+  }
+},
+{
+  "model": "core.cartitem",
+  "pk": 25,
+  "fields": {
+    "cart": 8,
+    "product": 4,
+    "quantity": 3
+  }
+},
+{
+  "model": "core.order",
+  "pk": 1,
+  "fields": {
+    "customer": 1,
+    "code": "DHBF463DE4",
+    "status": "completed",
+    "receiver_name": "Nguyễn Phúc Hoàng",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "90000.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-19T07:16:25.556Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 2,
+  "fields": {
+    "customer": 2,
+    "code": "DHE2C0EF4B",
+    "status": "confirmed",
+    "receiver_name": "Phan Thị Khánh Chi",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "115000.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-23T02:28:19.005Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 3,
+  "fields": {
+    "customer": 5,
+    "code": "DH4075BBFE",
+    "status": "confirmed",
+    "receiver_name": "Hà Thị Khánh Linh",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "205000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-03-23T02:29:34.960Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 4,
+  "fields": {
+    "customer": 3,
+    "code": "DH9AB1B64F",
+    "status": "completed",
+    "receiver_name": "Nguyễn Quỳnh Hương",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "579990.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-24T08:07:07.881Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 5,
+  "fields": {
+    "customer": 6,
+    "code": "DH1948459F",
+    "status": "pending",
+    "receiver_name": "Phan Quế Anh",
+    "receiver_phone": "039283723",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "360000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-03-24T08:12:24.193Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 6,
+  "fields": {
+    "customer": 1,
+    "code": "DHD367E997",
+    "status": "pending",
+    "receiver_name": "Nguyễn Thị Hồng Thắm",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "670000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-03-24T08:15:58.101Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 7,
+  "fields": {
+    "customer": 4,
+    "code": "DHAFC3183E",
+    "status": "pending",
+    "receiver_name": "Nguyễn Phúc Hoàng",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "115000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-03-24T08:52:46.141Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 8,
+  "fields": {
+    "customer": 4,
+    "code": "DHBF4FDDEA",
+    "status": "pending",
+    "receiver_name": "Nguyễn Phúc Hoàng",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "13000.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-24T08:54:02.811Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 9,
+  "fields": {
+    "customer": 4,
+    "code": "DHDD30AF5E",
+    "status": "pending",
+    "receiver_name": "Nguyễn Quỳnh Hương",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "40000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-03-24T09:13:57.242Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 10,
+  "fields": {
+    "customer": 4,
+    "code": "DH78AE9C00",
+    "status": "completed",
+    "receiver_name": "Phan Thị Khánh Chi",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "295000.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-24T09:14:10.724Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 11,
+  "fields": {
+    "customer": 4,
+    "code": "DH71454738",
+    "status": "completed",
+    "receiver_name": "Nguyễn Thị Hồng Thắm",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "14000.00",
+    "note": "",
+    "payment_method": "bank",
+    "created_at": "2026-03-24T09:17:13.124Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 12,
+  "fields": {
+    "customer": 1,
+    "code": "DHF0207104",
+    "status": "pending",
+    "receiver_name": "Nguyễn Phúc Hoàng",
+    "receiver_phone": "0352814225",
+    "delivery_address": "29 Hoài Thanh",
+    "subtotal": "193000.00",
+    "note": "Giao vao buoi trua",
+    "payment_method": "bank",
+    "created_at": "2026-04-22T06:55:29.226Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 13,
+  "fields": {
+    "customer": 7,
+    "code": "DHD0846538",
+    "status": "pending",
+    "receiver_name": "Hoàng Nguyễn Phúc",
+    "receiver_phone": "0352814225",
+    "delivery_address": "Số 8, Xã An Phú, Thành phố Hải Phòng",
+    "subtotal": "613000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-04-23T02:07:58.631Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 14,
+  "fields": {
+    "customer": 7,
+    "code": "DHE65DB3D3",
+    "status": "completed",
+    "receiver_name": "Hoàng Nguyễn Phúc",
+    "receiver_phone": "0352814225",
+    "delivery_address": "sdsd, Xã Dục Nông, Quảng Ngãi",
+    "subtotal": "418000.00",
+    "note": "dfgdfgd",
+    "payment_method": "bank",
+    "created_at": "2026-04-23T04:43:44.887Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 15,
+  "fields": {
+    "customer": 1,
+    "code": "DHEFFD5AC9",
+    "status": "pending",
+    "receiver_name": "Hoàng Nguyễn Phúc",
+    "receiver_phone": "0352814225",
+    "delivery_address": "Số 8, Phường Vinh Phú, Nghệ An",
+    "subtotal": "117000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-05-07T00:36:30.601Z"
+  }
+},
+{
+  "model": "core.order",
+  "pk": 16,
+  "fields": {
+    "customer": 7,
+    "code": "DHBDC2CF28",
+    "status": "pending",
+    "receiver_name": "Hoàng Nguyễn Phúc",
+    "receiver_phone": "0352814225",
+    "delivery_address": "Số 8, Xã Đường Hoa, Quảng Ninh",
+    "subtotal": "1008000.00",
+    "note": "",
+    "payment_method": "cash",
+    "created_at": "2026-05-07T04:49:26.095Z"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 2,
+    "quantity": 2,
+    "unit_price": "45000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 3,
+    "quantity": 1,
+    "unit_price": "25000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "product": 4,
+    "quantity": 1,
+    "unit_price": "90000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 3,
+    "product": 5,
+    "quantity": 1,
+    "unit_price": "70000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 3,
+    "product": 2,
+    "quantity": 3,
+    "unit_price": "45000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 4,
+    "product": 36,
+    "quantity": 1,
+    "unit_price": "143990.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 4,
+    "product": 11,
+    "quantity": 2,
+    "unit_price": "13000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 4,
+    "product": 28,
+    "quantity": 1,
+    "unit_price": "115000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 4,
+    "product": 30,
+    "quantity": 1,
+    "unit_price": "295000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 5,
+    "product": 3,
+    "quantity": 5,
+    "unit_price": "50000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 5,
+    "product": 19,
+    "quantity": 2,
+    "unit_price": "55000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 6,
+    "product": 2,
+    "quantity": 1,
+    "unit_price": "325000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 6,
+    "product": 17,
+    "quantity": 3,
+    "unit_price": "115000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 7,
+    "product": 28,
+    "quantity": 1,
+    "unit_price": "115000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 8,
+    "product": 11,
+    "quantity": 1,
+    "unit_price": "13000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 9,
+    "product": 32,
+    "quantity": 1,
+    "unit_price": "40000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 10,
+    "product": 30,
+    "quantity": 1,
+    "unit_price": "295000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 11,
+    "product": 27,
+    "quantity": 1,
+    "unit_price": "14000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 12,
+    "product": 16,
+    "quantity": 1,
+    "unit_price": "100000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 12,
+    "product": 4,
+    "quantity": 1,
+    "unit_price": "93000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 13,
+    "product": 11,
+    "quantity": 1,
+    "unit_price": "13000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 13,
+    "product": 43,
+    "quantity": 1,
+    "unit_price": "600000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 14,
+    "product": 4,
+    "quantity": 1,
+    "unit_price": "93000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 14,
+    "product": 2,
+    "quantity": 1,
+    "unit_price": "325000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 15,
+    "product": 21,
+    "quantity": 2,
+    "unit_price": "9000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 15,
+    "product": 13,
+    "quantity": 1,
+    "unit_price": "99000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 16,
+    "product": 43,
+    "quantity": 1,
+    "unit_price": "600000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 16,
+    "product": 41,
+    "quantity": 1,
+    "unit_price": "4000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 29,
+  "fields": {
+    "order": 16,
+    "product": 37,
+    "quantity": 1,
+    "unit_price": "200000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 30,
+  "fields": {
+    "order": 16,
+    "product": 26,
+    "quantity": 1,
+    "unit_price": "105000.00"
+  }
+},
+{
+  "model": "core.orderitem",
+  "pk": 31,
+  "fields": {
+    "order": 16,
+    "product": 13,
+    "quantity": 1,
+    "unit_price": "99000.00"
+  }
+}
+]
